@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Library", "Ark.Vinke.Library\Ark.Vinke.Library.csproj", "{E6FC8DE2-1349-404F-A871-8694E8F35177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Library.Core", "Ark.Vinke.Library.Core\Ark.Vinke.Library.Core.csproj", "{6087F35C-D81C-45F0-96DE-A7C22EB9DF98}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E6FC8DE2-1349-404F-A871-8694E8F35177} = {E6FC8DE2-1349-404F-A871-8694E8F35177}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Library.Core.Client", "Ark.Vinke.Library.Core.Client\Ark.Vinke.Library.Core.Client.csproj", "{65068932-4FD7-4C0B-82C6-A2EF5C00B57D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98} = {6087F35C-D81C-45F0-96DE-A7C22EB9DF98}
+		{E6FC8DE2-1349-404F-A871-8694E8F35177} = {E6FC8DE2-1349-404F-A871-8694E8F35177}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Library.Core.Server", "Ark.Vinke.Library.Core.Server\Ark.Vinke.Library.Core.Server.csproj", "{2DE3D840-DF8C-4287-970B-FB2DE4B758BF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98} = {6087F35C-D81C-45F0-96DE-A7C22EB9DF98}
+		{E6FC8DE2-1349-404F-A871-8694E8F35177} = {E6FC8DE2-1349-404F-A871-8694E8F35177}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Library.Core.Service", "Ark.Vinke.Library.Core.Service\Ark.Vinke.Library.Core.Service.csproj", "{39A50168-B427-488C-B56E-186DBB9D7EE6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98} = {6087F35C-D81C-45F0-96DE-A7C22EB9DF98}
+		{E6FC8DE2-1349-404F-A871-8694E8F35177} = {E6FC8DE2-1349-404F-A871-8694E8F35177}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Library", "Ark.Vinke.Library", "{50CAA01B-8C44-4746-8BD2-6D6FA39E5533}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Library.Core", "Ark.Vinke.Library.Core", "{412EE3AB-8E80-48FC-BCD0-31552AE73527}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Library.Core.Client", "Ark.Vinke.Library.Core.Client", "{DF412A98-C80C-4444-B316-6DE65F0A5DF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Library.Core.Server", "Ark.Vinke.Library.Core.Server", "{91E604A0-E73A-4BD9-A39D-CE5A7B38554C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Library.Core.Service", "Ark.Vinke.Library.Core.Service", "{6149A048-F342-45A0-A0E8-57DAB3984344}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6FC8DE2-1349-404F-A871-8694E8F35177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6FC8DE2-1349-404F-A871-8694E8F35177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6FC8DE2-1349-404F-A871-8694E8F35177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6FC8DE2-1349-404F-A871-8694E8F35177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65068932-4FD7-4C0B-82C6-A2EF5C00B57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65068932-4FD7-4C0B-82C6-A2EF5C00B57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65068932-4FD7-4C0B-82C6-A2EF5C00B57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65068932-4FD7-4C0B-82C6-A2EF5C00B57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE3D840-DF8C-4287-970B-FB2DE4B758BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE3D840-DF8C-4287-970B-FB2DE4B758BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE3D840-DF8C-4287-970B-FB2DE4B758BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE3D840-DF8C-4287-970B-FB2DE4B758BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A50168-B427-488C-B56E-186DBB9D7EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A50168-B427-488C-B56E-186DBB9D7EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A50168-B427-488C-B56E-186DBB9D7EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A50168-B427-488C-B56E-186DBB9D7EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6FC8DE2-1349-404F-A871-8694E8F35177} = {50CAA01B-8C44-4746-8BD2-6D6FA39E5533}
+		{6087F35C-D81C-45F0-96DE-A7C22EB9DF98} = {412EE3AB-8E80-48FC-BCD0-31552AE73527}
+		{65068932-4FD7-4C0B-82C6-A2EF5C00B57D} = {DF412A98-C80C-4444-B316-6DE65F0A5DF4}
+		{2DE3D840-DF8C-4287-970B-FB2DE4B758BF} = {91E604A0-E73A-4BD9-A39D-CE5A7B38554C}
+		{39A50168-B427-488C-B56E-186DBB9D7EE6} = {6149A048-F342-45A0-A0E8-57DAB3984344}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23BB6EE1-F0D3-4BB8-989D-C33F37B9ED0B}
+	EndGlobalSection
+EndGlobal

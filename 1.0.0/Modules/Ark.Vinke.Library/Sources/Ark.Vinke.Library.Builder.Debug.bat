@@ -1,0 +1,3 @@
+echo Building Ark.Vinke.Library...
+dotnet clean >> nul
+dotnet build --configuration Debug >> nul
