@@ -21,7 +21,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
 		<PackageReference Include="Lazy.Vinke" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Json" Version="1.0.0" />
 		<PackageReference Include="Ark.Vinke.Library" Version="1.0.0" />
 	</ItemGroup>
 
