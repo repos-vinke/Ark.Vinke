@@ -149,13 +149,13 @@ namespace Ark.Vinke.Library.Core
             {
                 if (MemoryCache.Default.Contains(key) == false)
                 {
-                    String slidingExpiration = LibConfiguration.DynamicXml["Ark.Vinke.Library.Core"]["MemoryCache"]["SlidingExpiration"].Attribute["Seconds"];
+                    String slidingExpiration = LibConfiguration.DynamicXml["Ark.Vinke.Library"]["MemoryCache"]["SlidingExpiration"].Attribute["Seconds"];
 
                     if (String.IsNullOrWhiteSpace(slidingExpiration) == true)
                     {
                         slidingExpiration = LazyConvert.ToString(LibMemoryCache.DEFAULT_SLIDING_EXPIRATION);
 
-                        LibConfiguration.DynamicXml["Ark.Vinke.Library.Core"]["MemoryCache"]["SlidingExpiration"].Attribute["Seconds"] = slidingExpiration;
+                        LibConfiguration.DynamicXml["Ark.Vinke.Library"]["MemoryCache"]["SlidingExpiration"].Attribute["Seconds"] = slidingExpiration;
                         LibConfiguration.Save();
                     }
 

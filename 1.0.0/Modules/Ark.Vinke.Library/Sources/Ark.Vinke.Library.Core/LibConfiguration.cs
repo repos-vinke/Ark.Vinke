@@ -76,12 +76,12 @@ namespace Ark.Vinke.Library.Core
 
             #region DynamicXml
 
-            #region Ark.Vinke.Library.Core/Globalization/Culture
+            #region Ark.Vinke.Library/Globalization/Culture
 
-            if (dynamicXml["Ark.Vinke.Library.Core"]["Globalization"]["Culture"].Attribute["Code"] == String.Empty)
-                dynamicXml["Ark.Vinke.Library.Core"]["Globalization"]["Culture"].Attribute["Code"] = "EnUs";
+            if (DynamicXml["Ark.Vinke.Library"]["Globalization"]["Culture"].Attribute["Code"] == String.Empty)
+                DynamicXml["Ark.Vinke.Library"]["Globalization"]["Culture"].Attribute["Code"] = "EnUs";
 
-            #endregion Ark.Vinke.Library.Core/Globalization/Culture
+            #endregion Ark.Vinke.Library/Globalization/Culture
 
             #endregion DynamicXml
 

@@ -50,11 +50,11 @@ namespace Ark.Vinke.Library.Core
             if (File.Exists(filePath) == false)
                 return jPath;
 
-            LazyJson lazyJson = (LazyJson)LibMemoryCache.Module["Ark.Vinke.Library.Core"].Container["Globalization"].Item[jPathArray[0]].Value;
+            LazyJson lazyJson = (LazyJson)LibMemoryCache.Module["Ark.Vinke.Library"].Container["Globalization"].Item[jPathArray[0]].Value;
 
             if (lazyJson == null)
             {
-                try { LibMemoryCache.Module["Ark.Vinke.Library.Core"].Container["Globalization"].Item[jPathArray[0]].Value = lazyJson = LazyJsonReader.Read(File.ReadAllText(filePath)); }
+                try { LibMemoryCache.Module["Ark.Vinke.Library"].Container["Globalization"].Item[jPathArray[0]].Value = lazyJson = LazyJsonReader.Read(File.ReadAllText(filePath)); }
                 catch { return jPath; }
             }
 

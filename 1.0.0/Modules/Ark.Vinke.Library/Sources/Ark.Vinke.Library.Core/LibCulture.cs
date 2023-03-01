@@ -48,7 +48,7 @@ namespace Ark.Vinke.Library.Core
         private void InitializeCulture(String code = null)
         {
             if (code == null)
-                code = LibConfiguration.DynamicXml["Ark.Vinke.Library.Core"]["Globalization"]["Culture"].Attribute["Code"];
+                code = LibConfiguration.DynamicXml["Ark.Vinke.Library"]["Globalization"]["Culture"].Attribute["Code"];
 
             this.code = code;
             this.code = this.code.Replace("-", String.Empty);
