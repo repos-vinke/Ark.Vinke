@@ -20,3 +20,7 @@ cd ..\..\..\
 cd .\Modules\Ark.Vinke.Facilities\Sources\
 call .\Ark.Vinke.Facilities.Builder.Release.bat
 cd ..\..\..\
+
+cd .\Modules\Ark.Vinke.System\Sources\
+call .\Ark.Vinke.System.Builder.Release.bat
+cd ..\..\..\
