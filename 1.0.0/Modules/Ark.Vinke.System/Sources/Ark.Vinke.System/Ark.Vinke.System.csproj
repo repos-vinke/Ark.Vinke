@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Product>Ark</Product>
+		<Description>Ark Vinke System</Description>
+		<Authors>Vinke</Authors>
+		<Version>1.0.0</Version>
+		<RepositoryUrl>https://github.com/repos-vinke/Ark.Vinke</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageOutputPath>$(SolutionDir)..\..\..\Packages\</PackageOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Lazy.Vinke" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Json" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities" Version="1.0.0" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.Vinke.System\bin\Debug\net6.0\Ark.Vinke.System.dll %SystemDrive%%HomePath%\.nuget\Packages\Ark.Vinke.System\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.System\bin\Debug\net6.0\Ark.Vinke.System.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\Ark.Vinke.System\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.System\bin\Debug\net6.0\Ark.Vinke.System.dll $(SolutionDir)..\..\..\..\..\..\Debug\Client\Bin\Ark.Vinke.System\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.System\bin\Debug\net6.0\Ark.Vinke.System.dll $(SolutionDir)..\..\..\..\..\..\Debug\Server\Bin\Ark.Vinke.System\1.0.0\lib\net6.0\
+		</PostBuildEvent>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.Vinke.System\bin\Release\net6.0\Ark.Vinke.System.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\Ark.Vinke.System\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.System\bin\Release\net6.0\Ark.Vinke.System.dll $(SolutionDir)..\..\..\..\..\..\Release\Client\Bin\Ark.Vinke.System\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.System\bin\Release\net6.0\Ark.Vinke.System.dll $(SolutionDir)..\..\..\..\..\..\Release\Server\Bin\Ark.Vinke.System\1.0.0\lib\net6.0\
+		</PostBuildEvent>
+	</PropertyGroup>
+
+</Project>
