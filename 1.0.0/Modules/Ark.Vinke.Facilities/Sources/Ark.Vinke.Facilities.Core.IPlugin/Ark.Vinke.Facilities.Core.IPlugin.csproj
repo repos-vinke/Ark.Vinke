@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -35,15 +35,15 @@
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0'">
 		<PostBuildEvent>
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Debug\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll %SystemDrive%%HomePath%\.nuget\Packages\Ark.Vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Debug\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\Ark.Vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Debug\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Debug\Server\Bin\Ark.Vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Debug\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll %SystemDrive%%HomePath%\.nuget\Packages\ark.vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Debug\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\ark.vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Debug\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Debug\Server\Bin\ark.vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
 		</PostBuildEvent>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0'">
 		<PostBuildEvent>
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Release\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\Ark.Vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Release\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Release\Server\Bin\Ark.Vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Release\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\ark.vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.IPlugin\bin\Release\net6.0\Ark.Vinke.Facilities.Core.IPlugin.dll $(SolutionDir)..\..\..\..\..\..\Release\Server\Bin\ark.vinke.facilities.core.iplugin\1.0.0\lib\net6.0\
 		</PostBuildEvent>
 	</PropertyGroup>
 
