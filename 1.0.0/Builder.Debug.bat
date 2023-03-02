@@ -12,3 +12,7 @@ del ..\..\..\Debug\.gitkeep >>nul 2>>&1
 cd .\Modules\Ark.Vinke.Library\Sources\
 call .\Ark.Vinke.Library.Builder.Debug.bat
 cd ..\..\..\
+
+cd .\Modules\Ark.Vinke.Framework\Sources\
+call .\Ark.Vinke.Framework.Builder.Debug.bat
+cd ..\..\..\
