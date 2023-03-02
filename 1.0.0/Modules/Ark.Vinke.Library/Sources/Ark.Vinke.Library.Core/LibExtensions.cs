@@ -15,7 +15,9 @@ using System.Collections.Generic;
 
 using Lazy.Vinke;
 
-namespace Ark.Vinke.Library
+using Ark.Vinke.Library;
+
+namespace Ark.Vinke.Library.Core
 {
     public static class LibExtensions
     {
