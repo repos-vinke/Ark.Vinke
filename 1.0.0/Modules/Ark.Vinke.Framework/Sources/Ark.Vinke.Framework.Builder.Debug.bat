@@ -1,0 +1,3 @@
+echo Building Ark.Vinke.Framework...
+dotnet clean >> nul
+dotnet build --configuration Debug >> nul
