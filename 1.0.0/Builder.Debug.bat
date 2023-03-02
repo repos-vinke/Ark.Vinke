@@ -16,3 +16,7 @@ cd ..\..\..\
 cd .\Modules\Ark.Vinke.Framework\Sources\
 call .\Ark.Vinke.Framework.Builder.Debug.bat
 cd ..\..\..\
+
+cd .\Modules\Ark.Vinke.Facilities\Sources\
+call .\Ark.Vinke.Facilities.Builder.Debug.bat
+cd ..\..\..\
