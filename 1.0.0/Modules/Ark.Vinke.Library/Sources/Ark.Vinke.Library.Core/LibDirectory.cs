@@ -250,6 +250,12 @@ namespace Ark.Vinke.Library.Core
             get { return this.assemblyVersion; }
         }
 
+        public LibDirectoryAssemblyVersionItem CurrentFolderVersion
+        {
+            /* The current folder version will be the first folder found on this directory */
+            get { return Version[System.IO.Path.GetDirectoryName(Directory.GetDirectories(this.path)[0])]; }
+        }
+
         #endregion Properties
     }
 
