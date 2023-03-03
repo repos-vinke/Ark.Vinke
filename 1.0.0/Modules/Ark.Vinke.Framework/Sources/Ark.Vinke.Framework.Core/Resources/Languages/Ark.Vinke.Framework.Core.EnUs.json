@@ -1,0 +1,10 @@
+{
+  "Captions": null,
+  "Exceptions": {
+    "FwkExceptionRecordFieldValidationAllowedValues": "The allowed values for field '{0}' are '{1}'!",
+    "FwkExceptionRecordFieldValidationHigherEqualThan": "The value of the field '{0}' must be higher or equal than '{1}'!",
+    "FwkExceptionRecordFieldValidationHigherThan": "The value of the field '{0}' must be higher than '{1}'!",
+    "FwkExceptionViewFieldValidationAllowedValues": "The allowed values for field '{0}' are '{1}'!"
+  },
+  "Messages": null
+}

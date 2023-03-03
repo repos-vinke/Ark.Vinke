@@ -1,0 +1,9 @@
+{
+  "Captions": {
+    "FwkCaptionSuccess": "Success"
+  },
+  "Exceptions": null,
+  "Messages": {
+    "FwkMessageSuccess": "Process executed successfully!"
+  }
+}

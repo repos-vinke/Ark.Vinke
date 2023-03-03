@@ -34,17 +34,36 @@
 		<PackageReference Include="Ark.Vinke.Framework.Core.IService" Version="1.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Update="Properties\FwkResourcesCoreService.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>FwkResourcesCoreService.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\FwkResourcesCoreService.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>FwkResourcesCoreService.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0'">
 		<PostBuildEvent>
 			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\bin\Debug\net6.0\Ark.Vinke.Framework.Core.Service.dll %SystemDrive%%HomePath%\.nuget\Packages\ark.vinke.framework.core.service\1.0.0\lib\net6.0\
 			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\bin\Debug\net6.0\Ark.Vinke.Framework.Core.Service.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\ark.vinke.framework.core.service\1.0.0\lib\net6.0\
 			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\bin\Debug\net6.0\Ark.Vinke.Framework.Core.Service.dll $(SolutionDir)..\..\..\..\..\..\Debug\Server\Bin\ark.vinke.framework.core.service\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\Resources\Languages\* $(SolutionDir)..\..\..\..\..\..\Debug\Both\Res\Languages\
+			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\Resources\Languages\* $(SolutionDir)..\..\..\..\..\..\Debug\Server\Res\Languages\
 		</PostBuildEvent>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0'">
 		<PostBuildEvent>
 			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\bin\Release\net6.0\Ark.Vinke.Framework.Core.Service.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\ark.vinke.framework.core.service\1.0.0\lib\net6.0\
 			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\bin\Release\net6.0\Ark.Vinke.Framework.Core.Service.dll $(SolutionDir)..\..\..\..\..\..\Release\Server\Bin\ark.vinke.framework.core.service\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\Resources\Languages\* $(SolutionDir)..\..\..\..\..\..\Release\Both\Res\Languages\
+			xcopy /y $(SolutionDir)Ark.Vinke.Framework.Core.Service\Resources\Languages\* $(SolutionDir)..\..\..\..\..\..\Release\Server\Res\Languages\
 		</PostBuildEvent>
 	</PropertyGroup>
 

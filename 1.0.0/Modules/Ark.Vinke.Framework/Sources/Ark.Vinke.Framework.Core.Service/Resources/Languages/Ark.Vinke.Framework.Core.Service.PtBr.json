@@ -1,0 +1,27 @@
+{
+  "Captions": {
+    "FwkCaptionDuplicatedData": "Dado duplicado",
+    "FwkCaptionInvalidData": "Dado inválido",
+    "FwkCaptionMissingData": "Dado ausente",
+    "FwkCaptionMissingProperty": "Propriedade ausente",
+    "FwkCaptionNotFound": "Não encontrado"
+  },
+  "Exceptions": {
+    "FwkExceptionRecordDataSetMissing": "O DataSet do conteúdo da requisição não foi informado!",
+    "FwkExceptionRecordDataTableEmpty": "Os registros do DataTable '{0}' não foram informados!",
+    "FwkExceptionRecordDataTableMissing": "O DataTable '{0}' não foi informado!",
+    "FwkExceptionRecordKeyFieldEmpty": "O valor do campo chave '{0}' não foi informado!",
+    "FwkExceptionRecordKeyFieldMissing": "O campo chave '{0}' não foi informado!",
+    "FwkExceptionRecordNonEditableFieldModified": "O campo '{0}' não pode ser modificado!",
+    "FwkExceptionRecordOriginalKeyNotFound": "O registro com chave original [{0}] não foi encontrado!",
+    "FwkExceptionRecordRequiredFieldEmpty": "O valor do campo requerido '{0}' não foi informado!",
+    "FwkExceptionRecordUniqueFieldDuplicatedDatabase": "Os valores dos campos únicos '{0}' informados '{1}' já existem!",
+    "FwkExceptionRecordUniqueFieldDuplicatedRequest": "Os valores dos campos únicos '{0}' informados estão duplicados!",
+    "FwkExceptionViewDataSetMissing": "O DataSet do conteúdo da requisição não foi informado!",
+    "FwkExceptionViewDataTableEmpty": "Os registros do DataTable '{0}' não foram informados!",
+    "FwkExceptionViewDataTableMissing": "O DataTable '{0}' não foi informado!",
+    "FwkExceptionViewKeyFieldEmpty": "O valor do campo chave '{0}' não foi informado!",
+    "FwkExceptionViewKeyFieldMissing": "O campo chave '{0}' não foi informado!"
+  },
+  "Messages": null
+}

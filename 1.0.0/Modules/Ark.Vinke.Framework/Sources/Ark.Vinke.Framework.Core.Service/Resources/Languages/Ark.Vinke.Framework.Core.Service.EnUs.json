@@ -1,0 +1,27 @@
+{
+  "Captions": {
+    "FwkCaptionDuplicatedData": "Duplicated data",
+    "FwkCaptionInvalidData": "Invalid data",
+    "FwkCaptionMissingData": "Missing data",
+    "FwkCaptionMissingProperty": "Missing property",
+    "FwkCaptionNotFound": "Not found"
+  },
+  "Exceptions": {
+    "FwkExceptionRecordDataSetMissing": "The DataSet of the request content was not informed!",
+    "FwkExceptionRecordDataTableEmpty": "The DataTable '{0}' records was not informed!",
+    "FwkExceptionRecordDataTableMissing": "The DataTable '{0}' was not informed!",
+    "FwkExceptionRecordKeyFieldEmpty": "The key field '{0}' value was not informed!",
+    "FwkExceptionRecordKeyFieldMissing": "The key field '{0}' was not informed!",
+    "FwkExceptionRecordNonEditableFieldModified": "The field '{0}' cannot be modified!",
+    "FwkExceptionRecordOriginalKeyNotFound": "The record with original key [{0}] was not found!",
+    "FwkExceptionRecordRequiredFieldEmpty": "The required field '{0}' value was not informed!",
+    "FwkExceptionRecordUniqueFieldDuplicatedDatabase": "The unique fields '{0}' informed values '{1}' already exists!",
+    "FwkExceptionRecordUniqueFieldDuplicatedRequest": "The unique fields '{0}' informed values are duplicated!",
+    "FwkExceptionViewDataSetMissing": "The DataSet of the request content was not informed!",
+    "FwkExceptionViewDataTableEmpty": "The DataTable '{0}' records was not informed!",
+    "FwkExceptionViewDataTableMissing": "The DataTable '{0}' was not informed!",
+    "FwkExceptionViewKeyFieldEmpty": "The key field '{0}' value was not informed!",
+    "FwkExceptionViewKeyFieldMissing": "The key field '{0}' was not informed!"
+  },
+  "Messages": null
+}
