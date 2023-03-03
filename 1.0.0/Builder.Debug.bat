@@ -24,3 +24,7 @@ cd ..\..\..\
 cd .\Modules\Ark.Vinke.System\Sources\
 call .\Ark.Vinke.System.Builder.Debug.bat
 cd ..\..\..\
+
+cd .\Modules\Ark.Vinke\Sources\
+call .\Ark.Vinke.Builder.Debug.bat
+cd ..\..\..\
