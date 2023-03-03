@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Product>Ark</Product>
+		<Description>Ark Vinke Client</Description>
+		<Authors>Vinke</Authors>
+		<Version>1.0.0</Version>
+		<RepositoryUrl>https://github.com/repos-vinke/Ark.Vinke</RepositoryUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<UseWindowsForms>true</UseWindowsForms>
+		<OutputType>WinExe</OutputType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Lazy.Vinke" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Json" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Windows" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Windows.Forms" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core.Client" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.Data" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.IServer" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.Client" Version="1.0.0" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0-windows'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Client\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Debug\Client\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Debug\Client\
+		</PostBuildEvent>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0-windows'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Client\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Release\Client\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Release\Client\
+		</PostBuildEvent>
+	</PropertyGroup>
+
+</Project>

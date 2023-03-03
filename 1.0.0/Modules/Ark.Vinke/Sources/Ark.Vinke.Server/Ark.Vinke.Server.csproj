@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Product>Ark</Product>
+		<Description>Ark Vinke Server</Description>
+		<Authors>Vinke</Authors>
+		<Version>1.0.0</Version>
+		<RepositoryUrl>https://github.com/repos-vinke/Ark.Vinke</RepositoryUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Lazy.Vinke" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core.Server" Version="1.0.0" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Debug\net6.0\Ark.Vinke.Server.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Debug\net6.0\Ark.Vinke.Server.dll $(SolutionDir)..\..\..\..\..\..\Debug\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Debug\net6.0\Ark.Vinke.Server.exe $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Debug\net6.0\Ark.Vinke.Server.exe $(SolutionDir)..\..\..\..\..\..\Debug\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Debug\net6.0\Ark.Vinke.Server.deps.json $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Debug\net6.0\Ark.Vinke.Server.deps.json $(SolutionDir)..\..\..\..\..\..\Debug\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Ark.Vinke.Server.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Ark.Vinke.Server.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Debug\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\appsettings.json $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\appsettings.json $(SolutionDir)..\..\..\..\..\..\Debug\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Web.config $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Web.config $(SolutionDir)..\..\..\..\..\..\Debug\Server\
+		</PostBuildEvent>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Release\net6.0\Ark.Vinke.Server.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Release\net6.0\Ark.Vinke.Server.dll $(SolutionDir)..\..\..\..\..\..\Release\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Release\net6.0\Ark.Vinke.Server.exe $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Release\net6.0\Ark.Vinke.Server.exe $(SolutionDir)..\..\..\..\..\..\Release\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Release\net6.0\Ark.Vinke.Server.deps.json $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\bin\Release\net6.0\Ark.Vinke.Server.deps.json $(SolutionDir)..\..\..\..\..\..\Release\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Ark.Vinke.Server.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Ark.Vinke.Server.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Release\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\appsettings.json $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\appsettings.json $(SolutionDir)..\..\..\..\..\..\Release\Server\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Web.config $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Server\Web.config $(SolutionDir)..\..\..\..\..\..\Release\Server\
+		</PostBuildEvent>
+	</PropertyGroup>
+
+</Project>

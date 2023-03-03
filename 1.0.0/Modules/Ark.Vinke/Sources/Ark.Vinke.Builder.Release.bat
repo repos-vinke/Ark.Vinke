@@ -1,0 +1,3 @@
+echo Building Ark.Vinke...
+dotnet clean >> nul
+dotnet build --configuration Release >> nul
