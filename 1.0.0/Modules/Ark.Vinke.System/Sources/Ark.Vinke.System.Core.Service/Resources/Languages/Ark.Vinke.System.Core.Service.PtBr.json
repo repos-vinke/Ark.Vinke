@@ -1,0 +1,17 @@
+{
+  "Captions": {
+    "SysCaptionDenied": "Negado",
+    "SysCaptionIdDomain": "Id. Domínio",
+    "SysCaptionIdRole": "Id. Papel",
+    "SysCaptionInvalidType": "Tipo inválido",
+    "SysCaptionName": "Nome",
+    "SysCaptionSuccess": "Sucesso"
+  },
+  "Exceptions": {
+    "SysExceptionAuthenticationFailed": "Falha na autenticação!",
+    "SysExceptionAutomationInvalidService": "O serviço de automação deve derivar de FwkServiceProcess!"
+  },
+  "Messages": {
+    "SysMessageSuccess": "Processo executado com sucesso!"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "Captions": {
+    "SysCaptionDenied": "Denied"
+  },
+  "Exceptions": null,
+  "Messages": {
+    "SysMessageUnauthorized": "Unauthorized!"
+  }
+}

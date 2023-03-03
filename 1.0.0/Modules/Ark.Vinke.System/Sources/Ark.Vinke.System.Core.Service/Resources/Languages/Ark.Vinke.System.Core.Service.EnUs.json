@@ -1,0 +1,17 @@
+{
+  "Captions": {
+    "SysCaptionDenied": "Denied",
+    "SysCaptionIdDomain": "Domain Id",
+    "SysCaptionIdRole": "Role Id",
+    "SysCaptionInvalidType": "Invalid type",
+    "SysCaptionName": "Name",
+    "SysCaptionSuccess": "Success"
+  },
+  "Exceptions": {
+    "SysExceptionAuthenticationFailed": "Authentication failed!",
+    "SysExceptionAutomationInvalidService": "The automation service must derive from FwkServiceProcess!"
+  },
+  "Messages": {
+    "SysMessageSuccess": "Process executed successfully!"
+  }
+}
