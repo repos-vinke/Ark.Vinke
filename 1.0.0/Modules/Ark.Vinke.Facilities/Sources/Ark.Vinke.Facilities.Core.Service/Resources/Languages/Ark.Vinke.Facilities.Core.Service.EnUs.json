@@ -1,0 +1,18 @@
+{
+  "Captions": {
+    "FtsCaptionRequiredFieldInvalid": "Required field invalid!",
+    "FtsCaptionRequiredFieldMissing": "Required field missing!",
+    "FtsCaptionTableNotFound": "Table not found!"
+  },
+  "Exceptions": {
+    "FtsExceptionIncrementControllerTableFieldNullOrEmpty": "The controller table increment field cannot be null or empty!",
+    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid": "The controller table key field 'IdDomain' is not valid!",
+    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing": "The controller table key field 'IdDomain' was not informed!",
+    "FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght": "The controller table key fields cannot be null or zero lenght!",
+    "FtsExceptionIncrementControllerTableNameFacilitiesStruct": "The controller table name informed '{0}', is based on Facilities Structure, so the increment table name is required!",
+    "FtsExceptionIncrementControllerTableNameNullOrEmpty": "The controller table name cannot be null or empty!",
+    "FtsExceptionIncrementRangeLowerThanOne": "The increment range cannot be lower than one!",
+    "FtsExceptionIncrementTableNameNotFound": "The increment table informed '{0}' was not found on FtsIncrementTable!"
+  },
+  "Messages": null
+}

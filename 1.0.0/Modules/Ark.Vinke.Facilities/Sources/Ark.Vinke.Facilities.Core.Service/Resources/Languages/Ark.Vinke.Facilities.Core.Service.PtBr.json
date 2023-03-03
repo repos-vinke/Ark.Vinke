@@ -1,0 +1,18 @@
+{
+  "Captions": {
+    "FtsCaptionRequiredFieldInvalid": "Campo obrigatório inválido!",
+    "FtsCaptionRequiredFieldMissing": "Campo obrigatório ausente!",
+    "FtsCaptionTableNotFound": "Tabela não encontrada!"
+  },
+  "Exceptions": {
+    "FtsExceptionIncrementControllerTableFieldNullOrEmpty": "O campo de incremento da tabela controladora não pode ser nulo ou vazio!",
+    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid": "O campo chave 'IdDomain' da tabela controladora é inválido",
+    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing": "O campo chave 'IdDomain' da tabela controladora não foi informado!",
+    "FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght": "Os campos chaves da tabela controladora não pode ser nulo ou vazio!",
+    "FtsExceptionIncrementControllerTableNameFacilitiesStruct": "O nome da tabela de controle informada '{0}', é baseada na estrutura do Facilities, então o nome da tabela de incremento é obrigatório!",
+    "FtsExceptionIncrementControllerTableNameNullOrEmpty": "O nome da tabela controladora não pode ser nulo ou vazio!",
+    "FtsExceptionIncrementRangeLowerThanOne": "A quantidade de incrementos não pode ser menor do que um!",
+    "FtsExceptionIncrementTableNameNotFound": "A tabela de incremento informada '{0}' não foi encontrada na FtsIncrementTable!"
+  },
+  "Messages": null
+}
