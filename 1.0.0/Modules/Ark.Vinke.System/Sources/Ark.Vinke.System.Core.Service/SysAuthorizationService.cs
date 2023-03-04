@@ -174,6 +174,7 @@ namespace Ark.Vinke.System.Core.Service
 	                and FwkUserContext.Field = 'IdBranch' 
                     and FwkBranchRoleUser.IdUser = :IdUser 
                     and FwkBranchRoleAction.CodModule = :CodModule 
+                    and FwkBranchRoleAction.CodProject = :CodProject 
                     and FwkBranchRoleAction.CodFeature = :CodFeature 
                     and FwkBranchRoleAction.CodAction = :CodAction ";
 
@@ -184,6 +185,7 @@ namespace Ark.Vinke.System.Core.Service
                     authorizationDataRequest.Content.IdDomain,
                     authorizationDataRequest.Content.IdUser,
                     authorizationDataRequest.Content.CodModule,
+                    authorizationDataRequest.Content.CodProject,
                     authorizationDataRequest.Content.CodFeature,
                     authorizationDataRequest.Content.CodAction });
         }

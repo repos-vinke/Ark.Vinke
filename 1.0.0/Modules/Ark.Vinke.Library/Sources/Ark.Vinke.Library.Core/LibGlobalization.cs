@@ -46,7 +46,7 @@ namespace Ark.Vinke.Library.Core
             jPath = String.Format(jPath, culture.Code);
             String[] jPathArray = jPath.Split('$', StringSplitOptions.RemoveEmptyEntries);
 
-            String filePath = Path.Combine(LibDirectory.Root.Res.Languages.Path, jPathArray[0] + ".json");
+            String filePath = Path.Combine(LibDirectory.Root.Resources.Languages.Path, jPathArray[0] + ".json");
             if (File.Exists(filePath) == false)
                 return jPath;
 

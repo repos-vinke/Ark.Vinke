@@ -105,6 +105,8 @@ namespace Ark.Vinke.System.Core.Data
 
         public String CodModule { get; set; }
 
+        public String CodProject { get; set; }
+
         public String CodFeature { get; set; }
 
         public String CodAction { get; set; }

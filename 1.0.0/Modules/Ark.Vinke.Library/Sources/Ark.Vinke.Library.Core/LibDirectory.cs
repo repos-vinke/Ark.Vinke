@@ -87,7 +87,7 @@ namespace Ark.Vinke.Library.Core
                 #endregion Properties
             }
 
-            public static class Dat
+            public static class Config
             {
                 #region Variables
                 #endregion Variables
@@ -99,13 +99,13 @@ namespace Ark.Vinke.Library.Core
 
                 public static String Path
                 {
-                    get { return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dat"); }
+                    get { return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config"); }
                 }
 
                 #endregion Properties
             }
 
-            public static class Res
+            public static class Resources
             {
                 #region Variables
                 #endregion Variables
@@ -117,7 +117,7 @@ namespace Ark.Vinke.Library.Core
 
                 public static String Path
                 {
-                    get { return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Res"); }
+                    get { return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources"); }
                 }
 
                 #endregion Properties
@@ -136,34 +136,10 @@ namespace Ark.Vinke.Library.Core
 
                     public static String Path
                     {
-                        get { return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Res", "Languages"); }
+                        get { return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Languages"); }
                     }
 
                     #endregion Properties
-
-                    #region InternalClass
-                    #endregion InternalClass
-                }
-
-                public static class Medias
-                {
-                    #region Variables
-                    #endregion Variables
-
-                    #region Methods
-                    #endregion Methods
-
-                    #region Properties
-
-                    public static String Path
-                    {
-                        get { return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Res", "Medias"); }
-                    }
-
-                    #endregion Properties
-
-                    #region InternalClass
-                    #endregion InternalClass
                 }
 
                 #endregion InternalClass

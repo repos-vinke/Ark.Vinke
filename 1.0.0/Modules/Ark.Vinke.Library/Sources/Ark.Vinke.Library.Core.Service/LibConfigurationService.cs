@@ -46,7 +46,7 @@ namespace Ark.Vinke.Library.Core.Service
             #region Initialize configuration file
 
             // If configuration file not exists will be created a new one with default values
-            if (File.Exists(Path.Combine(LibDirectory.Root.Dat.Path, ARK_VINKE_LIBRARY_CORE_SERVICE_XML)) == false)
+            if (File.Exists(Path.Combine(LibDirectory.Root.Config.Path, ARK_VINKE_LIBRARY_CORE_SERVICE_XML)) == false)
                 Save();
 
             #endregion Initialize configuration file
@@ -55,7 +55,7 @@ namespace Ark.Vinke.Library.Core.Service
 
             LazyXml xml = new LazyXml();
 
-            xml.Open(Path.Combine(LibDirectory.Root.Dat.Path, ARK_VINKE_LIBRARY_CORE_SERVICE_XML));
+            xml.Open(Path.Combine(LibDirectory.Root.Config.Path, ARK_VINKE_LIBRARY_CORE_SERVICE_XML));
 
             LoadDynamicXml(xml);
 
@@ -85,7 +85,7 @@ namespace Ark.Vinke.Library.Core.Service
 
             SaveDynamicXml(xml, xmlNodeRoot);
 
-            xml.Save(Path.Combine(LibDirectory.Root.Dat.Path, ARK_VINKE_LIBRARY_CORE_SERVICE_XML));
+            xml.Save(Path.Combine(LibDirectory.Root.Config.Path, ARK_VINKE_LIBRARY_CORE_SERVICE_XML));
 
             xmlNodeRoot = null;
             xml = null;

@@ -79,8 +79,9 @@ namespace Ark.Vinke.System.Core.Server
                     authorizationDataRequest.Content.IdDomain = idDomain;
                     authorizationDataRequest.Content.IdUser = idUser;
                     authorizationDataRequest.Content.CodModule = controllerPath[0];
-                    authorizationDataRequest.Content.CodFeature = controllerPath[1];
-                    authorizationDataRequest.Content.CodAction = controllerPath[2];
+                    authorizationDataRequest.Content.CodProject = controllerPath[1];
+                    authorizationDataRequest.Content.CodFeature = controllerPath[2];
+                    authorizationDataRequest.Content.CodAction = controllerPath[3];
 
                     SysAuthorizationDataResponse authorizationDataResponse = (SysAuthorizationDataResponse)InvokeService("Authorize", authorizationDataRequest, context.HttpContext);
 
