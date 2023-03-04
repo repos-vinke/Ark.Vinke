@@ -43,15 +43,6 @@ namespace Ark.Vinke.Framework.Core.Plugin
         #endregion Constructors
 
         #region Methods
-
-        protected virtual void OnLoadPluginBasicBeforeEventHandler(Object sender, FwkPluginBasicBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnLoadPluginBasicAfterEventHandler(Object sender, FwkPluginBasicAfterEventArgs args)
-        {
-        }
-
         #endregion Methods
 
         #region Properties

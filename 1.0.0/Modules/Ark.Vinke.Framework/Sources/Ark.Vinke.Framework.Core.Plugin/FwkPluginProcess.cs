@@ -45,23 +45,6 @@ namespace Ark.Vinke.Framework.Core.Plugin
         #endregion Constructors
 
         #region Methods
-
-        protected virtual void OnNextPluginProcessBeforeEventHandler(Object sender, FwkPluginProcessBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnNextPluginProcessAfterEventHandler(Object sender, FwkPluginProcessAfterEventArgs args)
-        {
-        }
-
-        protected virtual void OnExecutePluginProcessBeforeEventHandler(Object sender, FwkPluginProcessBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnExecutePluginProcessAfterEventHandler(Object sender, FwkPluginProcessAfterEventArgs args)
-        {
-        }
-
         #endregion Methods
 
         #region Properties

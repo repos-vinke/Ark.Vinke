@@ -47,31 +47,6 @@ namespace Ark.Vinke.Framework.Core.Plugin
         #endregion Constructors
 
         #region Methods
-
-        protected virtual void OnFormatPluginViewBeforeEventHandler(Object sender, FwkPluginViewBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnFormatPluginViewAfterEventHandler(Object sender, FwkPluginViewAfterEventArgs args)
-        {
-        }
-
-        protected virtual void OnValidateReadPluginViewBeforeEventHandler(Object sender, FwkPluginViewBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnValidateReadPluginViewAfterEventHandler(Object sender, FwkPluginViewAfterEventArgs args)
-        {
-        }
-
-        protected virtual void OnReadPluginViewBeforeEventHandler(Object sender, FwkPluginViewBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnReadPluginViewAfterEventHandler(Object sender, FwkPluginViewAfterEventArgs args)
-        {
-        }
-
         #endregion Methods
 
         #region Properties

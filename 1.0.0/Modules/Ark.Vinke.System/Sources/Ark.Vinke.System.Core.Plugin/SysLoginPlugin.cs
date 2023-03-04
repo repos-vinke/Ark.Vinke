@@ -53,15 +53,6 @@ namespace Ark.Vinke.System.Core.Plugin
         #endregion Constructors
 
         #region Methods
-
-        protected virtual void OnAuthenticatePluginBeforeEventHandler(Object sender, SysLoginPluginBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnAuthenticatePluginAfterEventHandler(Object sender, SysLoginPluginAfterEventArgs args)
-        {
-        }
-
         #endregion Methods
 
         #region Properties

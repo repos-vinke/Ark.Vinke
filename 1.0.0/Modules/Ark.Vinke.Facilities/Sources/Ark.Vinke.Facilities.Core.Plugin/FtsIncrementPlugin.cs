@@ -50,23 +50,6 @@ namespace Ark.Vinke.Facilities.Core.Plugin
         #endregion Constructors
 
         #region Methods
-
-        protected virtual void OnValidateNextPluginBeforeEventHandler(Object sender, FtsIncrementPluginBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnValidateNextPluginAfterEventHandler(Object sender, FtsIncrementPluginAfterEventArgs args)
-        {
-        }
-
-        protected virtual void OnNextPluginBeforeEventHandler(Object sender, FtsIncrementPluginBeforeEventArgs args)
-        {
-        }
-
-        protected virtual void OnNextPluginAfterEventHandler(Object sender, FtsIncrementPluginAfterEventArgs args)
-        {
-        }
-
         #endregion Methods
 
         #region Properties
