@@ -94,8 +94,6 @@ insert into FwkModule (IdDomain, CodModule, Description) values (1, 'Ark.Vinke.F
 insert into FwkFeature (IdDomain, CodModule, CodProject, CodFeature, CodModuleBase, CodProjectBase, CodFeatureBase) values (1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'Ark.Vinke.Framework', 'Core.Server', 'FwkServer');
 insert into FwkFeatureAction (IdDomain, CodModule, CodProject, CodFeature, CodAction, Description) values (1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'ValidateNext', 'Validate generate next ids');
 insert into FwkFeatureAction (IdDomain, CodModule, CodProject, CodFeature, CodAction, Description) values (1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'Next', 'Generate next ids');
-insert into FwkBranchRoleAction (IdDomain, IdBranch, IdRole, CodModule, CodProject, CodFeature, CodAction) values (1, 1, 1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'ValidateNext');
-insert into FwkBranchRoleAction (IdDomain, IdBranch, IdRole, CodModule, CodProject, CodFeature, CodAction) values (1, 1, 1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'Next');
 
 insert into FtsIncrementControllerTable (ControllerTableName) values ('FtsIncrementByDomain');
 insert into FtsIncrementControllerTable (ControllerTableName) values ('FtsIncrementByDomainMaster');
