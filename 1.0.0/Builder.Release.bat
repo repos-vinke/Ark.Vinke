@@ -6,7 +6,7 @@ echo Builder Release
 echo:
 
 echo Copying Defaults...
-xcopy /e /y .\Defaults\ ..\..\..\Release\ >> nul
+xcopy /d /e /y .\Defaults\ ..\..\..\Release\ >> nul
 del ..\..\..\Release\.gitkeep >>nul 2>>&1
 del ..\..\..\Release\Both\.gitkeep >>nul 2>>&1
 del ..\..\..\Release\Client\.gitkeep >>nul 2>>&1

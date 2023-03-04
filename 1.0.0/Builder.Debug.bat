@@ -6,7 +6,7 @@ echo Builder Debug
 echo:
 
 echo Copying Defaults...
-xcopy /e /y .\Defaults\ ..\..\..\Debug\ >> nul
+xcopy /d /e /y .\Defaults\ ..\..\..\Debug\ >> nul
 del ..\..\..\Debug\.gitkeep >>nul 2>>&1
 del ..\..\..\Debug\Both\.gitkeep >>nul 2>>&1
 del ..\..\..\Debug\Client\.gitkeep >>nul 2>>&1
