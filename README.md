@@ -14,5 +14,5 @@ Integration based modular system
 			- Client				<- Runtime client side (Must be 'Client')
 			- Server				<- Runtime server side (Must be 'Server')
 		- Repos						<- Repository collection folder (Free for choice - Prefer 'Repos')
-			- Lazy.Vinke    <- Repository folder (Clone Lazy to here)
-			- Ark.Vinke     <- Repository folder (Clone Ark to here)
+			- Lazy.Vinke    <- Repository folder (Clone Lazy here)
+			- Ark.Vinke     <- Repository folder (Clone Ark here)
