@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Ark.Vinke.Library.Core.Server>
+	<DynamicXml>
+		<Ark.Vinke.Library>
+			<Security>
+				<Preflight Assembly="Ark.Vinke.System.Core.Server.dll" Class="Ark.Vinke.System.Core.Server.SysPreflightServer" />
+				<Authentication Assembly="Ark.Vinke.System.Core.Server.dll" Class="Ark.Vinke.System.Core.Server.SysAuthenticationServer" />
+				<Authorization Assembly="Ark.Vinke.System.Core.Server.dll" Class="Ark.Vinke.System.Core.Server.SysAuthorizationServer" />
+			</Security>
+			<Timer>
+				<SysAutomationServer Enabled="false" Assembly="Ark.Vinke.System.Core.Server.dll" Class="Ark.Vinke.System.Core.Server.SysAutomationServer">
+					<DefaultInstance Enabled="true" Delay="5" Interval="15" LogEnabled="false" LogPath="./Logs/Ark.Vinke.System.Core.Server/SysAutomationServer">
+						<Parameter></Parameter>
+					</DefaultInstance>
+				</SysAutomationServer>
+			</Timer>
+		</Ark.Vinke.Library>
+	</DynamicXml>
+</Ark.Vinke.Library.Core.Server>

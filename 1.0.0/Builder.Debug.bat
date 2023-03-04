@@ -5,9 +5,12 @@
 echo Builder Debug
 echo:
 
-echo Copying dependencies...
-xcopy /e /y .\Dependencies\ ..\..\..\Debug\ >> nul
+echo Copying Defaults...
+xcopy /e /y .\Defaults\ ..\..\..\Debug\ >> nul
 del ..\..\..\Debug\.gitkeep >>nul 2>>&1
+del ..\..\..\Debug\Both\.gitkeep >>nul 2>>&1
+del ..\..\..\Debug\Client\.gitkeep >>nul 2>>&1
+del ..\..\..\Debug\Server\.gitkeep >>nul 2>>&1
 echo:
 
 cd .\Modules\Ark.Vinke.Library\Sources\
