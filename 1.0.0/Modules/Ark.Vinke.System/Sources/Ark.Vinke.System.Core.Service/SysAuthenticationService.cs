@@ -250,8 +250,8 @@ namespace Ark.Vinke.System.Core.Service
         {
             ValidateSecrets();
 
-            String secretKey = LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretKey"].Text;
-            String secretVector = LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretVector"].Text;
+            String secretKey = LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretKey"].Text;
+            String secretVector = LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretVector"].Text;
 
             Byte[] keyArray = Encoding.ASCII.GetBytes(secretKey);
 
@@ -302,8 +302,8 @@ namespace Ark.Vinke.System.Core.Service
         {
             ValidateSecrets();
 
-            String secretKey = LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretKey"].Text;
-            String secretVector = LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretVector"].Text;
+            String secretKey = LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretKey"].Text;
+            String secretVector = LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretVector"].Text;
 
             String publicPayload = String.Empty;
             String privatePayload = String.Empty;
@@ -350,11 +350,11 @@ namespace Ark.Vinke.System.Core.Service
         /// </summary>
         private void ValidateSecrets()
         {
-            if (String.IsNullOrEmpty(LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretKey"].Text) == true ||
-                String.IsNullOrEmpty(LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretVector"].Text) == true)
+            if (String.IsNullOrEmpty(LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretKey"].Text) == true ||
+                String.IsNullOrEmpty(LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretVector"].Text) == true)
             {
-                LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretKey"].Text = Guid.NewGuid().ToString().Replace("-", String.Empty);
-                LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Secrets"]["SecretVector"].Text = Guid.NewGuid().ToString().Replace("-", String.Empty).Substring(0, 16);
+                LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretKey"].Text = Guid.NewGuid().ToString().Replace("-", String.Empty);
+                LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Secrets"]["SecretVector"].Text = Guid.NewGuid().ToString().Replace("-", String.Empty).Substring(0, 16);
 
                 LibConfigurationService.Save();
             }

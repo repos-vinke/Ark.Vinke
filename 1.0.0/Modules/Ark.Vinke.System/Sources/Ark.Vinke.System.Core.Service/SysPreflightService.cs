@@ -153,7 +153,7 @@ namespace Ark.Vinke.System.Core.Service
         /// <param name="preflightDataResponse">The response data</param>
         protected virtual void OnPreflight(SysPreflightDataRequest preflightDataRequest, SysPreflightDataResponse preflightDataResponse)
         {
-            LibDynamicXmlElement dynamicXmlElementPreflight = LibConfigurationService.DynamicXml["Ark.Sys"]["Security"]["Preflight"]["Response"]["Headers"];
+            LibDynamicXmlElement dynamicXmlElementPreflight = LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Security"]["Preflight"]["Response"]["Headers"];
 
             foreach (KeyValuePair<String, LibDynamicXmlElement> dynamicXmlElementPreflightHeader in dynamicXmlElementPreflight.Elements)
             {

@@ -268,13 +268,13 @@ namespace Ark.Vinke.System.Core.Service
 
             try
             {
-                foreach (KeyValuePair<String, LibDynamicXmlElement> dynamicXmlElementDatabaseAlias in LibConfigurationService.DynamicXml["Ark.Sys"]["Service"]["SysAutomationService"]["DefaultInstance"]["DatabaseAlias"].Elements)
+                foreach (KeyValuePair<String, LibDynamicXmlElement> dynamicXmlElementDatabaseAlias in LibConfigurationService.DynamicXml["Ark.Vinke.System"]["Service"]["SysAutomationService"]["DefaultInstance"]["DatabaseAlias"].Elements)
                 {
                     if (dynamicXmlElementDatabaseAlias.Value.Attribute["Enabled"].ToLower() == "true")
                     {
                         #region Initialize database
 
-                        LibDynamicXmlElement dynamicXmlElementDatabaseSettings = LibConfigurationService.DynamicXml["Ark.Fwk"]["Database"][dynamicXmlElementDatabaseAlias.Key]["Settings"];
+                        LibDynamicXmlElement dynamicXmlElementDatabaseSettings = LibConfigurationService.DynamicXml["Ark.Vinke.Framework"]["Database"][dynamicXmlElementDatabaseAlias.Key]["Settings"];
 
                         String databaseDbms = dynamicXmlElementDatabaseSettings.Attribute["Dbms"];
                         String databaseAssembly = dynamicXmlElementDatabaseSettings.Attribute["Assembly"];

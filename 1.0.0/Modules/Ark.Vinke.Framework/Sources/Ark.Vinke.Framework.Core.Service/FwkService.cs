@@ -50,7 +50,7 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 #region Initialize database
 
-                LibDynamicXmlElement dynXmlElementDatabaseSettings = LibConfigurationService.DynamicXml["Ark.Fwk"]["Database"][environment.DatabaseAlias]["Settings"];
+                LibDynamicXmlElement dynXmlElementDatabaseSettings = LibConfigurationService.DynamicXml["Ark.Vinke.Framework"]["Database"][environment.DatabaseAlias]["Settings"];
 
                 //String databaseDbms = dynXmlElementDatabaseSettings.Attribute["Dbms"];
                 String databaseAssembly = dynXmlElementDatabaseSettings.Attribute["Assembly"];
@@ -134,7 +134,7 @@ namespace Ark.Vinke.Framework.Core.Service
 
                     #region Initialize plugins
 
-                    sql = "select PluginClass from FwkServicePlugin where IdDomain = :IdDomain and ServiceClass = :ServiceClass and Enabled = '1' order by MajorPriority, MinorPriority";
+                    sql = "select PluginClass from FwkServicePlugin where IdDomain = :IdDomain and ServiceClass = :ServiceClass and Enabled = '1' order by Priority";
                     dataTable = this.database.QueryTable(sql, "FwkServicePlugin", new Object[] { this.environment.Domain.IdDomain, this.GetType().FullName });
 
                     if (dataTable.Rows.Count > 0)
@@ -257,7 +257,7 @@ namespace Ark.Vinke.Framework.Core.Service
 
                     #region Initialize plugins
 
-                    sql = "select PluginClass from FwkServicePlugin where IdDomain = :IdDomain and ServiceClass = :ServiceClass and Enabled = '1' order by MajorPriority, MinorPriority";
+                    sql = "select PluginClass from FwkServicePlugin where IdDomain = :IdDomain and ServiceClass = :ServiceClass and Enabled = '1' order by Priority";
                     dataTable = this.database.QueryTable(sql, "FwkServicePlugin", new Object[] { this.environment.Domain.IdDomain, this.GetType().FullName });
 
                     if (dataTable.Rows.Count > 0)

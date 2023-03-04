@@ -165,7 +165,7 @@ namespace Ark.Vinke.System.Core.Service
             authenticationDataRequest.Content.Username = loginDataRequest.Content.Username;
             authenticationDataRequest.Content.Password = loginDataRequest.Content.Password;
 
-            if (LibConfigurationService.DynamicXml["Ark.Fwk"]["Database"].Elements.ContainsKey(loginDataRequest.Content.DatabaseAlias) == false)
+            if (LibConfigurationService.DynamicXml["Ark.Vinke.Framework"]["Database"].Elements.ContainsKey(loginDataRequest.Content.DatabaseAlias) == false)
                 throw new LibException(Properties.SysResourcesCoreService.SysExceptionAuthenticationFailed, Properties.SysResourcesCoreService.SysCaptionDenied);
 
             this.Environment.DatabaseAlias = loginDataRequest.Content.DatabaseAlias;
