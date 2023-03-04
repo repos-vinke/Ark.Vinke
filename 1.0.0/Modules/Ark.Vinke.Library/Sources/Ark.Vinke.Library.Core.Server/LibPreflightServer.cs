@@ -41,13 +41,12 @@ namespace Ark.Vinke.Library.Core.Server
             {
                 String assemblyFolderName = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Preflight"].Attribute["Assembly"].Replace(".dll", String.Empty).ToLower();
                 String assemblyFileName = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Preflight"].Attribute["Assembly"];
-                String assemblyVersion = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Preflight"].Attribute["Version"];
                 String classFullName = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Preflight"].Attribute["Class"];
 
                 if (String.IsNullOrEmpty(assemblyFileName) == false && String.IsNullOrEmpty(classFullName) == false)
                 {
                     iPreflightServer = (ILibPreflightServer)LazyActivator.Local.CreateInstance(Path.Combine(
-                        LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].Version[assemblyVersion].Lib.Net60.Path, assemblyFileName),
+                        LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].CurrentVersion.Lib.Net60.Path, assemblyFileName),
                         classFullName);
                 }
             }

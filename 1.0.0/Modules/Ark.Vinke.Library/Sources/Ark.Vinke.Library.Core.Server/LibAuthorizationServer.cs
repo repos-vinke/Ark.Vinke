@@ -38,13 +38,12 @@ namespace Ark.Vinke.Library.Core.Server
             {
                 String assemblyFolderName = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Authorization"].Attribute["Assembly"].Replace(".dll", String.Empty).ToLower();
                 String assemblyFileName = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Authorization"].Attribute["Assembly"];
-                String assemblyVersion = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Authorization"].Attribute["Version"];
                 String classFullName = LibConfigurationServer.DynamicXml["Ark.Vinke.Library"]["Security"]["Authorization"].Attribute["Class"];
 
                 if (String.IsNullOrEmpty(assemblyFileName) == false && String.IsNullOrEmpty(classFullName) == false)
                 {
                     iAuthorizationServer = (ILibAuthorizationServer)LazyActivator.Local.CreateInstance(Path.Combine(
-                        LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].Version[assemblyVersion].Lib.Net60.Path, assemblyFileName),
+                        LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].CurrentVersion.Lib.Net60.Path, assemblyFileName),
                         classFullName);
                 }
             }

@@ -229,7 +229,7 @@ namespace Ark.Vinke.Library.Core
         public LibDirectoryAssemblyVersionItem CurrentVersion
         {
             /* The current version will be the first folder found on this directory */
-            get { return Version[System.IO.Path.GetDirectoryName(Directory.GetDirectories(this.path)[0])]; }
+            get { return Version[System.IO.Path.GetFileName(Directory.GetDirectories(this.path, "*", SearchOption.TopDirectoryOnly)[0])]; }
         }
 
         #endregion Properties
