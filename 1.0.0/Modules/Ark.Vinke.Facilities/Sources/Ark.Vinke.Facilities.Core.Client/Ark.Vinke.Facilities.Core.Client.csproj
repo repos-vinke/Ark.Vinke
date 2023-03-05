@@ -43,15 +43,15 @@
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0-windows'">
 		<PostBuildEvent>
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Debug\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll %SystemDrive%%HomePath%\.nuget\Packages\ark.vinke.facilities.core.client\1.0.0\lib\net6.0\
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Debug\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0\
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Debug\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Client\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Debug\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll %SystemDrive%%HomePath%\.nuget\Packages\ark.vinke.facilities.core.client\1.0.0\lib\net6.0-windows7.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Debug\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0-windows7.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Debug\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Client\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0-windows7.0\
 		</PostBuildEvent>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0-windows'">
 		<PostBuildEvent>
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Release\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0\
-			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Release\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Client\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Release\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0-windows7.0\
+			xcopy /y $(SolutionDir)Ark.Vinke.Facilities.Core.Client\bin\Release\net6.0-windows\Ark.Vinke.Facilities.Core.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Client\Bin\ark.vinke.facilities.core.client\1.0.0\lib\net6.0-windows7.0\
 		</PostBuildEvent>
 	</PropertyGroup>
 
