@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Client", "Ark.Vinke.Client\Ark.Vinke.Client.csproj", "{777D624B-6CC8-44D0-9A4E-4140E520EFC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Vinke.Client", "Ark.Vinke.Client\Ark.Vinke.Client.csproj", "{777D624B-6CC8-44D0-9A4E-4140E520EFC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Server", "Ark.Vinke.Server\Ark.Vinke.Server.csproj", "{E4A9E30D-9A90-40C2-BB0E-900B7EAFD22E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Vinke.Server", "Ark.Vinke.Server\Ark.Vinke.Server.csproj", "{E4A9E30D-9A90-40C2-BB0E-900B7EAFD22E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Client", "Ark.Vinke.Client", "{AF817E87-15D9-4F8C-8F32-0918833A43C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Server", "Ark.Vinke.Server", "{99F7274B-7C7C-49DA-BDA1-0C3AB0DBFDA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Studio", "Ark.Vinke.Studio\Ark.Vinke.Studio.csproj", "{060524E2-C454-4AAB-8649-AAEF831EB073}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ark.Vinke.Studio", "Ark.Vinke.Studio", "{CC9A503E-F93C-4435-84FE-472F1F15DAD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +29,10 @@ Global
 		{E4A9E30D-9A90-40C2-BB0E-900B7EAFD22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4A9E30D-9A90-40C2-BB0E-900B7EAFD22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4A9E30D-9A90-40C2-BB0E-900B7EAFD22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060524E2-C454-4AAB-8649-AAEF831EB073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060524E2-C454-4AAB-8649-AAEF831EB073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060524E2-C454-4AAB-8649-AAEF831EB073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060524E2-C454-4AAB-8649-AAEF831EB073}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{777D624B-6CC8-44D0-9A4E-4140E520EFC9} = {AF817E87-15D9-4F8C-8F32-0918833A43C1}
 		{E4A9E30D-9A90-40C2-BB0E-900B7EAFD22E} = {99F7274B-7C7C-49DA-BDA1-0C3AB0DBFDA8}
+		{060524E2-C454-4AAB-8649-AAEF831EB073} = {CC9A503E-F93C-4435-84FE-472F1F15DAD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2737C94A-0633-4C9C-A5A9-86BC43EF283A}
