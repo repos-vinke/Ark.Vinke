@@ -1,0 +1,3 @@
+echo Building Ark.{DEVELOPER}.{MODULE}...
+dotnet clean >> nul
+dotnet build --configuration Release >> nul

@@ -13,6 +13,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Resources\Models\Project\**" />
+	  <EmbeddedResource Remove="Resources\Models\Project\**" />
+	  <None Remove="Resources\Models\Project\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="..\..\..\..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
@@ -23,6 +29,21 @@
 		<PackageReference Include="Lazy.Vinke" Version="1.0.0" />
 		<PackageReference Include="Lazy.Vinke.Windows" Version="1.0.0" />
 		<PackageReference Include="Lazy.Vinke.Windows.Forms" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\ResourcesStudio.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ResourcesStudio.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\ResourcesStudio.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ResourcesStudio.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0-windows'">

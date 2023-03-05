@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Product>Ark</Product>
+		<Description>Ark {DEVELOPER} {MODULE} {PROJECT} Servant</Description>
+		<Authors>{DEVELOPER}</Authors>
+		<Version>1.0.0</Version>
+		<RepositoryUrl>{REPOSITORY}</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageOutputPath>$(SolutionDir)..\..\..\Packages\</PackageOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Lazy.Vinke" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Database" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.Data" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.IService" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.Servant" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.Data" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.IService" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.Servant" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IService" Version="1.0.0" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant\bin\Debug\net6.0\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant.dll %SystemDrive%%HomePath%\.nuget\Packages\ark.{developer}.{module}.{project}.servant\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant\bin\Debug\net6.0\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\ark.{developer}.{module}.{project}.servant\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant\bin\Debug\net6.0\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant.dll $(SolutionDir)..\..\..\..\..\..\Debug\Server\Bin\ark.{developer}.{module}.{project}.servant\1.0.0\lib\net6.0\
+		</PostBuildEvent>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant\bin\Release\net6.0\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\ark.{developer}.{module}.{project}.servant\1.0.0\lib\net6.0\
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant\bin\Release\net6.0\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant.dll $(SolutionDir)..\..\..\..\..\..\Release\Server\Bin\ark.{developer}.{module}.{project}.servant\1.0.0\lib\net6.0\
+		</PostBuildEvent>
+	</PropertyGroup>
+
+</Project>

@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Product>Ark</Product>
+		<Description>Ark {DEVELOPER} {MODULE} {PROJECT} Client</Description>
+		<Authors>{DEVELOPER}</Authors>
+		<Version>1.0.0</Version>
+		<RepositoryUrl>{REPOSITORY}</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageOutputPath>$(SolutionDir)..\..\..\Packages\</PackageOutputPath>
+		<UseWindowsForms>true</UseWindowsForms>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Lazy.Vinke" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Json" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Windows" Version="1.0.0" />
+		<PackageReference Include="Lazy.Vinke.Windows.Forms" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core.Client" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.Data" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.IServer" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Framework.Core.Client" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.Data" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.IServer" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.Client" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IServer" Version="1.0.0" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0-windows'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client\bin\Debug\net6.0-windows\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client.dll %SystemDrive%%HomePath%\.nuget\Packages\ark.{developer}.{module}.{project}.client\1.0.0\lib\net6.0-windows7.0\
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client\bin\Debug\net6.0-windows\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Both\Bin\ark.{developer}.{module}.{project}.client\1.0.0\lib\net6.0-windows7.0\
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client\bin\Debug\net6.0-windows\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Client\Bin\ark.{developer}.{module}.{project}.client\1.0.0\lib\net6.0-windows7.0\
+		</PostBuildEvent>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net6.0-windows'">
+		<PostBuildEvent>
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client\bin\Release\net6.0-windows\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Both\Bin\ark.{developer}.{module}.{project}.client\1.0.0\lib\net6.0-windows7.0\
+			xcopy /y $(SolutionDir)Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client\bin\Release\net6.0-windows\Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Client\Bin\ark.{developer}.{module}.{project}.client\1.0.0\lib\net6.0-windows7.0\
+		</PostBuildEvent>
+	</PropertyGroup>
+
+</Project>
