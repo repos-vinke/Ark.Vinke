@@ -40,6 +40,8 @@
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.dll $(SolutionDir)..\..\..\..\..\..\Debug\Client\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Debug\Both\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Debug\Client\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.deps.json $(SolutionDir)..\..\..\..\..\..\Debug\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Debug\net6.0-windows\Ark.Vinke.Client.deps.json $(SolutionDir)..\..\..\..\..\..\Debug\Client\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Debug\Both\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Debug\Client\
 		</PostBuildEvent>
@@ -50,6 +52,8 @@
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.dll $(SolutionDir)..\..\..\..\..\..\Release\Client\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Release\Both\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.exe $(SolutionDir)..\..\..\..\..\..\Release\Client\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.deps.json $(SolutionDir)..\..\..\..\..\..\Release\Both\
+			xcopy /y $(SolutionDir)Ark.Vinke.Client\bin\Release\net6.0-windows\Ark.Vinke.Client.deps.json $(SolutionDir)..\..\..\..\..\..\Release\Client\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Release\Both\
 			xcopy /y $(SolutionDir)Ark.Vinke.Client\Ark.Vinke.Client.runtimeconfig.json $(SolutionDir)..\..\..\..\..\..\Release\Client\
 		</PostBuildEvent>
