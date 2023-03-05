@@ -87,10 +87,8 @@ alter table FtsIncrementByBranchMaster
 -- Initial data section ---------------------------------------------------------------------------------------------------------------------
 -- ------------------------------------------------------------------------------------------------------------------------------------------
 
--- Ark.Vinke.Facilities
 insert into FwkModule (IdDomain, CodModule, Description) values (1, 'Ark.Vinke.Facilities', 'Ark Vinke Facilities');
 
--- Ark.Vinke.Facilities.Core.Server.FtsIncrementServer
 insert into FwkFeature (IdDomain, CodModule, CodProject, CodFeature, CodModuleBase, CodProjectBase, CodFeatureBase) values (1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'Ark.Vinke.Framework', 'Core.Server', 'FwkServer');
 insert into FwkFeatureAction (IdDomain, CodModule, CodProject, CodFeature, CodAction, Description) values (1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'ValidateNext', 'Validate generate next ids');
 insert into FwkFeatureAction (IdDomain, CodModule, CodProject, CodFeature, CodAction, Description) values (1, 'Ark.Vinke.Facilities', 'Core.Server', 'FtsIncrementServer', 'Next', 'Generate next ids');

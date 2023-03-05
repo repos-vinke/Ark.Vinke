@@ -26,10 +26,10 @@ create table FwkFeature
 	IdDomain smallint,
     CodModule varchar(32),
     CodProject varchar(32),
-    CodFeature varchar(32),
+    CodFeature varchar(64),
     CodModuleBase varchar(32),
     CodProjectBase varchar(32),
-    CodFeatureBase varchar(32),
+    CodFeatureBase varchar(64),
     Description varchar(64),
     constraint Pk_FwkFeature primary key (IdDomain, CodModule, CodProject, CodFeature)
 );
@@ -39,7 +39,7 @@ create table FwkFeatureAction
 	IdDomain smallint,
     CodModule varchar(32),
     CodProject varchar(32),
-    CodFeature varchar(32),
+    CodFeature varchar(64),
     CodAction varchar(32),
     Description varchar(64),
     constraint Pk_FwkFeatureAction primary key (IdDomain, CodModule, CodProject, CodFeature, CodAction)
@@ -115,7 +115,7 @@ create table FwkBranchRoleAction
     IdRole smallint,
     CodModule varchar(32),
     CodProject varchar(32),
-    CodFeature varchar(32),
+    CodFeature varchar(64),
     CodAction varchar(32),
     constraint Pk_FwkBranchRoleAction primary key (IdDomain, IdBranch, IdRole, CodModule, CodProject, CodFeature, CodAction)
 );
