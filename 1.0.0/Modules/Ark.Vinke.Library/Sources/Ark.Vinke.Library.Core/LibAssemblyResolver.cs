@@ -29,33 +29,32 @@ namespace Ark.Vinke.Library.Core
 
         public static Assembly Resolve(Object sender, ResolveEventArgs args)
         {
+            String assemblyPath = null;
             String assemblyFileName = args.Name.Substring(0, args.Name.IndexOf(','));
             String assemblyFolderName = assemblyFileName.ToLower();
             String assemblyVersion = args.Name.Substring(args.Name.IndexOf("Version=") + 8);
             assemblyVersion = assemblyVersion.Substring(0, assemblyVersion.IndexOf(','));
             assemblyVersion = assemblyVersion.Substring(0, assemblyVersion.LastIndexOf('.'));
-            String assemblyPath = null;
+            
+            if (Directory.Exists(Path.Combine(LibDirectory.Root.Bin.Path, assemblyFolderName)) == false)
+                return null;
 
-            if (Directory.Exists(Path.Combine(LibDirectory.Root.Bin.Path, assemblyFolderName)) == true)
+            assemblyPath = Path.Combine(LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].Version[assemblyVersion].Lib.Net60.Path, assemblyFileName) + ".dll";
+
+            if (File.Exists(assemblyPath) == false)
             {
-                assemblyPath = Path.Combine(LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].Version[assemblyVersion].Lib.Net60.Path, assemblyFileName) + ".dll";
+                assemblyPath = Path.Combine(LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].Version[assemblyVersion].Lib.NetStandard20.Path, assemblyFileName) + ".dll";
 
-                if (File.Exists(assemblyPath) == true)
+                if (File.Exists(assemblyPath) == false)
                 {
-                    return Assembly.LoadFrom(assemblyPath);
-                }
-                else
-                {
-                    assemblyPath = Path.Combine(LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].Version[assemblyVersion].Lib.NetStandard20.Path, assemblyFileName) + ".dll";
+                    assemblyPath = Path.Combine(LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].Version[assemblyVersion].Lib.Net60Windows70.Path, assemblyFileName) + ".dll";
 
-                    if (File.Exists(assemblyPath) == true)
-                    {
-                        return Assembly.LoadFrom(assemblyPath);
-                    }
+                    if (File.Exists(assemblyPath) == false)
+                        return null;
                 }
             }
 
-            return null;
+            return Assembly.LoadFrom(assemblyPath);
         }
 
         #endregion Methods

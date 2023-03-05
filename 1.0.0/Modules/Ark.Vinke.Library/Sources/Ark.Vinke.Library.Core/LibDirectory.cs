@@ -319,7 +319,7 @@ namespace Ark.Vinke.Library.Core
 
         private String path;
         private LibDirectoryAssemblyVersionLibItem net60;
-        private LibDirectoryAssemblyVersionLibItem netCoreApp31;
+        private LibDirectoryAssemblyVersionLibItem net60windows70;
         private LibDirectoryAssemblyVersionLibItem netStandard20;
 
         #endregion Variables
@@ -330,7 +330,7 @@ namespace Ark.Vinke.Library.Core
         {
             this.path = path;
             this.net60 = new LibDirectoryAssemblyVersionLibItem(System.IO.Path.Combine(path, "net6.0"));
-            this.netCoreApp31 = new LibDirectoryAssemblyVersionLibItem(System.IO.Path.Combine(path, "netcoreapp3.1"));
+            this.net60windows70 = new LibDirectoryAssemblyVersionLibItem(System.IO.Path.Combine(path, "net6.0-windows7.0"));
             this.netStandard20 = new LibDirectoryAssemblyVersionLibItem(System.IO.Path.Combine(path, "netstandard2.0"));
         }
 
@@ -346,9 +346,10 @@ namespace Ark.Vinke.Library.Core
             get { return this.net60; }
         }
 
-        public LibDirectoryAssemblyVersionLibItem NetCoreApp31
+        /* Path for NetCore Windows Desktop App are placed like this on Deps.Json */
+        public LibDirectoryAssemblyVersionLibItem Net60Windows70
         {
-            get { return this.netCoreApp31; }
+            get { return this.net60windows70; }
         }
 
         public LibDirectoryAssemblyVersionLibItem NetStandard20
