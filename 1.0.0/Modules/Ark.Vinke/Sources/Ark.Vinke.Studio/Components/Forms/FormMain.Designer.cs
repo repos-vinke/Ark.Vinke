@@ -124,7 +124,6 @@ namespace Ark.Vinke.Studio
             textBoxProjectRepositoryUrl.Name = "textBoxProjectRepositoryUrl";
             textBoxProjectRepositoryUrl.Size = new System.Drawing.Size(631, 31);
             textBoxProjectRepositoryUrl.TabIndex = 19;
-            textBoxProjectRepositoryUrl.Text = "https://github.com/isaacsaraiva-vinke/Ark.Isaac";
             // 
             // buttonProjectGenerate
             // 
@@ -197,7 +196,6 @@ namespace Ark.Vinke.Studio
             textBoxProjectDestinationPath.Name = "textBoxProjectDestinationPath";
             textBoxProjectDestinationPath.Size = new System.Drawing.Size(631, 31);
             textBoxProjectDestinationPath.TabIndex = 9;
-            textBoxProjectDestinationPath.Text = "C:\\Users\\isaac\\Downloads\\Sources";
             // 
             // labelProjectName
             // 
@@ -218,7 +216,6 @@ namespace Ark.Vinke.Studio
             textBoxProjectName.Name = "textBoxProjectName";
             textBoxProjectName.Size = new System.Drawing.Size(175, 31);
             textBoxProjectName.TabIndex = 7;
-            textBoxProjectName.Text = "Investment";
             textBoxProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelProjectModule
@@ -240,7 +237,6 @@ namespace Ark.Vinke.Studio
             textBoxProjectModule.Name = "textBoxProjectModule";
             textBoxProjectModule.Size = new System.Drawing.Size(175, 31);
             textBoxProjectModule.TabIndex = 5;
-            textBoxProjectModule.Text = "Financial";
             textBoxProjectModule.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelProjectDeveloper
@@ -262,7 +258,6 @@ namespace Ark.Vinke.Studio
             textBoxProjectDeveloper.Name = "textBoxProjectDeveloper";
             textBoxProjectDeveloper.Size = new System.Drawing.Size(175, 31);
             textBoxProjectDeveloper.TabIndex = 3;
-            textBoxProjectDeveloper.Text = "Isaac";
             textBoxProjectDeveloper.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxProjectProduct
