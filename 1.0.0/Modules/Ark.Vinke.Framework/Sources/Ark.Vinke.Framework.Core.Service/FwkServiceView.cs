@@ -535,6 +535,8 @@ namespace Ark.Vinke.Framework.Core.Service
         /// <param name="dataViewResponse">The response data</param>
         private void AfterPerformValidateRead(FwkDataViewRequest dataViewRequest, FwkDataViewResponse dataViewResponse)
         {
+            if (this.Operation != "Init")
+                dataViewResponse.Content.Format = null;
         }
 
         /// <summary>
