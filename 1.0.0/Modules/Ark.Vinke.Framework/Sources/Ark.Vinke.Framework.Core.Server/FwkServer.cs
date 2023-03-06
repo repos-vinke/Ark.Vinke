@@ -35,7 +35,10 @@ namespace Ark.Vinke.Framework.Core.Server
     {
         #region Variables
 
+        private LazyJsonReaderOptions jsonReaderOptions;
+        private LazyJsonWriterOptions jsonWriterOptions;
         private LazyJsonDeserializerOptions deserializerOptions;
+        private LazyJsonSerializerOptions serializerOptions;
 
         #endregion Variables
 
@@ -48,6 +51,8 @@ namespace Ark.Vinke.Framework.Core.Server
                 this.DataRequestType = typeof(FwkDataRequest);
                 this.DataResponseType = typeof(FwkDataResponse);
             }
+
+            this.JsonWriterOptions.Indent = false;
         }
 
         #endregion Constructors
@@ -92,7 +97,7 @@ namespace Ark.Vinke.Framework.Core.Server
                 IFwkService iService = CreateService(environment);
 
                 MethodInfo methodInfo = iService.GetType().GetMethod(methodName);
-                FwkDataRequest dataRequest = (FwkDataRequest)LazyJsonDeserializer.Deserialize(dataRequestString, this.DataRequestType, this.deserializerOptions);
+                FwkDataRequest dataRequest = (FwkDataRequest)LazyJsonDeserializer.Deserialize(dataRequestString, this.DataRequestType, deserializerOptions: this.deserializerOptions, jsonReaderOptions: this.jsonReaderOptions);
                 FwkDataResponse dataResponse = (FwkDataResponse)methodInfo.Invoke(iService, new Object[] { dataRequest });
 
                 #region Write response scope success
@@ -111,7 +116,7 @@ namespace Ark.Vinke.Framework.Core.Server
 
                 #endregion Write response scope success
 
-                return LazyJsonSerializer.Serialize(dataResponse);
+                return LazyJsonSerializer.Serialize(dataResponse, serializerOptions: this.serializerOptions, jsonWriterOptions: this.jsonWriterOptions);
             }
             catch (Exception exp)
             {
@@ -126,7 +131,7 @@ namespace Ark.Vinke.Framework.Core.Server
 
                 #endregion Write response scope error
 
-                return LazyJsonSerializer.Serialize(dataResponse);
+                return LazyJsonSerializer.Serialize(dataResponse, serializerOptions: this.serializerOptions, jsonWriterOptions: this.jsonWriterOptions);
             }
         }
 
@@ -285,6 +290,28 @@ namespace Ark.Vinke.Framework.Core.Server
 
         protected Type DataResponseType { get; set; }
 
+        protected LazyJsonReaderOptions JsonReaderOptions
+        {
+            get
+            {
+                if (this.jsonReaderOptions == null)
+                    this.jsonReaderOptions = new LazyJsonReaderOptions();
+
+                return this.jsonReaderOptions;
+            }
+        }
+
+        protected LazyJsonWriterOptions JsonWriterOptions
+        {
+            get
+            {
+                if (this.jsonWriterOptions == null)
+                    this.jsonWriterOptions = new LazyJsonWriterOptions();
+
+                return this.jsonWriterOptions;
+            }
+        }
+
         protected LazyJsonDeserializerOptions DeserializerOptions
         {
             get
@@ -293,6 +320,17 @@ namespace Ark.Vinke.Framework.Core.Server
                     this.deserializerOptions = new LazyJsonDeserializerOptions();
 
                 return this.deserializerOptions;
+            }
+        }
+
+        protected LazyJsonSerializerOptions SerializerOptions
+        {
+            get
+            {
+                if (this.serializerOptions == null)
+                    this.serializerOptions = new LazyJsonSerializerOptions();
+
+                return this.serializerOptions;
             }
         }
 
