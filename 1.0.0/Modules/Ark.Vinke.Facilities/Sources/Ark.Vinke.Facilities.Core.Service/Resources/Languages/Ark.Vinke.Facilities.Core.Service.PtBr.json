@@ -1,18 +1,18 @@
 {
   "Captions": {
-    "FtsCaptionRequiredFieldInvalid": "Campo obrigatÛrio inv·lido!",
-    "FtsCaptionRequiredFieldMissing": "Campo obrigatÛrio ausente!",
-    "FtsCaptionTableNotFound": "Tabela n„o encontrada!"
+    "FtsCaptionRequiredFieldInvalid": "Campo obrigat√≥rio inv√°lido!",
+    "FtsCaptionRequiredFieldMissing": "Campo obrigat√≥rio ausente!",
+    "FtsCaptionTableNotFound": "Tabela n√£o encontrada!"
   },
   "Exceptions": {
-    "FtsExceptionIncrementControllerTableFieldNullOrEmpty": "O campo de incremento da tabela controladora n„o pode ser nulo ou vazio!",
-    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid": "O campo chave 'IdDomain' da tabela controladora È inv·lido",
-    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing": "O campo chave 'IdDomain' da tabela controladora n„o foi informado!",
-    "FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght": "Os campos chaves da tabela controladora n„o pode ser nulo ou vazio!",
-    "FtsExceptionIncrementControllerTableNameFacilitiesStruct": "O nome da tabela de controle informada '{0}', È baseada na estrutura do Facilities, ent„o o nome da tabela de incremento È obrigatÛrio!",
-    "FtsExceptionIncrementControllerTableNameNullOrEmpty": "O nome da tabela controladora n„o pode ser nulo ou vazio!",
-    "FtsExceptionIncrementRangeLowerThanOne": "A quantidade de incrementos n„o pode ser menor do que um!",
-    "FtsExceptionIncrementTableNameNotFound": "A tabela de incremento informada '{0}' n„o foi encontrada na FtsIncrementTable!"
+    "FtsExceptionIncrementControllerTableFieldNullOrEmpty": "O campo de incremento da tabela controladora n√£o pode ser nulo ou vazio!",
+    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid": "O campo chave 'IdDomain' da tabela controladora √© inv√°lido",
+    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing": "O campo chave 'IdDomain' da tabela controladora n√£o foi informado!",
+    "FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght": "Os campos chaves da tabela controladora n√£o pode ser nulo ou vazio!",
+    "FtsExceptionIncrementControllerTableNameFacilitiesStruct": "Para tabelas de controle do 'Facilities' ({0}), o nome da tabela de incremento deve ser informado!",
+    "FtsExceptionIncrementControllerTableNameNullOrEmpty": "O nome da tabela controladora n√£o pode ser nulo ou vazio!",
+    "FtsExceptionIncrementRangeLowerThanOne": "A quantidade de incrementos n√£o pode ser menor do que um!",
+    "FtsExceptionIncrementTableNameNotFound": "A tabela de incremento informada '{0}' n√£o foi encontrada na 'FtsIncrementTable'!"
   },
   "Messages": null
 }

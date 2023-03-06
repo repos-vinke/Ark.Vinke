@@ -1,15 +1,15 @@
 {
   "Captions": {
     "SysCaptionDenied": "Negado",
-    "SysCaptionIdDomain": "Id. DomÌnio",
+    "SysCaptionIdDomain": "Id. Dom√≠nio",
     "SysCaptionIdRole": "Id. Papel",
-    "SysCaptionInvalidType": "Tipo inv·lido",
+    "SysCaptionInvalidType": "Tipo inv√°lido",
     "SysCaptionName": "Nome",
     "SysCaptionSuccess": "Sucesso"
   },
   "Exceptions": {
-    "SysExceptionAuthenticationFailed": "Falha na autenticaÁ„o!",
-    "SysExceptionAutomationInvalidService": "O serviÁo de automaÁ„o deve derivar de FwkServiceProcess!"
+    "SysExceptionAuthenticationFailed": "Falha na autentica√ß√£o!",
+    "SysExceptionAutomationInvalidService": "O servi√ßo de automa√ß√£o deve derivar de FwkServiceProcess!"
   },
   "Messages": {
     "SysMessageSuccess": "Processo executado com sucesso!"
