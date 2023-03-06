@@ -51,7 +51,10 @@ namespace Ark.Vinke.Framework.Core.Server
                 this.DataRequestType = typeof(FwkDataRequest);
                 this.DataResponseType = typeof(FwkDataResponse);
             }
-
+            
+            this.DeserializerOptions.Item<LazyJsonDeserializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
+            this.SerializerOptions.Item<LazyJsonSerializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
+            
             this.JsonWriterOptions.Indent = false;
         }
 
