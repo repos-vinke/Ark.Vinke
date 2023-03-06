@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using Lazy.Vinke;
 using Lazy.Vinke.Windows;
 using Lazy.Vinke.Windows.Forms;
+using System.Globalization;
 
 namespace Ark.Vinke.Studio
 {
@@ -39,13 +40,18 @@ namespace Ark.Vinke.Studio
 
         #region Methods
 
-        private void OnCheckBoxProjectGenerateSolution_CheckedChanged(Object sender, EventArgs e)
+        private void OnFormMain_Load(Object sender, EventArgs args)
+        {
+            this.comboBoxFeatureType.SelectedIndex = 1;
+        }
+
+        private void OnCheckBoxProjectGenerateSolution_CheckedChanged(Object sender, EventArgs args)
         {
             if (this.checkBoxProjectGenerateSolution.Checked == true)
                 this.checkBoxProjectGenerateSolutionModule.Checked = true;
         }
 
-        private void OnCheckBoxProjectGenerateSolutionModule_CheckedChanged(Object sender, EventArgs e)
+        private void OnCheckBoxProjectGenerateSolutionModule_CheckedChanged(Object sender, EventArgs args)
         {
             if (this.checkBoxProjectGenerateSolutionModule.Checked == false)
                 this.checkBoxProjectGenerateSolution.Checked = false;
@@ -55,9 +61,9 @@ namespace Ark.Vinke.Studio
         {
             try
             {
-                Verify();
+                ValidateProject();
 
-                Generate();
+                GenerateProject();
             }
             catch (Exception exp)
             {
@@ -65,7 +71,21 @@ namespace Ark.Vinke.Studio
             }
         }
 
-        private void Verify()
+        private void OnButtonFeatureGenerate_Click(Object sender, EventArgs args)
+        {
+            try
+            {
+                ValidateFeature();
+
+                GenerateFeature();
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void ValidateProject()
         {
             String projectName = null;
 
@@ -150,11 +170,11 @@ namespace Ark.Vinke.Studio
                 throw new Exception(projectName + " project already exists!");
         }
 
-        private void Generate()
+        private void GenerateProject()
         {
             GenerateSolution();
 
-            GenerateBatchFiles();
+            GenerateSolutionBatchFiles();
 
             GenerateSolutionModule();
 
@@ -190,7 +210,7 @@ namespace Ark.Vinke.Studio
             }
         }
 
-        private void GenerateBatchFiles()
+        private void GenerateSolutionBatchFiles()
         {
             if (this.checkBoxProjectGenerateBatchFiles.Checked == true)
             {
@@ -389,6 +409,210 @@ namespace Ark.Vinke.Studio
             content = content.Replace("{project}", this.textBoxProjectName.Text.ToLower());
 
             content = content.Replace("{REPOSITORY}", this.textBoxProjectRepositoryUrl.Text);
+
+            return content;
+        }
+
+        private void ValidateFeature()
+        {
+            String projectName = null;
+            String fileName = null;
+
+            if (String.IsNullOrWhiteSpace(this.textBoxFeatureDeveloper.Text) == true)
+                throw new Exception("Developer was not informed!");
+
+            if (this.textBoxFeatureDeveloper.Text.Contains('.') == true)
+                throw new Exception("Developer cannot contains dots (.)!");
+
+            if (String.IsNullOrWhiteSpace(this.textBoxFeatureModule.Text) == true)
+                throw new Exception("Module was not informed!");
+
+            if (this.textBoxFeatureModule.Text.Contains('.') == true)
+                throw new Exception("Module cannot contains dots (.)!");
+
+            if (String.IsNullOrWhiteSpace(this.textBoxFeatureProject.Text) == true)
+                throw new Exception("Project was not informed!");
+
+            if (this.textBoxFeatureProject.Text.Contains('.') == true)
+                throw new Exception("Project cannot contains dots (.)!");
+
+            if (String.IsNullOrWhiteSpace(this.textBoxFeaturePrefix.Text) == true)
+                throw new Exception("Prefix was not informed!");
+
+            if (this.textBoxFeaturePrefix.Text.Contains('.') == true)
+                throw new Exception("Prefix cannot contains dots (.)!");
+
+            if (String.IsNullOrWhiteSpace(this.textBoxFeatureName.Text) == true)
+                throw new Exception("Feature name was not informed!");
+
+            if (this.textBoxFeatureName.Text.Contains('.') == true)
+                throw new Exception("Feature name cannot contains dots (.)!");
+
+            if (String.IsNullOrWhiteSpace(this.textBoxFeatureDestinationPath.Text) == true)
+                throw new Exception("Project destination path was not informed!");
+
+            if (Directory.Exists(this.textBoxFeatureDestinationPath.Text) == false)
+                throw new Exception("Project destination path does not exists!");
+
+            projectName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Data");
+            fileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Data", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            if (File.Exists(Path.Combine(this.textBoxFeatureDestinationPath.Text, projectName, String.Join('.', fileName, "cs"))) == true)
+                throw new Exception(fileName + " already exists!");
+
+            projectName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "IServer");
+            fileName = String.Join(null, "I", this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Server", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            if (File.Exists(Path.Combine(this.textBoxFeatureDestinationPath.Text, projectName, String.Join('.', fileName, "cs"))) == true)
+                throw new Exception(fileName + " already exists!");
+
+            projectName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Server");
+            fileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Server", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            if (File.Exists(Path.Combine(this.textBoxFeatureDestinationPath.Text, projectName, String.Join('.', fileName, "cs"))) == true)
+                throw new Exception(fileName + " already exists!");
+
+            projectName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "IPlugin");
+            fileName = String.Join(null, "I", this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Plugin", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            if (File.Exists(Path.Combine(this.textBoxFeatureDestinationPath.Text, projectName, String.Join('.', fileName, "cs"))) == true)
+                throw new Exception(fileName + " already exists!");
+
+            projectName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "IService");
+            fileName = String.Join(null, "I", this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Service", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            if (File.Exists(Path.Combine(this.textBoxFeatureDestinationPath.Text, projectName, String.Join('.', fileName, "cs"))) == true)
+                throw new Exception(fileName + " already exists!");
+
+            projectName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Servant");
+            fileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Servant", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            if (File.Exists(Path.Combine(this.textBoxFeatureDestinationPath.Text, projectName, String.Join('.', fileName, "cs"))) == true)
+                throw new Exception(fileName + " already exists!");
+
+            projectName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Service");
+            fileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Service", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            if (File.Exists(Path.Combine(this.textBoxFeatureDestinationPath.Text, projectName, String.Join('.', fileName, "cs"))) == true)
+                throw new Exception(fileName + " already exists!");
+        }
+
+        private void GenerateFeature()
+        {
+            GenerateFeatureData();
+
+            GenerateFeatureIServer();
+
+            GenerateFeatureServer();
+
+            GenerateFeatureIPlugin();
+
+            GenerateFeatureIService();
+
+            GenerateFeatureServant();
+
+            GenerateFeatureService();
+        }
+
+        private void GenerateFeatureData()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Data");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Data", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.ModFeatureData), Encoding.UTF8);
+        }
+
+        private void GenerateFeatureIServer()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "IServer");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, "I", this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Server", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.IModFeatureServer), Encoding.UTF8);
+        }
+
+        private void GenerateFeatureServer()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Server");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Server", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.ModFeatureServer), Encoding.UTF8);
+        }
+
+        private void GenerateFeatureIPlugin()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "IPlugin");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, "I", this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Plugin", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.IModFeaturePlugin), Encoding.UTF8);
+        }
+
+        private void GenerateFeatureIService()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "IService");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, "I", this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Service", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.IModFeatureService), Encoding.UTF8);
+        }
+
+        private void GenerateFeatureServant()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Servant");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Servant", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.ModFeatureServant), Encoding.UTF8);
+        }
+
+        private void GenerateFeatureService()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Service");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Service", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.ModFeatureService), Encoding.UTF8);
+        }
+
+        private String ReplaceFeatureContent(String content)
+        {
+            content = content.Replace("{DEVELOPER}", this.textBoxFeatureDeveloper.Text);
+            content = content.Replace("{MODULE}", this.textBoxFeatureModule.Text);
+            content = content.Replace("{PROJECT}", this.textBoxFeatureProject.Text);
+
+            content = content.Replace("{PREFIX}", this.textBoxFeaturePrefix.Text);
+            content = content.Replace("{FEATURE}", this.textBoxFeatureName.Text);
+            content = content.Replace("{TYPE}", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+
+            content = content.Replace("{FULLNAME}", this.textBoxFeatureDeveloperFullName.Text);
+
+            content = content.Replace("{YEAR}", DateTime.Now.ToString("yyyy"));
+            content = content.Replace("{MONTH}", CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month));
+            content = content.Replace("{DAY}", DateTime.Now.ToString("dd"));
 
             return content;
         }

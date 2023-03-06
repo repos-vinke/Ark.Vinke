@@ -1,0 +1,69 @@
+﻿// {PREFIX}{FEATURE}Server{TYPE}.cs
+//
+// This file is integrated part of Ark project
+// Licensed under "Gnu General Public License Version 3"
+//
+// Created by {FULLNAME}
+// Created on {YEAR}, {MONTH} {DAY}
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Linq;
+using System.Collections.Generic;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+
+using Lazy.Vinke;
+
+using Ark.Vinke.Library;
+using Ark.Vinke.Library.Core;
+using Ark.Vinke.Library.Core.Server;
+using Ark.Vinke.Framework;
+using Ark.Vinke.Framework.Core;
+using Ark.Vinke.Framework.Core.Data;
+using Ark.Vinke.Framework.Core.IServer;
+using Ark.Vinke.Framework.Core.IService;
+using Ark.Vinke.Framework.Core.Server;
+using Ark.Vinke.Facilities;
+using Ark.Vinke.Facilities.Core;
+using Ark.Vinke.Facilities.Core.Data;
+using Ark.Vinke.Facilities.Core.IServer;
+using Ark.Vinke.Facilities.Core.IService;
+using Ark.Vinke.Facilities.Core.Server;
+
+using Ark.{DEVELOPER}.{MODULE};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data;
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IServer;
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IService;
+
+namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Server
+{
+    [ApiController]
+    [Route("Ark.{DEVELOPER}.{MODULE}/{PROJECT}.Server/[controller]")]
+    public class {PREFIX}{FEATURE}Server{TYPE} : FwkServer{TYPE}, I{PREFIX}{FEATURE}Server{TYPE}
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Server{TYPE}()
+        {
+            this.DataRequestType = typeof({PREFIX}{FEATURE}Data{TYPE}Request);
+            this.DataResponseType = typeof({PREFIX}{FEATURE}Data{TYPE}Response);
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+}

@@ -1,0 +1,72 @@
+﻿// I{PREFIX}{FEATURE}Plugin{TYPE}.cs
+//
+// This file is integrated part of Ark project
+// Licensed under "Gnu General Public License Version 3"
+//
+// Created by {FULLNAME}
+// Created on {YEAR}, {MONTH} {DAY}
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Collections.Generic;
+
+using Lazy.Vinke;
+
+using Ark.Vinke.Library;
+using Ark.Vinke.Library.Core;
+using Ark.Vinke.Framework;
+using Ark.Vinke.Framework.Core;
+using Ark.Vinke.Framework.Core.Data;
+using Ark.Vinke.Framework.Core.IPlugin;
+using Ark.Vinke.Facilities;
+using Ark.Vinke.Facilities.Core;
+using Ark.Vinke.Facilities.Core.Data;
+using Ark.Vinke.Facilities.Core.IPlugin;
+
+using Ark.{DEVELOPER}.{MODULE};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data;
+
+namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IPlugin
+{
+    public interface I{PREFIX}{FEATURE}Plugin{TYPE} : IFwkPlugin{TYPE}
+    {
+    }
+
+    #region EventArgs
+
+    public class {PREFIX}{FEATURE}Plugin{TYPE}BeforeEventArgs : FwkPlugin{TYPE}BeforeEventArgs
+    {
+        public {PREFIX}{FEATURE}Plugin{TYPE}BeforeEventArgs()
+        {
+        }
+
+        public {PREFIX}{FEATURE}Plugin{TYPE}BeforeEventArgs({PREFIX}{FEATURE}Data{TYPE}Request data{TYPE}Request, {PREFIX}{FEATURE}Data{TYPE}Response data{TYPE}Response)
+            : base(data{TYPE}Request, data{TYPE}Response)
+        {
+        }
+    }
+
+    public class {PREFIX}{FEATURE}Plugin{TYPE}AfterEventArgs : FwkPlugin{TYPE}AfterEventArgs
+    {
+        public {PREFIX}{FEATURE}Plugin{TYPE}AfterEventArgs()
+        {
+        }
+
+        public {PREFIX}{FEATURE}Plugin{TYPE}AfterEventArgs({PREFIX}{FEATURE}Data{TYPE}Request data{TYPE}Request, {PREFIX}{FEATURE}Data{TYPE}Response data{TYPE}Response)
+            : base(data{TYPE}Request, data{TYPE}Response)
+        {
+        }
+    }
+
+    #endregion EventArgs
+
+    #region EventHandlers
+
+    public delegate void {PREFIX}{FEATURE}Plugin{TYPE}BeforeEventHandler(Object sender, {PREFIX}{FEATURE}Plugin{TYPE}BeforeEventArgs args);
+
+    public delegate void {PREFIX}{FEATURE}Plugin{TYPE}AfterEventHandler(Object sender, {PREFIX}{FEATURE}Plugin{TYPE}AfterEventArgs args);
+
+    #endregion EventHandlers
+}

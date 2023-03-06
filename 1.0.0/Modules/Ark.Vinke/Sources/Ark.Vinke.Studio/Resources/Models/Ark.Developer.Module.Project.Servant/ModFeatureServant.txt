@@ -1,0 +1,62 @@
+﻿// {PREFIX}{FEATURE}Servant{TYPE}.cs
+//
+// This file is integrated part of Ark project
+// Licensed under "Gnu General Public License Version 3"
+//
+// Created by {FULLNAME}
+// Created on {YEAR}, {MONTH} {DAY}
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Reflection;
+
+using Lazy.Vinke;
+using Lazy.Vinke.Database;
+
+using Ark.Vinke.Library;
+using Ark.Vinke.Library.Core;
+using Ark.Vinke.Framework;
+using Ark.Vinke.Framework.Core;
+using Ark.Vinke.Framework.Core.Data;
+using Ark.Vinke.Framework.Core.IService;
+using Ark.Vinke.Framework.Core.Servant;
+using Ark.Vinke.Facilities;
+using Ark.Vinke.Facilities.Core;
+using Ark.Vinke.Facilities.Core.Data;
+using Ark.Vinke.Facilities.Core.IService;
+using Ark.Vinke.Facilities.Core.Servant;
+
+using Ark.{DEVELOPER}.{MODULE};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data;
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IService;
+
+namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant
+{
+    public class {PREFIX}{FEATURE}Servant{TYPE} : FwkServant{TYPE}, I{PREFIX}{FEATURE}Service{TYPE}
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Servant{TYPE}(FwkEnvironment environment)
+            : base(environment)
+        {
+        }
+
+        public {PREFIX}{FEATURE}Servant{TYPE}(FwkEnvironment environment, LazyDatabase database)
+            : base(environment, database)
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+}

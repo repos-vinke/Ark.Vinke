@@ -1,0 +1,179 @@
+﻿// {PREFIX}{FEATURE}Data{TYPE}.cs
+//
+// This file is integrated part of Ark project
+// Licensed under "Gnu General Public License Version 3"
+//
+// Created by {FULLNAME}
+// Created on {YEAR}, {MONTH} {DAY}
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Collections.Generic;
+
+using Lazy.Vinke;
+
+using Ark.Vinke.Library;
+using Ark.Vinke.Library.Core;
+using Ark.Vinke.Framework;
+using Ark.Vinke.Framework.Core;
+using Ark.Vinke.Framework.Core.Data;
+using Ark.Vinke.Facilities;
+using Ark.Vinke.Facilities.Core;
+using Ark.Vinke.Facilities.Core.Data;
+
+using Ark.{DEVELOPER}.{MODULE};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
+
+namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data
+{
+    public class {PREFIX}{FEATURE}Data{TYPE}Request : FwkData{TYPE}Request
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Data{TYPE}Request()
+        {
+            this.scope = new {PREFIX}{FEATURE}Data{TYPE}RequestScope();
+            this.content = new {PREFIX}{FEATURE}Data{TYPE}RequestContent();
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+
+        public new {PREFIX}{FEATURE}Data{TYPE}RequestScope Scope
+        {
+            get { return ({PREFIX}{FEATURE}Data{TYPE}RequestScope)this.scope; }
+            set { this.scope = value; }
+        }
+
+        public new {PREFIX}{FEATURE}Data{TYPE}RequestContent Content
+        {
+            get { return ({PREFIX}{FEATURE}Data{TYPE}RequestContent)this.content; }
+            set { this.content = value; }
+        }
+
+        #endregion Properties
+    }
+
+    public class {PREFIX}{FEATURE}Data{TYPE}RequestScope : FwkData{TYPE}RequestScope
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Data{TYPE}RequestScope()
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+
+    public class {PREFIX}{FEATURE}Data{TYPE}RequestContent : FwkData{TYPE}RequestContent
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Data{TYPE}RequestContent()
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+
+    public class {PREFIX}{FEATURE}Data{TYPE}Response : FwkData{TYPE}Response
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Data{TYPE}Response()
+        {
+            this.scope = new {PREFIX}{FEATURE}Data{TYPE}ResponseScope();
+            this.content = new {PREFIX}{FEATURE}Data{TYPE}ResponseContent();
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+
+        public new {PREFIX}{FEATURE}Data{TYPE}ResponseScope Scope
+        {
+            get { return ({PREFIX}{FEATURE}Data{TYPE}ResponseScope)this.scope; }
+            set { this.scope = value; }
+        }
+
+        public new {PREFIX}{FEATURE}Data{TYPE}ResponseContent Content
+        {
+            get { return ({PREFIX}{FEATURE}Data{TYPE}ResponseContent)this.content; }
+            set { this.content = value; }
+        }
+
+        #endregion Properties
+    }
+
+    public class {PREFIX}{FEATURE}Data{TYPE}ResponseScope : FwkData{TYPE}ResponseScope
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Data{TYPE}ResponseScope()
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+
+    public class {PREFIX}{FEATURE}Data{TYPE}ResponseContent : FwkData{TYPE}ResponseContent
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Data{TYPE}ResponseContent()
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+}

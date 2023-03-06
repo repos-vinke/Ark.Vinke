@@ -330,5 +330,212 @@ namespace Ark.Vinke.Studio.Properties {
                 return ResourceManager.GetString("Ark_Developer_Module_sln", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // I{PREFIX}{FEATURE}Plugin{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Collections.Generic;
+        ///
+        ///using Lazy.Vinke;
+        ///
+        ///using Ark.Vinke.Library;
+        ///using Ark.Vinke.Library.Core;
+        ///using Ark.Vinke.Framework;
+        ///using Ark.Vinke.Framework.Core;
+        ///using Ark.Vinke.Framework.Core.Data;
+        ///using Ark.Vinke.Framework.C [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string IModFeaturePlugin {
+            get {
+                return ResourceManager.GetString("IModFeaturePlugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // I{PREFIX}{FEATURE}Server{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Collections.Generic;
+        ///
+        ///using Lazy.Vinke;
+        ///
+        ///using Ark.Vinke.Library;
+        ///using Ark.Vinke.Library.Core;
+        ///using Ark.Vinke.Framework;
+        ///using Ark.Vinke.Framework.Core;
+        ///using Ark.Vinke.Framework.Core.Data;
+        ///using Ark.Vinke.Framework.C [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string IModFeatureServer {
+            get {
+                return ResourceManager.GetString("IModFeatureServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // I{PREFIX}{FEATURE}Service{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Collections.Generic;
+        ///
+        ///using Lazy.Vinke;
+        ///
+        ///using Ark.Vinke.Library;
+        ///using Ark.Vinke.Library.Core;
+        ///using Ark.Vinke.Framework;
+        ///using Ark.Vinke.Framework.Core;
+        ///using Ark.Vinke.Framework.Core.Data;
+        ///using Ark.Vinke.Framework. [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string IModFeatureService {
+            get {
+                return ResourceManager.GetString("IModFeatureService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // {PREFIX}{FEATURE}Data{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Collections.Generic;
+        ///
+        ///using Lazy.Vinke;
+        ///
+        ///using Ark.Vinke.Library;
+        ///using Ark.Vinke.Library.Core;
+        ///using Ark.Vinke.Framework;
+        ///using Ark.Vinke.Framework.Core;
+        ///using Ark.Vinke.Framework.Core.Data;
+        ///using Ark.Vinke.Facilities;
+        ///u [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string ModFeatureData {
+            get {
+                return ResourceManager.GetString("ModFeatureData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // {PREFIX}{FEATURE}Servant{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Reflection;
+        ///
+        ///using Lazy.Vinke;
+        ///using Lazy.Vinke.Database;
+        ///
+        ///using Ark.Vinke.Library;
+        ///using Ark.Vinke.Library.Core;
+        ///using Ark.Vinke.Framework;
+        ///using Ark.Vinke.Framework.Core;
+        ///using Ark.Vinke.Framework.Core.Data;
+        ///using Ar [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string ModFeatureServant {
+            get {
+                return ResourceManager.GetString("ModFeatureServant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // {PREFIX}{FEATURE}Server{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Linq;
+        ///using System.Collections.Generic;
+        ///
+        ///using Microsoft.AspNetCore.Mvc;
+        ///using Microsoft.AspNetCore.Mvc.Filters;
+        ///using Microsoft.AspNetCore.Http;
+        ///using Microsoft.AspNetCore.Authorization;
+        ///
+        ///using Lazy.Vinke;
+        ///
+        ///using Ark.V [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string ModFeatureServer {
+            get {
+                return ResourceManager.GetString("ModFeatureServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // {PREFIX}{FEATURE}Service{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.IO;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Text;
+        ///
+        ///using Lazy.Vinke;
+        ///using Lazy.Vinke.Database;
+        ///
+        ///using Ark.Vinke.Library;
+        ///using Ark.Vinke.Library.Core;
+        ///using Ark.Vinke.Library.Core.Service;
+        ///using Ark.Vinke.Framework;
+        ///using Ark.Vinke.Framework.Co [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string ModFeatureService {
+            get {
+                return ResourceManager.GetString("ModFeatureService", resourceCulture);
+            }
+        }
     }
 }

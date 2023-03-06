@@ -1,0 +1,67 @@
+﻿// {PREFIX}{FEATURE}Service{TYPE}.cs
+//
+// This file is integrated part of Ark project
+// Licensed under "Gnu General Public License Version 3"
+//
+// Created by {FULLNAME}
+// Created on {YEAR}, {MONTH} {DAY}
+
+using System;
+using System.IO;
+using System.Xml;
+using System.Data;
+using System.Text;
+
+using Lazy.Vinke;
+using Lazy.Vinke.Database;
+
+using Ark.Vinke.Library;
+using Ark.Vinke.Library.Core;
+using Ark.Vinke.Library.Core.Service;
+using Ark.Vinke.Framework;
+using Ark.Vinke.Framework.Core;
+using Ark.Vinke.Framework.Core.Data;
+using Ark.Vinke.Framework.Core.IPlugin;
+using Ark.Vinke.Framework.Core.IService;
+using Ark.Vinke.Framework.Core.Service;
+using Ark.Vinke.Facilities;
+using Ark.Vinke.Facilities.Core;
+using Ark.Vinke.Facilities.Core.Data;
+using Ark.Vinke.Facilities.Core.IPlugin;
+using Ark.Vinke.Facilities.Core.IService;
+using Ark.Vinke.Facilities.Core.Service;
+
+using Ark.{DEVELOPER}.{MODULE};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data;
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IPlugin;
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IService;
+
+namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Service
+{
+    public class {PREFIX}{FEATURE}Service{TYPE} : FwkService{TYPE}, I{PREFIX}{FEATURE}Service{TYPE}
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Service{TYPE}(FwkEnvironment environment)
+            : base(environment)
+        {
+        }
+
+        public {PREFIX}{FEATURE}Service{TYPE}(FwkEnvironment environment, LazyDatabase database)
+            : base(environment, database)
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+}

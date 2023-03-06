@@ -160,4 +160,25 @@
   <data name="Ark_Developer_Module_sln" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\models\ark.developer.module.sln.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="IModFeaturePlugin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.iplugin\imodfeatureplugin.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="IModFeatureServer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.iserver\imodfeatureserver.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="IModFeatureService" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.iservice\imodfeatureservice.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ModFeatureData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.data\modfeaturedata.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ModFeatureServant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.servant\modfeatureservant.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ModFeatureServer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.server\modfeatureserver.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ModFeatureService" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.service\modfeatureservice.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

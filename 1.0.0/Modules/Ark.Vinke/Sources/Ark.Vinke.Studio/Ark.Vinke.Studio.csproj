@@ -13,12 +13,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Resources\Models\Project\**" />
-	  <EmbeddedResource Remove="Resources\Models\Project\**" />
-	  <None Remove="Resources\Models\Project\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="..\..\..\..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
