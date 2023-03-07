@@ -106,6 +106,24 @@ namespace Ark.Vinke.Framework.Core.Service.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Framework.Core.Service.{0}$.Captions.FwkCaptionOperationNotAllowed.
+        /// </summary>
+        public static string FwkCaptionOperationNotAllowed {
+            get {
+                return ResourceManager.GetString("FwkCaptionOperationNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionOperationNotAllowed.
+        /// </summary>
+        public static string FwkExceptionOperationNotAllowed {
+            get {
+                return ResourceManager.GetString("FwkExceptionOperationNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionRecordDataSetMissing.
         /// </summary>
         public static string FwkExceptionRecordDataSetMissing {

@@ -191,6 +191,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 this.Operation = "ValidateInsert";
 
+                if (this.AllowValidateInsert == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
+
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
                 if (this.IsDatabaseOwner == true)
@@ -234,6 +237,9 @@ namespace Ark.Vinke.Framework.Core.Service
             try
             {
                 this.Operation = "ValidateIndate";
+
+                if (this.AllowValidateIndate == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
 
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
@@ -279,6 +285,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 this.Operation = "ValidateUpdate";
 
+                if (this.AllowValidateUpdate == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
+
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
                 if (this.IsDatabaseOwner == true)
@@ -323,6 +332,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 this.Operation = "ValidateUpsert";
 
+                if (this.AllowValidateUpsert == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
+
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
                 if (this.IsDatabaseOwner == true)
@@ -366,6 +378,9 @@ namespace Ark.Vinke.Framework.Core.Service
             try
             {
                 this.Operation = "ValidateDelete";
+
+                if (this.AllowValidateDelete == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
 
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
@@ -455,6 +470,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 this.Operation = "Insert";
 
+                if (this.AllowInsert == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
+
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
                 if (this.IsDatabaseOwner == true)
@@ -498,6 +516,9 @@ namespace Ark.Vinke.Framework.Core.Service
             try
             {
                 this.Operation = "Indate";
+
+                if (this.AllowIndate == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
 
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
@@ -543,6 +564,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 this.Operation = "Update";
 
+                if (this.AllowUpdate == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
+
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
                 if (this.IsDatabaseOwner == true)
@@ -587,6 +611,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 this.Operation = "Upsert";
 
+                if (this.AllowUpsert == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
+
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
                 if (this.IsDatabaseOwner == true)
@@ -630,6 +657,9 @@ namespace Ark.Vinke.Framework.Core.Service
             try
             {
                 this.Operation = "Delete";
+
+                if (this.AllowDelete == false)
+                    throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionOperationNotAllowed, new Object[] { this.Operation, this.GetType().Name }, Properties.FwkResourcesCoreService.FwkCaptionOperationNotAllowed);
 
                 FwkDataRecordResponse dataRecordResponse = (FwkDataRecordResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
@@ -3219,6 +3249,27 @@ namespace Ark.Vinke.Framework.Core.Service
         #endregion Methods
 
         #region Properties
+
+        public Boolean AllowValidateInsert { get; set; } = true;
+
+        public Boolean AllowValidateIndate { get; set; } = true;
+
+        public Boolean AllowValidateUpdate { get; set; } = true;
+
+        public Boolean AllowValidateUpsert { get; set; } = true;
+
+        public Boolean AllowValidateDelete { get; set; } = true;
+
+        public Boolean AllowInsert { get; set; } = true;
+
+        public Boolean AllowIndate { get; set; } = true;
+
+        public Boolean AllowUpdate { get; set; } = true;
+
+        public Boolean AllowUpsert { get; set; } = true;
+
+        public Boolean AllowDelete { get; set; } = true;
+
         #endregion Properties
     }
 }

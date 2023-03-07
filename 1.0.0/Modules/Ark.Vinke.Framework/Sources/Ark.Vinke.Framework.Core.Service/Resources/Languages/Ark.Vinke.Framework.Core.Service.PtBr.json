@@ -4,9 +4,11 @@
     "FwkCaptionInvalidData": "Dado inválido",
     "FwkCaptionMissingData": "Dado ausente",
     "FwkCaptionMissingProperty": "Propriedade ausente",
-    "FwkCaptionNotFound": "Não encontrado"
+    "FwkCaptionNotFound": "Não encontrado",
+    "FwkCaptionOperationNotAllowed": ""
   },
   "Exceptions": {
+    "FwkExceptionOperationNotAllowed": "A operação '{0}' não é permitida no serviço '{1}'!",
     "FwkExceptionRecordDataSetMissing": "O DataSet do conteúdo da requisição não foi informado!",
     "FwkExceptionRecordDataTableEmpty": "Os registros do DataTable '{0}' não foram informados!",
     "FwkExceptionRecordDataTableMissing": "O DataTable '{0}' não foi informado!",

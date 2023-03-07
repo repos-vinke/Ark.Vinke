@@ -137,6 +137,14 @@
     <value>Ark.Vinke.Framework.Core.Service.{0}$.Captions.FwkCaptionNotFound</value>
     <comment>Not found</comment>
   </data>
+  <data name="FwkCaptionOperationNotAllowed" xml:space="preserve">
+    <value>Ark.Vinke.Framework.Core.Service.{0}$.Captions.FwkCaptionOperationNotAllowed</value>
+    <comment>Operation not allowed</comment>
+  </data>
+  <data name="FwkExceptionOperationNotAllowed" xml:space="preserve">
+    <value>Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionOperationNotAllowed</value>
+    <comment>The operation '{0}' is not allowed on service '{1}'!</comment>
+  </data>
   <data name="FwkExceptionRecordDataSetMissing" xml:space="preserve">
     <value>Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionRecordDataSetMissing</value>
     <comment>The DataSet of the request content was not informed!</comment>
