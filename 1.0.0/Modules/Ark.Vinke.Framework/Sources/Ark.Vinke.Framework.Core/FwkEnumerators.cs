@@ -44,11 +44,11 @@ namespace Ark.Vinke.Framework.Core
         [LazyAttributeGeneric("NV", "Never")]
         Never = 0,
 
-        [LazyAttributeGeneric("NW", "NewOnly")]
-        NewOnly = 1,
+        [LazyAttributeGeneric("AD", "Added")]
+        Added = 1,
 
-        [LazyAttributeGeneric("ED", "EditOnly")]
-        EditOnly = 2,
+        [LazyAttributeGeneric("MD", "Modified")]
+        Modified = 2,
 
         [LazyAttributeGeneric("AL", "Always")]
         Always = 3
@@ -70,5 +70,20 @@ namespace Ark.Vinke.Framework.Core
 
         [LazyAttributeGeneric("NN", "None")]
         None = 70
+    }
+    
+    public enum FwkDefaultValueEnum
+    {
+        [LazyAttributeGeneric("NV", "Never")]
+        Never = 0,
+
+        [LazyAttributeGeneric("AD", "Added")]
+        Added = 1,
+
+        [LazyAttributeGeneric("MD", "Modified")]
+        Modified = 2,
+
+        [LazyAttributeGeneric("AL", "Always")]
+        Always = 3
     }
 }

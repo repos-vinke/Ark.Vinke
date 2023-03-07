@@ -64,8 +64,8 @@ namespace Ark.Vinke.Framework.Core
         }
 
         public void SetFieldAttributes(Type type, String caption = null,
-            FwkBooleanEnum required = FwkBooleanEnum.True, FwkEditableEnum editable = FwkEditableEnum.Always,
-            FwkBooleanEnum visible = FwkBooleanEnum.True, FwkConstraintEnum constraint = FwkConstraintEnum.None,
+            FwkBooleanEnum required = FwkBooleanEnum.True, FwkEditableEnum editable = FwkEditableEnum.Always, FwkBooleanEnum visible = FwkBooleanEnum.True,
+            FwkConstraintEnum constraint = FwkConstraintEnum.None, FwkDefaultValueEnum defaultValueWhen = FwkDefaultValueEnum.Always,
             String[] uniqueKeys = null, Object defaultValue = null, Boolean skipValidations = false)
         {
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Type = type;
@@ -74,6 +74,7 @@ namespace Ark.Vinke.Framework.Core
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Editable = editable;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Visible = visible;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Constraint = constraint;
+            this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.DefaultValueWhen = defaultValueWhen;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.UniqueKeys = uniqueKeys;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.DefaultValue = defaultValue;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.SkipValidations = skipValidations;
@@ -229,6 +230,13 @@ namespace Ark.Vinke.Framework.Core
         [LazyJsonAttributePropertyRename("Constraint")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public String ConstraintName { get { return LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(Constraint).Name; } }
+
+        [LazyJsonAttributePropertyIgnore()]
+        public FwkDefaultValueEnum DefaultValueWhen { get; set; }
+
+        [LazyJsonAttributePropertyRename("DefaultValueWhen")]
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public String DefaultValueWhenName { get { return LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(DefaultValueWhen).Name; } }
 
         public String[] UniqueKeys { get; set; }
 
