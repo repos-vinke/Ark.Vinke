@@ -84,7 +84,8 @@ namespace Ark.Vinke.Framework.Core.Service
                     if (this.Database.InTransaction == true)
                         this.Database.RollbackTransaction();
 
-                    this.Database.CloseConnection();
+                    if (this.Database.IsConnectionOpen == true)
+                        this.Database.CloseConnection();
                 }
 
                 throw;
@@ -127,7 +128,8 @@ namespace Ark.Vinke.Framework.Core.Service
                     if (this.Database.InTransaction == true)
                         this.Database.RollbackTransaction();
 
-                    this.Database.CloseConnection();
+                    if (this.Database.IsConnectionOpen == true)
+                        this.Database.CloseConnection();
                 }
 
                 throw;
@@ -170,7 +172,8 @@ namespace Ark.Vinke.Framework.Core.Service
                     if (this.Database.InTransaction == true)
                         this.Database.RollbackTransaction();
 
-                    this.Database.CloseConnection();
+                    if (this.Database.IsConnectionOpen == true)
+                        this.Database.CloseConnection();
                 }
 
                 throw;
@@ -213,7 +216,8 @@ namespace Ark.Vinke.Framework.Core.Service
                     if (this.Database.InTransaction == true)
                         this.Database.RollbackTransaction();
 
-                    this.Database.CloseConnection();
+                    if (this.Database.IsConnectionOpen == true)
+                        this.Database.CloseConnection();
                 }
 
                 throw;
