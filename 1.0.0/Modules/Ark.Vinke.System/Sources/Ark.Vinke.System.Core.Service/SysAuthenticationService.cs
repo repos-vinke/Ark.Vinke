@@ -101,7 +101,9 @@ namespace Ark.Vinke.System.Core.Service
                 // Must remove this because in this service the inherit database object will always be null
                 //if (this.IsDatabaseOwner == true)
                 //{
-                //    this.Database.RollbackTransaction();
+                //    if (this.Database.InTransaction == true)
+                //        this.Database.RollbackTransaction();
+
                 //    this.Database.CloseConnection();
                 //}
 
