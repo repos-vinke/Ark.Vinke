@@ -81,7 +81,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -122,7 +124,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -163,7 +167,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -204,7 +210,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -245,7 +253,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -286,7 +296,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -327,7 +339,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -368,7 +382,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -409,7 +425,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -450,7 +468,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -491,7 +511,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -532,7 +554,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -573,7 +597,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
@@ -614,7 +640,9 @@ namespace Ark.Vinke.Framework.Core.Service
             {
                 if (this.IsDatabaseOwner == true)
                 {
-                    this.Database.RollbackTransaction();
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
                     this.Database.CloseConnection();
                 }
 
