@@ -28,7 +28,7 @@ using Ark.Vinke.Facilities.Core;
 using Ark.Vinke.Facilities.Core.Data;
 using Ark.Vinke.Facilities.Core.IPlugin;
 using Ark.Vinke.Facilities.Core.IService;
-using Ark.Vinke.Facilities.Core.Service;
+using Ark.Vinke.Facilities.Core.Servant;
 using Ark.Vinke.System;
 using Ark.Vinke.System.Core;
 using Ark.Vinke.System.Core.Data;
