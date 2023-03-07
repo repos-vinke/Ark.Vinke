@@ -64,13 +64,13 @@ namespace Ark.Vinke.Framework.Core
         }
 
         public void SetFieldAttributes(Type type, String caption = null,
-            FwkBooleanEnum nullable = FwkBooleanEnum.True, FwkBooleanEnum editable = FwkBooleanEnum.True,
+            FwkBooleanEnum required = FwkBooleanEnum.True, FwkEditableEnum editable = FwkEditableEnum.Always,
             FwkBooleanEnum visible = FwkBooleanEnum.True, FwkConstraintEnum constraint = FwkConstraintEnum.None,
             String[] uniqueKeys = null, Object defaultValue = null, Boolean skipValidations = false)
         {
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Type = type;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Caption = caption;
-            this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Nullable = nullable;
+            this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Required = required;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Editable = editable;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Visible = visible;
             this.recordTableList[this.currentTable].RecordFields[this.currentField].Attributes.Constraint = constraint;
@@ -203,18 +203,18 @@ namespace Ark.Vinke.Framework.Core
         public String Caption { get; set; }
 
         [LazyJsonAttributePropertyIgnore()]
-        public FwkBooleanEnum Nullable { get; set; }
+        public FwkBooleanEnum Required { get; set; }
 
-        [LazyJsonAttributePropertyRename("Nullable")]
+        [LazyJsonAttributePropertyRename("Required")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public Boolean NullableValue { get { return Nullable == FwkBooleanEnum.True ? true : false; } }
+        public Boolean RequiredValue { get { return Required == FwkBooleanEnum.True ? true : false; } }
 
         [LazyJsonAttributePropertyIgnore()]
-        public FwkBooleanEnum Editable { get; set; }
+        public FwkEditableEnum Editable { get; set; }
 
         [LazyJsonAttributePropertyRename("Editable")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public Boolean EditableValue { get { return Editable == FwkBooleanEnum.True ? true : false; } }
+        public String EditableValue { get { return LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(Editable).Name; } }
 
         [LazyJsonAttributePropertyIgnore()]
         public FwkBooleanEnum Visible { get; set; }
@@ -228,7 +228,7 @@ namespace Ark.Vinke.Framework.Core
 
         [LazyJsonAttributePropertyRename("Constraint")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public String ConstraintName { get { return Enum.GetName(typeof(FwkConstraintEnum), Constraint); } }
+        public String ConstraintName { get { return LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(Constraint).Name; } }
 
         public String[] UniqueKeys { get; set; }
 

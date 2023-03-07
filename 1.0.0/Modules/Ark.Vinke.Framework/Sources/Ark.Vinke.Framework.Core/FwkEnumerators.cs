@@ -39,6 +39,21 @@ namespace Ark.Vinke.Framework.Core
         True = 1
     }
 
+    public enum FwkEditableEnum
+    {
+        [LazyAttributeGeneric("NV", "Never")]
+        Never = 0,
+
+        [LazyAttributeGeneric("NW", "NewOnly")]
+        NewOnly = 1,
+
+        [LazyAttributeGeneric("ED", "EditOnly")]
+        EditOnly = 2,
+
+        [LazyAttributeGeneric("AL", "Always")]
+        Always = 3
+    }
+
     public enum FwkConstraintEnum
     {
         [LazyAttributeGeneric("PA", "ParentKey")]

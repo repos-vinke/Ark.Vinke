@@ -12,6 +12,7 @@
     "FwkExceptionRecordDataTableMissing": "The DataTable '{0}' was not informed!",
     "FwkExceptionRecordKeyFieldEmpty": "The key field '{0}' value was not informed!",
     "FwkExceptionRecordKeyFieldMissing": "The key field '{0}' was not informed!",
+    "FwkExceptionRecordNonEditableFieldAdded": "The field '{0}' must be added with null value!",
     "FwkExceptionRecordNonEditableFieldModified": "The field '{0}' cannot be modified!",
     "FwkExceptionRecordOriginalKeyNotFound": "The record with original key [{0}] was not found!",
     "FwkExceptionRecordRequiredFieldEmpty": "The required field '{0}' value was not informed!",

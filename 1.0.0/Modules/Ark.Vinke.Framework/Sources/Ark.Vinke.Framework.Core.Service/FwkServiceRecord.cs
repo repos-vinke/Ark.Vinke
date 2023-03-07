@@ -1567,7 +1567,7 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                         if (formatRecordField.Value.Attributes.SkipValidations == false)
                                         {
-                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || (formatRecordField.Value.Attributes.Nullable == FwkBooleanEnum.False && formatRecordField.Value.Attributes.Constraint != FwkConstraintEnum.IncrementKey))
+                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || (formatRecordField.Value.Attributes.Required == FwkBooleanEnum.True && formatRecordField.Value.Attributes.Constraint != FwkConstraintEnum.IncrementKey))
                                             {
                                                 #region Validate required field
 
@@ -1578,6 +1578,19 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                 foreach (DataRow dataRow in dataRecordRequest.Content.DataSet.Tables[formatRecordTable.Key].Rows)
                                                 {
+                                                    #region Validate non editable field for added rows
+
+                                                    if (dataRow.RowState == DataRowState.Added)
+                                                    {
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.EditOnly)
+                                                        {
+                                                            if (dataRow[formatRecordField.Key] != DBNull.Value)
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldAdded, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
+                                                    }
+
+                                                    #endregion Validate non editable field for added rows
+
                                                     #region Set default values
 
                                                     if (formatRecordField.Value.Attributes.DefaultValue != null)
@@ -1607,6 +1620,19 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                 foreach (DataRow dataRow in dataRecordRequest.Content.DataSet.Tables[formatRecordTable.Key].Rows)
                                                 {
+                                                    #region Validate non editable field for added rows
+
+                                                    if (dataRow.RowState == DataRowState.Added)
+                                                    {
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.EditOnly)
+                                                        {
+                                                            if (dataRow[formatRecordField.Key] != DBNull.Value)
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldAdded, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
+                                                    }
+
+                                                    #endregion Validate non editable field for added rows
+
                                                     #region Set default values
 
                                                     if (formatRecordField.Value.Attributes.DefaultValue != null)
@@ -1877,7 +1903,7 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                         if (formatRecordField.Value.Attributes.SkipValidations == false)
                                         {
-                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.IncrementKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || formatRecordField.Value.Attributes.Nullable == FwkBooleanEnum.False)
+                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.IncrementKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || formatRecordField.Value.Attributes.Required == FwkBooleanEnum.True)
                                             {
                                                 #region Validate required field missing
 
@@ -1888,6 +1914,19 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                 foreach (DataRow dataRow in dataRecordRequest.Content.DataSet.Tables[formatRecordTable.Key].Rows)
                                                 {
+                                                    #region Validate non editable field for added rows
+
+                                                    if (dataRow.RowState == DataRowState.Added)
+                                                    {
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.EditOnly)
+                                                        {
+                                                            if (dataRow[formatRecordField.Key] != DBNull.Value)
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldAdded, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
+                                                    }
+
+                                                    #endregion Validate non editable field for added rows
+
                                                     #region Set default values
 
                                                     if (formatRecordField.Value.Attributes.DefaultValue != null)
@@ -1905,18 +1944,18 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                     #endregion Validate required field empty
 
-                                                    #region Validate non editable field
+                                                    #region Validate non editable field for modified rows
 
-                                                    if (formatRecordField.Value.Attributes.Editable == FwkBooleanEnum.False)
+                                                    if (dataRow.RowState == DataRowState.Modified)
                                                     {
-                                                        if (dataRow.RowState == DataRowState.Modified)
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.NewOnly)
                                                         {
                                                             if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
                                                                 throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
                                                         }
                                                     }
 
-                                                    #endregion Validate non editable field
+                                                    #endregion Validate non editable field for modified rows
                                                 }
                                             }
                                             else
@@ -1930,6 +1969,19 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                 foreach (DataRow dataRow in dataRecordRequest.Content.DataSet.Tables[formatRecordTable.Key].Rows)
                                                 {
+                                                    #region Validate non editable field for added rows
+
+                                                    if (dataRow.RowState == DataRowState.Added)
+                                                    {
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.EditOnly)
+                                                        {
+                                                            if (dataRow[formatRecordField.Key] != DBNull.Value)
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldAdded, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
+                                                    }
+
+                                                    #endregion Validate non editable field for added rows
+
                                                     #region Set default values
 
                                                     if (formatRecordField.Value.Attributes.DefaultValue != null)
@@ -1940,18 +1992,18 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                     #endregion Set default values
 
-                                                    #region Validate non editable field
+                                                    #region Validate non editable field for modified rows
 
-                                                    if (formatRecordField.Value.Attributes.Editable == FwkBooleanEnum.False)
+                                                    if (dataRow.RowState == DataRowState.Modified)
                                                     {
-                                                        if (dataRow.RowState == DataRowState.Modified)
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.NewOnly)
                                                         {
                                                             if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
                                                                 throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
                                                         }
                                                     }
 
-                                                    #endregion Validate non editable field
+                                                    #endregion Validate non editable field for modified rows
                                                 }
                                             }
 
@@ -2252,7 +2304,7 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                         if (formatRecordField.Value.Attributes.SkipValidations == false)
                                         {
-                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.IncrementKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || formatRecordField.Value.Attributes.Nullable == FwkBooleanEnum.False)
+                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.IncrementKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || formatRecordField.Value.Attributes.Required == FwkBooleanEnum.True)
                                             {
                                                 #region Validate required field missing
 
@@ -2280,15 +2332,18 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                     #endregion Validate required field empty
 
-                                                    #region Validate non editable field
+                                                    #region Validate non editable field for modified rows
 
-                                                    if (formatRecordField.Value.Attributes.Editable == FwkBooleanEnum.False)
+                                                    if (dataRow.RowState == DataRowState.Modified)
                                                     {
-                                                        if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
-                                                            throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.NewOnly)
+                                                        {
+                                                            if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
                                                     }
 
-                                                    #endregion Validate non editable field
+                                                    #endregion Validate non editable field for modified rows
                                                 }
                                             }
                                             else
@@ -2312,15 +2367,18 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                     #endregion Set default values
 
-                                                    #region Validate non editable field
+                                                    #region Validate non editable field for modified rows
 
-                                                    if (formatRecordField.Value.Attributes.Editable == FwkBooleanEnum.False)
+                                                    if (dataRow.RowState == DataRowState.Modified)
                                                     {
-                                                        if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
-                                                            throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.NewOnly)
+                                                        {
+                                                            if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
                                                     }
 
-                                                    #endregion Validate non editable field
+                                                    #endregion Validate non editable field for modified rows
                                                 }
                                             }
 
@@ -2621,7 +2679,7 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                         if (formatRecordField.Value.Attributes.SkipValidations == false)
                                         {
-                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.IncrementKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || formatRecordField.Value.Attributes.Nullable == FwkBooleanEnum.False)
+                                            if (formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.ParentKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.PrimaryKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.IncrementKey || formatRecordField.Value.Attributes.Constraint == FwkConstraintEnum.UniqueKey || formatRecordField.Value.Attributes.Required == FwkBooleanEnum.True)
                                             {
                                                 #region Validate required field missing
 
@@ -2632,6 +2690,19 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                 foreach (DataRow dataRow in dataRecordRequest.Content.DataSet.Tables[formatRecordTable.Key].Rows)
                                                 {
+                                                    #region Validate non editable field for added rows
+
+                                                    if (dataRow.RowState == DataRowState.Added)
+                                                    {
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.EditOnly)
+                                                        {
+                                                            if (dataRow[formatRecordField.Key] != DBNull.Value)
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldAdded, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
+                                                    }
+
+                                                    #endregion Validate non editable field for added rows
+
                                                     #region Set default values
 
                                                     if (formatRecordField.Value.Attributes.DefaultValue != null)
@@ -2649,18 +2720,18 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                     #endregion Validate required field empty
 
-                                                    #region Validate non editable field
+                                                    #region Validate non editable field for modified rows
 
-                                                    if (formatRecordField.Value.Attributes.Editable == FwkBooleanEnum.False)
+                                                    if (dataRow.RowState == DataRowState.Modified)
                                                     {
-                                                        if (dataRow.RowState == DataRowState.Modified)
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.NewOnly)
                                                         {
                                                             if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
                                                                 throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
                                                         }
                                                     }
 
-                                                    #endregion Validate non editable field
+                                                    #endregion Validate non editable field for modified rows
                                                 }
                                             }
                                             else
@@ -2674,6 +2745,19 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                 foreach (DataRow dataRow in dataRecordRequest.Content.DataSet.Tables[formatRecordTable.Key].Rows)
                                                 {
+                                                    #region Validate non editable field for added rows
+
+                                                    if (dataRow.RowState == DataRowState.Added)
+                                                    {
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.EditOnly)
+                                                        {
+                                                            if (dataRow[formatRecordField.Key] != DBNull.Value)
+                                                                throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldAdded, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
+                                                        }
+                                                    }
+
+                                                    #endregion Validate non editable field for added rows
+
                                                     #region Set default values
 
                                                     if (formatRecordField.Value.Attributes.DefaultValue != null)
@@ -2684,18 +2768,18 @@ namespace Ark.Vinke.Framework.Core.Service
 
                                                     #endregion Set default values
 
-                                                    #region Validate non editable field
+                                                    #region Validate non editable field for modified rows
 
-                                                    if (formatRecordField.Value.Attributes.Editable == FwkBooleanEnum.False)
+                                                    if (dataRow.RowState == DataRowState.Modified)
                                                     {
-                                                        if (dataRow.RowState == DataRowState.Modified)
+                                                        if (formatRecordField.Value.Attributes.Editable == FwkEditableEnum.Never || formatRecordField.Value.Attributes.Editable == FwkEditableEnum.NewOnly)
                                                         {
                                                             if (LazyConvert.ToString(dataRow[formatRecordField.Key], String.Empty) != LazyConvert.ToString(dataRow[formatRecordField.Key, DataRowVersion.Original], String.Empty))
                                                                 throw new LibException(Properties.FwkResourcesCoreService.FwkExceptionRecordNonEditableFieldModified, new Object[] { formatRecordField.Key }, Properties.FwkResourcesCoreService.FwkCaptionInvalidData);
                                                         }
                                                     }
 
-                                                    #endregion Validate non editable field
+                                                    #endregion Validate non editable field for modified rows
                                                 }
                                             }
 

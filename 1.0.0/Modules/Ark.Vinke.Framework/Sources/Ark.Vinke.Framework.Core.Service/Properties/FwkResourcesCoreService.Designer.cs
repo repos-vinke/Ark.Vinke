@@ -151,6 +151,15 @@ namespace Ark.Vinke.Framework.Core.Service.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionRecordNonEditableFieldAdded.
+        /// </summary>
+        public static string FwkExceptionRecordNonEditableFieldAdded {
+            get {
+                return ResourceManager.GetString("FwkExceptionRecordNonEditableFieldAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionRecordNonEditableFieldModified.
         /// </summary>
         public static string FwkExceptionRecordNonEditableFieldModified {

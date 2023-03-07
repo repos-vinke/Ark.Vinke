@@ -12,6 +12,7 @@
     "FwkExceptionRecordDataTableMissing": "O DataTable '{0}' não foi informado!",
     "FwkExceptionRecordKeyFieldEmpty": "O valor do campo chave '{0}' não foi informado!",
     "FwkExceptionRecordKeyFieldMissing": "O campo chave '{0}' não foi informado!",
+    "FwkExceptionRecordNonEditableFieldAdded": "O campo '{0}' deve ser inserido com valor nulo!",
     "FwkExceptionRecordNonEditableFieldModified": "O campo '{0}' não pode ser modificado!",
     "FwkExceptionRecordOriginalKeyNotFound": "O registro com chave original [{0}] não foi encontrado!",
     "FwkExceptionRecordRequiredFieldEmpty": "O valor do campo requerido '{0}' não foi informado!",

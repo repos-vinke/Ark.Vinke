@@ -157,6 +157,10 @@
     <value>Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionRecordKeyFieldMissing</value>
     <comment>The key field '{0}' was not informed!</comment>
   </data>
+  <data name="FwkExceptionRecordNonEditableFieldAdded" xml:space="preserve">
+    <value>Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionRecordNonEditableFieldAdded</value>
+    <comment>The field '{0}' must be added with null value!</comment>
+  </data>
   <data name="FwkExceptionRecordNonEditableFieldModified" xml:space="preserve">
     <value>Ark.Vinke.Framework.Core.Service.{0}$.Exceptions.FwkExceptionRecordNonEditableFieldModified</value>
     <comment>The field '{0}' cannot be modified!</comment>
