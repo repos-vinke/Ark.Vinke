@@ -29,7 +29,7 @@ using Ark.Vinke.Facilities.Core;
 using Ark.Vinke.Facilities.Core.Data;
 using Ark.Vinke.Facilities.Core.IPlugin;
 using Ark.Vinke.Facilities.Core.IService;
-using Ark.Vinke.Facilities.Core.Service;
+using Ark.Vinke.Facilities.Core.Servant;
 
 using Ark.{DEVELOPER}.{MODULE};
 using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
