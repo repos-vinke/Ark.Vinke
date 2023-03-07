@@ -78,34 +78,17 @@ namespace Ark.Vinke.System.Core.Service
 
                 SysAuthenticationDataResponse authenticationDataResponse = new SysAuthenticationDataResponse();
 
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    this.Database.OpenConnection();
-                //    this.Database.BeginTransaction();
-                //}
+                // At this service the inherit database object will always be null
 
                 InternalAuthenticate(authenticationDataRequest, authenticationDataResponse);
 
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    this.Database.CommitTransaction();
-                //    this.Database.CloseConnection();
-                //}
+                // At this service the inherit database object will always be null
 
                 return authenticationDataResponse;
             }
             catch
             {
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    if (this.Database.InTransaction == true)
-                //        this.Database.RollbackTransaction();
-
-                //    this.Database.CloseConnection();
-                //}
+                // At this service the inherit database object will always be null
 
                 throw;
             }

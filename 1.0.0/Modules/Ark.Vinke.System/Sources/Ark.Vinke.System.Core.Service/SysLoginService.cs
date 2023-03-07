@@ -77,34 +77,17 @@ namespace Ark.Vinke.System.Core.Service
 
                 SysLoginDataResponse loginDataResponse = (SysLoginDataResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
 
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    this.Database.OpenConnection();
-                //    this.Database.BeginTransaction();
-                //}
+                // At this service the inherit database object will always be null
 
                 InternalAuthenticate(loginDataRequest, loginDataResponse);
 
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    this.Database.CommitTransaction();
-                //    this.Database.CloseConnection();
-                //}
+                // At this service the inherit database object will always be null
 
                 return loginDataResponse;
             }
             catch
             {
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    if (this.Database.InTransaction == true)
-                //        this.Database.RollbackTransaction();
-
-                //    this.Database.CloseConnection();
-                //}
+                // At this service the inherit database object will always be null
 
                 throw;
             }

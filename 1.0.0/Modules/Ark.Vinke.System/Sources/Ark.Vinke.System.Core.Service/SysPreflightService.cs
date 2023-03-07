@@ -71,34 +71,17 @@ namespace Ark.Vinke.System.Core.Service
 
                 SysPreflightDataResponse preflightDataResponse = new SysPreflightDataResponse();
 
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    this.Database.OpenConnection();
-                //    this.Database.BeginTransaction();
-                //}
+                // At this service the inherit database object will always be null
 
                 InternalPreflight(preflightDataRequest, preflightDataResponse);
 
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    this.Database.CommitTransaction();
-                //    this.Database.CloseConnection();
-                //}
+                // At this service the inherit database object will always be null
 
                 return preflightDataResponse;
             }
             catch
             {
-                // Must remove this because in this service the inherit database object will always be null
-                //if (this.IsDatabaseOwner == true)
-                //{
-                //    if (this.Database.InTransaction == true)
-                //        this.Database.RollbackTransaction();
-
-                //    this.Database.CloseConnection();
-                //}
+                // At this service the inherit database object will always be null
 
                 throw;
             }
