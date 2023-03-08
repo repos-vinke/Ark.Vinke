@@ -516,6 +516,10 @@ namespace Ark.Vinke.Facilities.Core.Service
         {
             String[] keyFields = null;
             Object[] keyValues = null;
+            
+            /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
+            LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
+            internalDatabase.OpenConnection();
 
             if (incrementDataRequest.Content.DataTable == null)
             {
@@ -535,7 +539,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                     keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
                 }
 
-                incrementDataResponse.Content.Ids = this.Database.IncrementRange(
+                incrementDataResponse.Content.Ids = internalDatabase.IncrementRange(
                     incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
                     incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
             }
@@ -578,7 +582,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                         keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
                     }
 
-                    Int32[] ids = this.Database.IncrementRange(
+                    Int32[] ids = internalDatabase.IncrementRange(
                         incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
                         incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
 
@@ -586,6 +590,8 @@ namespace Ark.Vinke.Facilities.Core.Service
                         dataRowArray[i][incrementDataRequest.Content.TableKeyField] = ids[i];
                 }
             }
+
+            internalDatabase.CloseConnection();
         }
 
         /// <summary>
