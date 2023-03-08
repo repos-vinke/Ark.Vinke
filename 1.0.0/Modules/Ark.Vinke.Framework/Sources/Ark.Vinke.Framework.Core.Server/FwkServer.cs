@@ -129,8 +129,8 @@ namespace Ark.Vinke.Framework.Core.Server
 
                 dataResponse.Scope.StatusCode = LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(FwkScopeStatus.Error).Code;
                 dataResponse.Scope.StatusName = LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(FwkScopeStatus.Error).Name;
-                dataResponse.Scope.StatusCaption = LibException.GetExceptionCaption(exp.InnerException == null ? exp : exp.InnerException, environment.Culture);
-                dataResponse.Scope.StatusMessage = LibException.GetExceptionMessage(exp.InnerException == null ? exp : exp.InnerException, environment.Culture);
+                dataResponse.Scope.StatusCaption = LibException.GetExceptionCaption(exp.GetBaseException(), environment.Culture);
+                dataResponse.Scope.StatusMessage = LibException.GetExceptionMessage(exp.GetBaseException(), environment.Culture);
 
                 #endregion Write response scope error
 
