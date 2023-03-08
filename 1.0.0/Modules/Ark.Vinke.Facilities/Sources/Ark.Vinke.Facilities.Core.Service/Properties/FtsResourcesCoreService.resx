@@ -129,21 +129,9 @@
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Captions.FtsCaptionTableNotFound</value>
     <comment>Table not found!</comment>
   </data>
-  <data name="FtsExceptionIncrementControllerTableFieldNullOrEmpty" xml:space="preserve">
-    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableFieldNullOrEmpty</value>
+  <data name="FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty</value>
     <comment>The controller table increment field cannot be null or empty!</comment>
-  </data>
-  <data name="FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid" xml:space="preserve">
-    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid</value>
-    <comment>The controller table key field 'IdDomain' is not valid!</comment>
-  </data>
-  <data name="FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing" xml:space="preserve">
-    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing</value>
-    <comment>The controller table key field 'IdDomain' was not informed!</comment>
-  </data>
-  <data name="FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght" xml:space="preserve">
-    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght</value>
-    <comment>The controller table key fields cannot be null or zero lenght!</comment>
   </data>
   <data name="FtsExceptionIncrementControllerTableNameFacilitiesStruct" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableNameFacilitiesStruct</value>
@@ -153,9 +141,29 @@
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableNameNullOrEmpty</value>
     <comment>The controller table name cannot be null or empty!</comment>
   </data>
+  <data name="FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid</value>
+    <comment>The controller table key field 'IdDomain' is not valid!</comment>
+  </data>
+  <data name="FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing</value>
+    <comment>The controller table key field 'IdDomain' was not informed!</comment>
+  </data>
+  <data name="FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght</value>
+    <comment>The controller table key fields cannot be null or zero lenght!</comment>
+  </data>
+  <data name="FtsExceptionIncrementDataTableParentKeyMissing" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableParentKeyMissing</value>
+    <comment>The required parent key '{0}' is not present on the table!</comment>
+  </data>
   <data name="FtsExceptionIncrementRangeLowerThanOne" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementRangeLowerThanOne</value>
     <comment>The increment range cannot be lower than one!</comment>
+  </data>
+  <data name="FtsExceptionIncrementTableKeyFieldNullOrEmpty" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementTableKeyFieldNullOrEmpty</value>
+    <comment>The table key field cannot be null or empty!</comment>
   </data>
   <data name="FtsExceptionIncrementTableNameNotFound" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementTableNameNotFound</value>

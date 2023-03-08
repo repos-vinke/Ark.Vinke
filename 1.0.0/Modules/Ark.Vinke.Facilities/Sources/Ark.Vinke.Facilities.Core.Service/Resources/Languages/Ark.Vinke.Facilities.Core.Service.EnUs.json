@@ -5,13 +5,15 @@
     "FtsCaptionTableNotFound": "Table not found!"
   },
   "Exceptions": {
-    "FtsExceptionIncrementControllerTableFieldNullOrEmpty": "The controller table increment field cannot be null or empty!",
-    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid": "The controller table key field 'IdDomain' is not valid!",
-    "FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing": "The controller table key field 'IdDomain' was not informed!",
-    "FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght": "The controller table key fields cannot be null or zero lenght!",
+    "FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty": "The controller table increment field cannot be null or empty!",
     "FtsExceptionIncrementControllerTableNameFacilitiesStruct": "For 'Facilities' controller tables ({0}), the increment table name must be informed!",
     "FtsExceptionIncrementControllerTableNameNullOrEmpty": "The controller table name cannot be null or empty!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid": "The controller table key field 'IdDomain' is not valid!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing": "The controller table key field 'IdDomain' was not informed!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght": "The controller table key fields cannot be null or zero lenght!",
+    "FtsExceptionIncrementDataTableParentKeyMissing": "The required parent key '{0}' is not present on the table!",
     "FtsExceptionIncrementRangeLowerThanOne": "The increment range cannot be lower than one!",
+    "FtsExceptionIncrementTableKeyFieldNullOrEmpty": "The table key field cannot be null or empty!",
     "FtsExceptionIncrementTableNameNotFound": "The increment table informed '{0}' was not found on 'FtsIncrementTable'!"
   },
   "Messages": null

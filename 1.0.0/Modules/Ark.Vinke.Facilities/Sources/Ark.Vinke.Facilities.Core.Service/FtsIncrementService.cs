@@ -241,23 +241,35 @@ namespace Ark.Vinke.Facilities.Core.Service
             if (String.IsNullOrEmpty(incrementDataRequest.Content.ControllerTableName) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableNameNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
-            if (incrementDataRequest.Content.ControllerTableKeyFields == null || incrementDataRequest.Content.ControllerTableKeyFields.Count == 0)
-                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+            if (incrementDataRequest.Content.ControllerTableParentKeyFields == null || incrementDataRequest.Content.ControllerTableParentKeyFields.Count == 0)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
-            if (incrementDataRequest.Content.ControllerTableKeyFields.ContainsKey("IdDomain") == false)
-                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+            if (incrementDataRequest.Content.ControllerTableParentKeyFields.ContainsKey("IdDomain") == false)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
-            if (LazyConvert.ToInt16(incrementDataRequest.Content.ControllerTableKeyFields["IdDomain"], -1) != this.Environment.Domain.IdDomain)
-                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
+            if (LazyConvert.ToInt16(incrementDataRequest.Content.ControllerTableParentKeyFields["IdDomain"], -1) != this.Environment.Domain.IdDomain)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
 
-            if (String.IsNullOrEmpty(incrementDataRequest.Content.ControllerTableField) == true)
-                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
-
-            if (incrementDataRequest.Content.Range < 1)
+            if (String.IsNullOrEmpty(incrementDataRequest.Content.ControllerTableIncrementField) == true)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+            
+            if (incrementDataRequest.Content.DataTable != null)
+            {
+                foreach (KeyValuePair<String, Object> keyValuePair in incrementDataRequest.Content.ControllerTableParentKeyFields)
+                {
+                    if (incrementDataRequest.Content.DataTable.Columns.Contains(keyValuePair.Key) == false)
+                        throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyMissing, new Object[] { keyValuePair.Key }, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+                }
+            }
+            
+            if (incrementDataRequest.Content.DataTable == null && incrementDataRequest.Content.Range < 1)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementRangeLowerThanOne, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
 
             if (String.IsNullOrEmpty(incrementDataRequest.Content.TableName) == false)
             {
+                if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableKeyField) == true)
+                    throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableKeyFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
                 String sql = "select IdTable from FtsIncrementTable where TableName = :TableName";
                 incrementDataRequest.Content.IdTable = LazyConvert.ToInt16(this.Database.QueryValue(
                     sql, new Object[] { incrementDataRequest.Content.TableName }, new String[] { "TableName" }), -1);
@@ -282,31 +294,74 @@ namespace Ark.Vinke.Facilities.Core.Service
         /// <param name="incrementDataResponse">The response data</param>
         protected virtual void OnNext(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
-            if (String.IsNullOrEmpty(incrementDataRequest.Content.TableName) == false)
-            {
-                String[] keyFields = new String[incrementDataRequest.Content.ControllerTableKeyFields.Count + 1];
-                keyFields[0] = "IdTable";
-                incrementDataRequest.Content.ControllerTableKeyFields.Keys.ToArray<String>().CopyTo(keyFields, 1);
+            String[] keyFields = null;
+            Object[] keyValues = null;
 
-                Object[] keyValues = new Object[incrementDataRequest.Content.ControllerTableKeyFields.Count + 1];
-                keyValues[0] = incrementDataRequest.Content.IdTable;
-                incrementDataRequest.Content.ControllerTableKeyFields.Values.ToArray<Object>().CopyTo(keyValues, 1);
+            if (incrementDataRequest.Content.DataTable == null)
+            {
+                if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableName) == false)
+                {
+                    keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                    incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>().CopyTo(keyFields, 1);
+                    keyFields[0] = "IdTable";
+
+                    keyValues = new Object[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                    incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>().CopyTo(keyValues, 1);
+                    keyValues[0] = incrementDataRequest.Content.IdTable;
+                }
+                else
+                {
+                    keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>();
+                    keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
+                }
 
                 incrementDataResponse.Content.Ids = this.Database.IncrementRange(
-                    incrementDataRequest.Content.ControllerTableName,
-                    keyFields,
-                    keyValues,
-                    incrementDataRequest.Content.ControllerTableField,
-                    incrementDataRequest.Content.Range);
+                    incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
+                    incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
             }
             else
             {
-                incrementDataResponse.Content.Ids = this.Database.IncrementRange(
-                    incrementDataRequest.Content.ControllerTableName,
-                    incrementDataRequest.Content.ControllerTableKeyFields.Keys.ToArray<String>(),
-                    incrementDataRequest.Content.ControllerTableKeyFields.Values.ToArray<Object>(),
-                    incrementDataRequest.Content.ControllerTableField,
-                    incrementDataRequest.Content.Range);
+                incrementDataResponse.Content.DataTable = incrementDataRequest.Content.DataTable.Copy();
+
+                DataTable dataTableDistinct = incrementDataResponse.Content.DataTable.FilterDistinct(
+                    incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>());
+
+                foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
+                {
+                    String filter = String.Empty;
+                    foreach (KeyValuePair<String, Object> keyValuePair in incrementDataRequest.Content.ControllerTableParentKeyFields)
+                    {
+                        filter += keyValuePair.Key + " = " + LazyConvert.ToString(dataRowDistinct[keyValuePair.Key]) + " and ";
+                        incrementDataRequest.Content.ControllerTableParentKeyFields[keyValuePair.Key] = dataRowDistinct[keyValuePair.Key];
+                    }
+                    filter = filter.Remove(filter.LastIndexOf(" and "), 5);
+
+                    DataRow[] dataRowArray = incrementDataResponse.Content.DataTable.Select(filter);
+                    incrementDataRequest.Content.Range = dataRowArray.Length;
+
+                    if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableName) == false)
+                    {
+                        keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                        incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>().CopyTo(keyFields, 1);
+                        keyFields[0] = "IdTable";
+
+                        keyValues = new Object[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                        incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>().CopyTo(keyValues, 1);
+                        keyValues[0] = incrementDataRequest.Content.IdTable;
+                    }
+                    else
+                    {
+                        keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>();
+                        keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
+                    }
+
+                    Int32[] ids = this.Database.IncrementRange(
+                        incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
+                        incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
+
+                    for (int i = 0; i < dataRowArray.Length; i++)
+                        dataRowArray[i][incrementDataRequest.Content.TableKeyField] = ids[i];
+                }
             }
         }
 
