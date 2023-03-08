@@ -526,10 +526,10 @@ namespace Ark.Vinke.Facilities.Core.Service
         {
             String[] keyFields = null;
             Object[] keyValues = null;
-            
+
             LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
             internalDatabase.OpenConnection();
-            
+
             if (incrementDataRequest.Content.DataTable == null)
             {
                 if (incrementDataRequest.Content.IdTable >= 0)
@@ -614,10 +614,10 @@ namespace Ark.Vinke.Facilities.Core.Service
         {
             String[] keyFields = null;
             Object[] keyValues = null;
-            
+
             LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
             internalDatabase.OpenConnection();
-            
+
             if (incrementDataRequest.Content.DataTable == null)
             {
                 keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>();
@@ -629,10 +629,10 @@ namespace Ark.Vinke.Facilities.Core.Service
                 keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
 
                 String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
-                
+
                 /* Query must happend inside transaction to considered current added keys */
                 Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
-                
+
                 if (incrementDataRequest.Content.IdTable >= 0)
                 {
                     keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
@@ -644,12 +644,16 @@ namespace Ark.Vinke.Facilities.Core.Service
                     keyValues[0] = incrementDataRequest.Content.IdTable;
                 }
 
+                String[] fields = new String[keyFields.Length + 1];
+                keyFields.CopyTo(fields, 0);
+                fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableIncrementField;
+
+                Object[] values = new Object[keyValues.Length + 1];
+                keyValues.CopyTo(values, 0);
+                values[values.Length - 1] = maxId;
+
                 /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
-                internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName,
-                    new String[] { incrementDataRequest.Content.ControllerTableIncrementField },
-                    new Object[] { maxId },
-                    keyFields,
-                    keyValues);
+                internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName, fields, values, keyFields, keyValues);
             }
             else
             {
@@ -674,10 +678,10 @@ namespace Ark.Vinke.Facilities.Core.Service
                         incrementDataRequest.Content.ControllerTableParentKeyFields[keyValuePair.Key] = dataRowDistinct[keyValuePair.Key];
 
                     keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
-                    
+
                     /* Query must happend inside transaction to considered current added keys */
                     Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
-                    
+
                     if (incrementDataRequest.Content.IdTable >= 0)
                     {
                         keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
@@ -689,12 +693,16 @@ namespace Ark.Vinke.Facilities.Core.Service
                         keyValues[0] = incrementDataRequest.Content.IdTable;
                     }
 
+                    String[] fields = new String[keyFields.Length + 1];
+                    keyFields.CopyTo(fields, 0);
+                    fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableIncrementField;
+
+                    Object[] values = new Object[keyValues.Length + 1];
+                    keyValues.CopyTo(values, 0);
+                    values[values.Length - 1] = maxId;
+
                     /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
-                    internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName,
-                        new String[] { incrementDataRequest.Content.ControllerTableIncrementField },
-                        new Object[] { maxId },
-                        keyFields,
-                        keyValues);
+                    internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName, fields, values, keyFields, keyValues);
                 }
             }
 
