@@ -526,11 +526,10 @@ namespace Ark.Vinke.Facilities.Core.Service
         {
             String[] keyFields = null;
             Object[] keyValues = null;
-
-            /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
+            
             LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
             internalDatabase.OpenConnection();
-
+            
             if (incrementDataRequest.Content.DataTable == null)
             {
                 if (incrementDataRequest.Content.IdTable >= 0)
@@ -549,6 +548,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                     keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
                 }
 
+                /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
                 incrementDataResponse.Content.Ids = internalDatabase.IncrementRange(
                     incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
                     incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
@@ -592,6 +592,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                         keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
                     }
 
+                    /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
                     Int32[] ids = internalDatabase.IncrementRange(
                         incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
                         incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
@@ -613,11 +614,10 @@ namespace Ark.Vinke.Facilities.Core.Service
         {
             String[] keyFields = null;
             Object[] keyValues = null;
-
-            /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
+            
             LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
             internalDatabase.OpenConnection();
-
+            
             if (incrementDataRequest.Content.DataTable == null)
             {
                 keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>();
@@ -629,8 +629,10 @@ namespace Ark.Vinke.Facilities.Core.Service
                 keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
 
                 String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
-                Int32 maxId = LazyConvert.ToInt32(internalDatabase.QueryValue(sql, keyValues, keyFields), 0);
-
+                
+                /* Query must happend inside transaction to considered current added keys */
+                Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
+                
                 if (incrementDataRequest.Content.IdTable >= 0)
                 {
                     keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
@@ -642,6 +644,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                     keyValues[0] = incrementDataRequest.Content.IdTable;
                 }
 
+                /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
                 internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName,
                     new String[] { incrementDataRequest.Content.ControllerTableIncrementField },
                     new Object[] { maxId },
@@ -671,9 +674,10 @@ namespace Ark.Vinke.Facilities.Core.Service
                         incrementDataRequest.Content.ControllerTableParentKeyFields[keyValuePair.Key] = dataRowDistinct[keyValuePair.Key];
 
                     keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
-
-                    Int32 maxId = LazyConvert.ToInt32(internalDatabase.QueryValue(sql, keyValues, keyFields), 0);
-
+                    
+                    /* Query must happend inside transaction to considered current added keys */
+                    Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
+                    
                     if (incrementDataRequest.Content.IdTable >= 0)
                     {
                         keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
@@ -685,6 +689,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                         keyValues[0] = incrementDataRequest.Content.IdTable;
                     }
 
+                    /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
                     internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName,
                         new String[] { incrementDataRequest.Content.ControllerTableIncrementField },
                         new Object[] { maxId },
