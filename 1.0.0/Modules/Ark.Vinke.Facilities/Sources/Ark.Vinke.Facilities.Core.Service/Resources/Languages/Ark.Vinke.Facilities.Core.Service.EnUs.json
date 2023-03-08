@@ -11,6 +11,7 @@
     "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid": "The controller table key field 'IdDomain' is not valid!",
     "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing": "The controller table key field 'IdDomain' was not informed!",
     "FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght": "The controller table key fields cannot be null or zero lenght!",
+    "FtsExceptionIncrementDataTableIncrementKeyMissing": "The required increment key '{0}' is not present on the table!",
     "FtsExceptionIncrementDataTableParentKeyMissing": "The required parent key '{0}' is not present on the table!",
     "FtsExceptionIncrementRangeLowerThanOne": "The increment range cannot be lower than one!",
     "FtsExceptionIncrementTableKeyFieldNullOrEmpty": "The table key field cannot be null or empty!",

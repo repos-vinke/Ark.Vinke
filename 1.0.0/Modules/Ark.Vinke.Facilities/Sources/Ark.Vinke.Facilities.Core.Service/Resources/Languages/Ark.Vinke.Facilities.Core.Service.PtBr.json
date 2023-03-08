@@ -11,6 +11,7 @@
     "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid": "O campo chave 'IdDomain' da tabela controladora é inválido",
     "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing": "O campo chave 'IdDomain' da tabela controladora não foi informado!",
     "FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght": "Os campos chaves da tabela controladora não pode ser nulo ou vazio!",
+    "FtsExceptionIncrementDataTableIncrementKeyMissing": "A chave de incremento requerida '{0}' não está presenta na tabela!",
     "FtsExceptionIncrementDataTableParentKeyMissing": "A chave pai requerida '{0}' não está presenta na tabela!",
     "FtsExceptionIncrementRangeLowerThanOne": "A quantidade de incrementos não pode ser menor do que um!",
     "FtsExceptionIncrementTableKeyFieldNullOrEmpty": "O campo chave da tabela não pode ser nulo ou vazio!",

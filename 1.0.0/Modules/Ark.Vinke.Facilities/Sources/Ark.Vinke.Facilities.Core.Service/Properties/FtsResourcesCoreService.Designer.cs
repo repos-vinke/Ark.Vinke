@@ -142,6 +142,15 @@ namespace Ark.Vinke.Facilities.Core.Service.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableIncrementKeyMissing.
+        /// </summary>
+        public static string FtsExceptionIncrementDataTableIncrementKeyMissing {
+            get {
+                return ResourceManager.GetString("FtsExceptionIncrementDataTableIncrementKeyMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableParentKeyMissing.
         /// </summary>
         public static string FtsExceptionIncrementDataTableParentKeyMissing {

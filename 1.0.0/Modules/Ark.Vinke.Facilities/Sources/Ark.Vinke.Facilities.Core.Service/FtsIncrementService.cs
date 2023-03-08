@@ -238,7 +238,10 @@ namespace Ark.Vinke.Facilities.Core.Service
         /// <param name="incrementDataResponse">The response data</param>
         protected virtual void OnValidateNext(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
-            if (String.IsNullOrEmpty(incrementDataRequest.Content.ControllerTableName) == true)
+            if (String.IsNullOrEmpty(incrementDataRequest.Content.TableName) == false && String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableKeyField) == true)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableKeyFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableName) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableNameNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
             if (incrementDataRequest.Content.ControllerTableParentKeyFields == null || incrementDataRequest.Content.ControllerTableParentKeyFields.Count == 0)
@@ -250,26 +253,26 @@ namespace Ark.Vinke.Facilities.Core.Service
             if (LazyConvert.ToInt16(incrementDataRequest.Content.ControllerTableParentKeyFields["IdDomain"], -1) != this.Environment.Domain.IdDomain)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
 
-            if (String.IsNullOrEmpty(incrementDataRequest.Content.ControllerTableIncrementField) == true)
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableIncrementField) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
-            
+
             if (incrementDataRequest.Content.DataTable != null)
             {
+                if (incrementDataRequest.Content.DataTable.Columns.Contains(incrementDataRequest.Content.TableKeyField) == false)
+                    throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableIncrementKeyMissing, new Object[] { incrementDataRequest.Content.TableKeyField }, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
                 foreach (KeyValuePair<String, Object> keyValuePair in incrementDataRequest.Content.ControllerTableParentKeyFields)
                 {
                     if (incrementDataRequest.Content.DataTable.Columns.Contains(keyValuePair.Key) == false)
                         throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyMissing, new Object[] { keyValuePair.Key }, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
                 }
             }
-            
+
             if (incrementDataRequest.Content.DataTable == null && incrementDataRequest.Content.Range < 1)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementRangeLowerThanOne, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
 
             if (String.IsNullOrEmpty(incrementDataRequest.Content.TableName) == false)
             {
-                if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableKeyField) == true)
-                    throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableKeyFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
-
                 String sql = "select IdTable from FtsIncrementTable where TableName = :TableName";
                 incrementDataRequest.Content.IdTable = LazyConvert.ToInt16(this.Database.QueryValue(
                     sql, new Object[] { incrementDataRequest.Content.TableName }, new String[] { "TableName" }), -1);

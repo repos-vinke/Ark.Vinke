@@ -153,6 +153,10 @@
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsNullOrZeroLenght</value>
     <comment>The controller table key fields cannot be null or zero lenght!</comment>
   </data>
+  <data name="FtsExceptionIncrementDataTableIncrementKeyMissing" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableIncrementKeyMissing</value>
+    <comment>The required increment key '{0}' is not present on the table!</comment>
+  </data>
   <data name="FtsExceptionIncrementDataTableParentKeyMissing" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableParentKeyMissing</value>
     <comment>The required parent key '{0}' is not present on the table!</comment>
