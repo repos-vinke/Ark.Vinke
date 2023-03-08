@@ -54,7 +54,7 @@ namespace Ark.Vinke.Facilities.Core.Server
         [HttpPost]
         [Route("ValidateNext")]
         /// <summary>
-        /// Validate generate next ids
+        /// Validate next ids
         /// </summary>
         /// <param name="incrementDataRequestString">The increment request data string</param>
         /// <returns>The increment response data string</returns>
@@ -64,15 +64,39 @@ namespace Ark.Vinke.Facilities.Core.Server
         }
 
         [HttpPost]
+        [Route("ValidateFix")]
+        /// <summary>
+        /// Validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequestString">The increment request data string</param>
+        /// <returns>The increment response data string</returns>
+        public String ValidateFix([FromBody] String incrementDataRequestString)
+        {
+            return InvokeService("ValidateFix", incrementDataRequestString);
+        }
+
+        [HttpPost]
         [Route("Next")]
         /// <summary>
-        /// Generate next ids
+        /// Next ids
         /// </summary>
         /// <param name="incrementDataRequestString">The increment request data string</param>
         /// <returns>The increment response data string</returns>
         public String Next([FromBody] String incrementDataRequestString)
         {
             return InvokeService("Next", incrementDataRequestString);
+        }
+
+        [HttpPost]
+        [Route("Fix")]
+        /// <summary>
+        /// Fix ids
+        /// </summary>
+        /// <param name="incrementDataRequestString">The increment request data string</param>
+        /// <returns>The increment response data string</returns>
+        public String Fix([FromBody] String incrementDataRequestString)
+        {
+            return InvokeService("Fix", incrementDataRequestString);
         }
 
         #endregion Methods

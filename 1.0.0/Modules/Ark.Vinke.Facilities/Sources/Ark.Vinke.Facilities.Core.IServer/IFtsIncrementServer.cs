@@ -28,6 +28,10 @@ namespace Ark.Vinke.Facilities.Core.IServer
     {
         String ValidateNext(String incrementDataRequestString);
 
+        String ValidateFix(String incrementDataRequestString);
+
         String Next(String incrementDataRequestString);
+
+        String Fix(String incrementDataRequestString);
     }
 }

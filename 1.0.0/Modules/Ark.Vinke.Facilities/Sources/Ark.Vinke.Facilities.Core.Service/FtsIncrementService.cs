@@ -30,6 +30,7 @@ using Ark.Vinke.Facilities.Core;
 using Ark.Vinke.Facilities.Core.Data;
 using Ark.Vinke.Facilities.Core.IPlugin;
 using Ark.Vinke.Facilities.Core.IService;
+using static System.Net.WebRequestMethods;
 
 namespace Ark.Vinke.Facilities.Core.Service
 {
@@ -493,6 +494,15 @@ namespace Ark.Vinke.Facilities.Core.Service
             if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableIncrementField) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
+            if (incrementDataRequest.Content.DataTable != null)
+            {
+                foreach (KeyValuePair<String, Object> keyValuePair in incrementDataRequest.Content.ControllerTableParentKeyFields)
+                {
+                    if (incrementDataRequest.Content.DataTable.Columns.Contains(keyValuePair.Key) == false)
+                        throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyMissing, new Object[] { keyValuePair.Key }, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+                }
+            }
+
             String sql = "select 1 from FtsIncrementControllerTable where ControllerTableName = :ControllerTableName";
             Boolean isFacilitiesControllerTable = this.Database.QueryFind(sql, new Object[] { incrementDataRequest.Content.ControllerTableName }, new String[] { "ControllerTableName" });
 
@@ -516,7 +526,7 @@ namespace Ark.Vinke.Facilities.Core.Service
         {
             String[] keyFields = null;
             Object[] keyValues = null;
-            
+
             /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
             LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
             internalDatabase.OpenConnection();
@@ -554,7 +564,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                 {
                     if (LazyConvert.ToInt16(dataRowDistinct["IdDomain"], -1) != this.Environment.Domain.IdDomain)
                         throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
-                    
+
                     String filter = String.Empty;
                     foreach (KeyValuePair<String, Object> keyValuePair in incrementDataRequest.Content.ControllerTableParentKeyFields)
                     {
@@ -601,6 +611,89 @@ namespace Ark.Vinke.Facilities.Core.Service
         /// <param name="incrementDataResponse">The response data</param>
         protected virtual void OnFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
+            String[] keyFields = null;
+            Object[] keyValues = null;
+
+            /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
+            LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
+            internalDatabase.OpenConnection();
+
+            if (incrementDataRequest.Content.DataTable == null)
+            {
+                keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>();
+                keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
+
+                String keyFieldsString = String.Empty;
+                foreach (String keyField in keyFields)
+                    keyFieldsString += keyField + " = :" + keyField + " and ";
+                keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
+
+                String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
+                Int32 maxId = LazyConvert.ToInt32(internalDatabase.QueryValue(sql, keyValues, keyFields), 0);
+
+                if (incrementDataRequest.Content.IdTable >= 0)
+                {
+                    keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                    incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>().CopyTo(keyFields, 1);
+                    keyFields[0] = "IdTable";
+
+                    keyValues = new Object[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                    incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>().CopyTo(keyValues, 1);
+                    keyValues[0] = incrementDataRequest.Content.IdTable;
+                }
+
+                internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName,
+                    new String[] { incrementDataRequest.Content.ControllerTableIncrementField },
+                    new Object[] { maxId },
+                    keyFields,
+                    keyValues);
+            }
+            else
+            {
+                keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>();
+
+                String keyFieldsString = String.Empty;
+                foreach (String keyField in keyFields)
+                    keyFieldsString += keyField + " = :" + keyField + " and ";
+                keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
+
+                String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
+
+                DataTable dataTableDistinct = incrementDataRequest.Content.DataTable.FilterDistinct(
+                    incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>());
+
+                foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
+                {
+                    if (LazyConvert.ToInt16(dataRowDistinct["IdDomain"], -1) != this.Environment.Domain.IdDomain)
+                        throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
+
+                    foreach (KeyValuePair<String, Object> keyValuePair in incrementDataRequest.Content.ControllerTableParentKeyFields)
+                        incrementDataRequest.Content.ControllerTableParentKeyFields[keyValuePair.Key] = dataRowDistinct[keyValuePair.Key];
+
+                    keyValues = incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>();
+
+                    Int32 maxId = LazyConvert.ToInt32(internalDatabase.QueryValue(sql, keyValues, keyFields), 0);
+
+                    if (incrementDataRequest.Content.IdTable >= 0)
+                    {
+                        keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                        incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>().CopyTo(keyFields, 1);
+                        keyFields[0] = "IdTable";
+
+                        keyValues = new Object[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                        incrementDataRequest.Content.ControllerTableParentKeyFields.Values.ToArray<Object>().CopyTo(keyValues, 1);
+                        keyValues[0] = incrementDataRequest.Content.IdTable;
+                    }
+
+                    internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName,
+                        new String[] { incrementDataRequest.Content.ControllerTableIncrementField },
+                        new Object[] { maxId },
+                        keyFields,
+                        keyValues);
+                }
+            }
+
+            internalDatabase.CloseConnection();
         }
 
         /// <summary>
