@@ -50,7 +50,7 @@ namespace Ark.Vinke.Facilities.Core.Servant
         #region Methods
 
         /// <summary>
-        /// Validate generate next ids
+        /// Validate next ids
         /// </summary>
         /// <param name="incrementDataRequest">The increment request data</param>
         /// <returns>The increment response data</returns>
@@ -60,13 +60,33 @@ namespace Ark.Vinke.Facilities.Core.Servant
         }
 
         /// <summary>
-        /// Generate next ids
+        /// Validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The increment request data</param>
+        /// <returns>The increment response data</returns>
+        public FtsIncrementDataResponse ValidateFix(FtsIncrementDataRequest incrementDataRequest)
+        {
+            return (FtsIncrementDataResponse)InvokeService("ValidateFix", incrementDataRequest);
+        }
+
+        /// <summary>
+        /// Next ids
         /// </summary>
         /// <param name="incrementDataRequest">The increment request data</param>
         /// <returns>The increment response data</returns>
         public FtsIncrementDataResponse Next(FtsIncrementDataRequest incrementDataRequest)
         {
             return (FtsIncrementDataResponse)InvokeService("Next", incrementDataRequest);
+        }
+
+        /// <summary>
+        /// Fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The increment request data</param>
+        /// <returns>The increment response data</returns>
+        public FtsIncrementDataResponse Fix(FtsIncrementDataRequest incrementDataRequest)
+        {
+            return (FtsIncrementDataResponse)InvokeService("Fix", incrementDataRequest);
         }
 
         #endregion Methods

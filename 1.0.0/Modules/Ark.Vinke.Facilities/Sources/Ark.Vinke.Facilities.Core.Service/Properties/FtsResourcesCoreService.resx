@@ -133,20 +133,16 @@
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty</value>
     <comment>The controller table increment field cannot be null or empty!</comment>
   </data>
-  <data name="FtsExceptionIncrementControllerTableNameFacilitiesStruct" xml:space="preserve">
-    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableNameFacilitiesStruct</value>
-    <comment>The controller table name informed '{0}', is based on Facilities Structure, so the increment table name is required!</comment>
-  </data>
   <data name="FtsExceptionIncrementControllerTableNameNullOrEmpty" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableNameNullOrEmpty</value>
     <comment>The controller table name cannot be null or empty!</comment>
   </data>
   <data name="FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid" xml:space="preserve">
-    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid</value>
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid</value>
     <comment>The controller table key field 'IdDomain' is not valid!</comment>
   </data>
   <data name="FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing" xml:space="preserve">
-    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing</value>
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing</value>
     <comment>The controller table key field 'IdDomain' was not informed!</comment>
   </data>
   <data name="FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght" xml:space="preserve">
@@ -156,6 +152,10 @@
   <data name="FtsExceptionIncrementDataTableIncrementKeyMissing" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableIncrementKeyMissing</value>
     <comment>The required increment key '{0}' is not present on the table!</comment>
+  </data>
+  <data name="FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid</value>
+    <comment>The table key field 'IdDomain' is not valid!</comment>
   </data>
   <data name="FtsExceptionIncrementDataTableParentKeyMissing" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableParentKeyMissing</value>
@@ -172,5 +172,9 @@
   <data name="FtsExceptionIncrementTableNameNotFound" xml:space="preserve">
     <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementTableNameNotFound</value>
     <comment>The increment table '{0}' informed was not found on FtsIncrementTable!</comment>
+  </data>
+  <data name="FtsExceptionIncrementTableNameNullOrEmpty" xml:space="preserve">
+    <value>Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementTableNameNullOrEmpty</value>
+    <comment>The table name cannot be null or empty!</comment>
   </data>
 </root>

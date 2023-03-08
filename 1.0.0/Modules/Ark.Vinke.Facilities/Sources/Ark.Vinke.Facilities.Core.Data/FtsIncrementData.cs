@@ -87,6 +87,7 @@ namespace Ark.Vinke.Facilities.Core.Data
 
         public FtsIncrementDataRequestContent()
         {
+            this.IdTable = -1;
             this.ControllerTableParentKeyFields = new Dictionary<String, Object>();
         }
 
@@ -107,7 +108,7 @@ namespace Ark.Vinke.Facilities.Core.Data
 
         public String ControllerTableIncrementField { get; set; }
 
-        public Dictionary<String,Object> ControllerTableParentKeyFields { get; set; }
+        public Dictionary<String, Object> ControllerTableParentKeyFields { get; set; }
 
         public DataTable DataTable { get; set; }
 

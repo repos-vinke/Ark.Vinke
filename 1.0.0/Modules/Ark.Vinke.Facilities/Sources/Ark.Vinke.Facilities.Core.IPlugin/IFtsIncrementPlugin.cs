@@ -30,9 +30,17 @@ namespace Ark.Vinke.Facilities.Core.IPlugin
 
         FtsIncrementPluginAfterEventHandler ValidateNextPluginAfterEventHandler { get; }
 
+        FtsIncrementPluginBeforeEventHandler ValidateFixPluginBeforeEventHandler { get; }
+
+        FtsIncrementPluginAfterEventHandler ValidateFixPluginAfterEventHandler { get; }
+
         FtsIncrementPluginBeforeEventHandler NextPluginBeforeEventHandler { get; }
 
         FtsIncrementPluginAfterEventHandler NextPluginAfterEventHandler { get; }
+
+        FtsIncrementPluginBeforeEventHandler FixPluginBeforeEventHandler { get; }
+
+        FtsIncrementPluginAfterEventHandler FixPluginAfterEventHandler { get; }
     }
 
     #region EventArgs

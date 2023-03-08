@@ -55,7 +55,7 @@ namespace Ark.Vinke.Facilities.Core.Service
         #region Methods
 
         /// <summary>
-        /// Validate generate next ids
+        /// Validate next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <returns>The response data</returns>
@@ -99,7 +99,51 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// Generate next ids
+        /// Validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <returns>The response data</returns>
+        public FtsIncrementDataResponse ValidateFix(FtsIncrementDataRequest incrementDataRequest)
+        {
+            try
+            {
+                this.Operation = "ValidateFix";
+
+                FtsIncrementDataResponse incrementDataResponse = (FtsIncrementDataResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
+
+                if (this.IsDatabaseOwner == true)
+                {
+                    this.Database.OpenConnection();
+                    this.Database.BeginTransaction();
+                }
+
+                InternalValidateFix(incrementDataRequest, incrementDataResponse);
+
+                if (this.IsDatabaseOwner == true)
+                {
+                    this.Database.CommitTransaction();
+                    this.Database.CloseConnection();
+                }
+
+                return incrementDataResponse;
+            }
+            catch
+            {
+                if (this.IsDatabaseOwner == true)
+                {
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
+                    if (this.Database.IsConnectionOpen == true)
+                        this.Database.CloseConnection();
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <returns>The response data</returns>
@@ -143,7 +187,51 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// Internal validate generate next ids
+        /// Fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <returns>The response data</returns>
+        public FtsIncrementDataResponse Fix(FtsIncrementDataRequest incrementDataRequest)
+        {
+            try
+            {
+                this.Operation = "Fix";
+
+                FtsIncrementDataResponse incrementDataResponse = (FtsIncrementDataResponse)LazyActivator.Local.CreateInstance(this.DataResponseType);
+
+                if (this.IsDatabaseOwner == true)
+                {
+                    this.Database.OpenConnection();
+                    this.Database.BeginTransaction();
+                }
+
+                InternalFix(incrementDataRequest, incrementDataResponse);
+
+                if (this.IsDatabaseOwner == true)
+                {
+                    this.Database.CommitTransaction();
+                    this.Database.CloseConnection();
+                }
+
+                return incrementDataResponse;
+            }
+            catch
+            {
+                if (this.IsDatabaseOwner == true)
+                {
+                    if (this.Database.InTransaction == true)
+                        this.Database.RollbackTransaction();
+
+                    if (this.Database.IsConnectionOpen == true)
+                        this.Database.CloseConnection();
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Internal validate next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -153,7 +241,17 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// Internal generate next ids
+        /// Internal validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        protected void InternalValidateFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            PerformValidateFix(incrementDataRequest, incrementDataResponse);
+        }
+
+        /// <summary>
+        /// Internal next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -164,7 +262,18 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// Perform validate generate next ids
+        /// Internal fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        protected void InternalFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            PerformValidateFix(incrementDataRequest, incrementDataResponse);
+            PerformFix(incrementDataRequest, incrementDataResponse);
+        }
+
+        /// <summary>
+        /// Perform validate next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -198,7 +307,41 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// Perform generate next ids
+        /// Perform validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        protected void PerformValidateFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            BeforePerformValidateFix(incrementDataRequest, incrementDataResponse);
+
+            #region Before OnValidateFix plugins
+
+            if (this.IPlugins != null)
+            {
+                foreach (IFtsIncrementPlugin iIncrementPlugin in this.IPlugins)
+                    iIncrementPlugin.ValidateFixPluginBeforeEventHandler?.Invoke(this, new FtsIncrementPluginBeforeEventArgs(incrementDataRequest, incrementDataResponse));
+            }
+
+            #endregion Before OnValidateFix plugins
+
+            OnValidateFix(incrementDataRequest, incrementDataResponse);
+
+            #region After OnValidateFix plugins
+
+            if (this.IPlugins != null)
+            {
+                foreach (IFtsIncrementPlugin iIncrementPlugin in this.IPlugins)
+                    iIncrementPlugin.ValidateFixPluginAfterEventHandler?.Invoke(this, new FtsIncrementPluginAfterEventArgs(incrementDataRequest, incrementDataResponse));
+            }
+
+            #endregion After OnValidateFix plugins
+
+            AfterPerformValidateFix(incrementDataRequest, incrementDataResponse);
+        }
+
+        /// <summary>
+        /// Perform next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -232,13 +375,50 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// On validate generate next ids
+        /// Perform fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        protected void PerformFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            BeforePerformFix(incrementDataRequest, incrementDataResponse);
+
+            #region Before OnFix plugins
+
+            if (this.IPlugins != null)
+            {
+                foreach (IFtsIncrementPlugin iIncrementPlugin in this.IPlugins)
+                    iIncrementPlugin.FixPluginBeforeEventHandler?.Invoke(this, new FtsIncrementPluginBeforeEventArgs(incrementDataRequest, incrementDataResponse));
+            }
+
+            #endregion Before OnFix plugins
+
+            OnFix(incrementDataRequest, incrementDataResponse);
+
+            #region After OnFix plugins
+
+            if (this.IPlugins != null)
+            {
+                foreach (IFtsIncrementPlugin iIncrementPlugin in this.IPlugins)
+                    iIncrementPlugin.FixPluginAfterEventHandler?.Invoke(this, new FtsIncrementPluginAfterEventArgs(incrementDataRequest, incrementDataResponse));
+            }
+
+            #endregion After OnFix plugins
+
+            AfterPerformFix(incrementDataRequest, incrementDataResponse);
+        }
+
+        /// <summary>
+        /// On validate next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
         protected virtual void OnValidateNext(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
-            if (String.IsNullOrEmpty(incrementDataRequest.Content.TableName) == false && String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableKeyField) == true)
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableName) == true)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableNameNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableKeyField) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableKeyFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
             if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableName) == true)
@@ -268,30 +448,67 @@ namespace Ark.Vinke.Facilities.Core.Service
                 }
             }
 
-            if (incrementDataRequest.Content.DataTable == null && incrementDataRequest.Content.Range < 1)
+            if (incrementDataRequest.Content.Range < 1 && incrementDataRequest.Content.DataTable == null)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementRangeLowerThanOne, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
 
-            if (String.IsNullOrEmpty(incrementDataRequest.Content.TableName) == false)
+            String sql = "select 1 from FtsIncrementControllerTable where ControllerTableName = :ControllerTableName";
+            Boolean isFacilitiesControllerTable = this.Database.QueryFind(sql, new Object[] { incrementDataRequest.Content.ControllerTableName }, new String[] { "ControllerTableName" });
+
+            if (isFacilitiesControllerTable == true)
             {
-                String sql = "select IdTable from FtsIncrementTable where TableName = :TableName";
+                sql = "select IdTable from FtsIncrementTable where TableName = :TableName";
                 incrementDataRequest.Content.IdTable = LazyConvert.ToInt16(this.Database.QueryValue(
                     sql, new Object[] { incrementDataRequest.Content.TableName }, new String[] { "TableName" }), -1);
 
                 if (incrementDataRequest.Content.IdTable == -1)
                     throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableNameNotFound, new Object[] { incrementDataRequest.Content.TableName }, Properties.FtsResourcesCoreService.FtsCaptionTableNotFound);
             }
-            else
-            {
-                String sql = "select 1 from FtsIncrementControllerTable where ControllerTableName = :ControllerTableName";
-                Boolean isFacilitiesTableStructure = this.Database.QueryFind(sql, new Object[] { incrementDataRequest.Content.ControllerTableName }, new String[] { "ControllerTableName" });
+        }
 
-                if (isFacilitiesTableStructure == true)
-                    throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableNameFacilitiesStruct, new Object[] { incrementDataRequest.Content.ControllerTableName }, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
+        /// <summary>
+        /// On validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        protected virtual void OnValidateFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableName) == true)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableNameNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableKeyField) == true)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableKeyFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableName) == true)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableNameNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            if (incrementDataRequest.Content.ControllerTableParentKeyFields == null || incrementDataRequest.Content.ControllerTableParentKeyFields.Count == 0)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            if (incrementDataRequest.Content.ControllerTableParentKeyFields.ContainsKey("IdDomain") == false)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            if (LazyConvert.ToInt16(incrementDataRequest.Content.ControllerTableParentKeyFields["IdDomain"], -1) != this.Environment.Domain.IdDomain)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
+
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableIncrementField) == true)
+                throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
+
+            String sql = "select 1 from FtsIncrementControllerTable where ControllerTableName = :ControllerTableName";
+            Boolean isFacilitiesControllerTable = this.Database.QueryFind(sql, new Object[] { incrementDataRequest.Content.ControllerTableName }, new String[] { "ControllerTableName" });
+
+            if (isFacilitiesControllerTable == true)
+            {
+                sql = "select IdTable from FtsIncrementTable where TableName = :TableName";
+                incrementDataRequest.Content.IdTable = LazyConvert.ToInt16(this.Database.QueryValue(
+                    sql, new Object[] { incrementDataRequest.Content.TableName }, new String[] { "TableName" }), -1);
+
+                if (incrementDataRequest.Content.IdTable == -1)
+                    throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementTableNameNotFound, new Object[] { incrementDataRequest.Content.TableName }, Properties.FtsResourcesCoreService.FtsCaptionTableNotFound);
             }
         }
 
         /// <summary>
-        /// On generate next ids
+        /// On next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -302,7 +519,7 @@ namespace Ark.Vinke.Facilities.Core.Service
 
             if (incrementDataRequest.Content.DataTable == null)
             {
-                if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableName) == false)
+                if (incrementDataRequest.Content.IdTable >= 0)
                 {
                     keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
                     incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>().CopyTo(keyFields, 1);
@@ -331,6 +548,9 @@ namespace Ark.Vinke.Facilities.Core.Service
 
                 foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
                 {
+                    if (LazyConvert.ToInt16(dataRowDistinct["IdDomain"], -1) != this.Environment.Domain.IdDomain)
+                        throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
+                    
                     String filter = String.Empty;
                     foreach (KeyValuePair<String, Object> keyValuePair in incrementDataRequest.Content.ControllerTableParentKeyFields)
                     {
@@ -342,7 +562,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                     DataRow[] dataRowArray = incrementDataResponse.Content.DataTable.Select(filter);
                     incrementDataRequest.Content.Range = dataRowArray.Length;
 
-                    if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.TableName) == false)
+                    if (incrementDataRequest.Content.IdTable >= 0)
                     {
                         keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
                         incrementDataRequest.Content.ControllerTableParentKeyFields.Keys.ToArray<String>().CopyTo(keyFields, 1);
@@ -369,7 +589,16 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// Before perform validate generate next ids
+        /// On fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        protected virtual void OnFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+        }
+
+        /// <summary>
+        /// Before perform validate next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -378,7 +607,7 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// After perform validate generate next ids
+        /// After perform validate next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -387,7 +616,25 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// Before perform generate next ids
+        /// Before perform validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        private void BeforePerformValidateFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+        }
+
+        /// <summary>
+        /// After perform validate fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        private void AfterPerformValidateFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+        }
+
+        /// <summary>
+        /// Before perform next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
@@ -396,11 +643,29 @@ namespace Ark.Vinke.Facilities.Core.Service
         }
 
         /// <summary>
-        /// After perform generate next ids
+        /// After perform next ids
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
         private void AfterPerformNext(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+        }
+
+        /// <summary>
+        /// Before perform fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        private void BeforePerformFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+        }
+
+        /// <summary>
+        /// After perform fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        private void AfterPerformFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
         }
 

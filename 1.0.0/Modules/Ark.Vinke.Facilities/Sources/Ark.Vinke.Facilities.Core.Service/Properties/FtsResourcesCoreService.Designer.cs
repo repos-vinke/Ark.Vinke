@@ -97,15 +97,6 @@ namespace Ark.Vinke.Facilities.Core.Service.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableNameFacilitiesStruct.
-        /// </summary>
-        public static string FtsExceptionIncrementControllerTableNameFacilitiesStruct {
-            get {
-                return ResourceManager.GetString("FtsExceptionIncrementControllerTableNameFacilitiesStruct", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableNameNullOrEmpty.
         /// </summary>
         public static string FtsExceptionIncrementControllerTableNameNullOrEmpty {
@@ -115,7 +106,7 @@ namespace Ark.Vinke.Facilities.Core.Service.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainInvalid.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid.
         /// </summary>
         public static string FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid {
             get {
@@ -124,7 +115,7 @@ namespace Ark.Vinke.Facilities.Core.Service.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableKeyFieldsIdDomainMissing.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing.
         /// </summary>
         public static string FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing {
             get {
@@ -147,6 +138,15 @@ namespace Ark.Vinke.Facilities.Core.Service.Properties {
         public static string FtsExceptionIncrementDataTableIncrementKeyMissing {
             get {
                 return ResourceManager.GetString("FtsExceptionIncrementDataTableIncrementKeyMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid.
+        /// </summary>
+        public static string FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid {
+            get {
+                return ResourceManager.GetString("FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid", resourceCulture);
             }
         }
         
@@ -183,6 +183,15 @@ namespace Ark.Vinke.Facilities.Core.Service.Properties {
         public static string FtsExceptionIncrementTableNameNotFound {
             get {
                 return ResourceManager.GetString("FtsExceptionIncrementTableNameNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Ark.Vinke.Facilities.Core.Service.{0}$.Exceptions.FtsExceptionIncrementTableNameNullOrEmpty.
+        /// </summary>
+        public static string FtsExceptionIncrementTableNameNullOrEmpty {
+            get {
+                return ResourceManager.GetString("FtsExceptionIncrementTableNameNullOrEmpty", resourceCulture);
             }
         }
     }

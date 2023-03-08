@@ -28,6 +28,10 @@ namespace Ark.Vinke.Facilities.Core.IService
     {
         FtsIncrementDataResponse ValidateNext(FtsIncrementDataRequest incrementDataRequest);
 
+        FtsIncrementDataResponse ValidateFix(FtsIncrementDataRequest incrementDataRequest);
+
         FtsIncrementDataResponse Next(FtsIncrementDataRequest incrementDataRequest);
+
+        FtsIncrementDataResponse Fix(FtsIncrementDataRequest incrementDataRequest);
     }
 }
