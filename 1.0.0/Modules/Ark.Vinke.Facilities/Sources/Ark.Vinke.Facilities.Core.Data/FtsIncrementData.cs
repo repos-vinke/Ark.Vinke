@@ -87,6 +87,7 @@ namespace Ark.Vinke.Facilities.Core.Data
 
         public FtsIncrementDataRequestContent()
         {
+            this.ControllerTableKeyFields = new Dictionary<String, Object>();
         }
 
         #endregion Constructors
