@@ -716,6 +716,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                         incrementDataRequest.Content.ParentKeyValues[i] = dataRowDistinct[parentKey];
                     }
 
+                    keyFields = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
                     keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
 
                     /* Query must happend inside transaction to considered current added keys */
