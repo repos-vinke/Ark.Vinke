@@ -88,7 +88,9 @@ namespace Ark.Vinke.Facilities.Core.Data
         public FtsIncrementDataRequestContent()
         {
             this.IdTable = -1;
-            this.ControllerTableParentKeyFields = new Dictionary<String, Object>();
+            this.TableParentKeyFields = new List<String>();
+            this.ControllerTableParentKeyFields = new List<String>();
+            this.ParentKeyValues = new List<Object>();
         }
 
         #endregion Constructors
@@ -108,7 +110,11 @@ namespace Ark.Vinke.Facilities.Core.Data
 
         public String ControllerTableIncrementField { get; set; }
 
-        public Dictionary<String, Object> ControllerTableParentKeyFields { get; set; }
+        public List<String> TableParentKeyFields { get; set; }
+
+        public List<String> ControllerTableParentKeyFields { get; set; }
+
+        public List<Object> ParentKeyValues { get; set; }
 
         public DataTable DataTable { get; set; }
 

@@ -1,22 +1,27 @@
 {
   "Captions": {
-    "FtsCaptionRequiredFieldInvalid": "Required field invalid!",
-    "FtsCaptionRequiredFieldMissing": "Required field missing!",
-    "FtsCaptionTableNotFound": "Table not found!"
+    "FtsCaptionRequiredFieldInvalid": "Required field invalid",
+    "FtsCaptionRequiredFieldMissing": "Required field missing",
+    "FtsCaptionTableNotFound": "Table not found"
   },
   "Exceptions": {
-    "FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty": "The controller table increment field cannot be null or empty!",
+    "FtsExceptionIncrementControllerTableKeyFieldNullOrEmpty": "The controller table key field cannot be null or empty!",
     "FtsExceptionIncrementControllerTableNameNullOrEmpty": "The controller table name cannot be null or empty!",
-    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid": "The controller table key field 'IdDomain' is not valid!",
-    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing": "The controller table key field 'IdDomain' was not informed!",
-    "FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght": "The controller table key fields cannot be null or zero lenght!",
-    "FtsExceptionIncrementDataTableIncrementKeyMissing": "The required increment key '{0}' is not present on the table!",
-    "FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid": "The table key field 'IdDomain' is not valid!",
-    "FtsExceptionIncrementDataTableParentKeyMissing": "The required parent key '{0}' is not present on the table!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing": "The controller table parent key field 'IdDomain' was not informed!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainNotFirstItem": "The controller table parent key field 'IdDomain' must be the first item!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght": "The controller table parent key fields cannot be null or zero lenght!",
+    "FtsExceptionIncrementDataTableKeyFieldMissing": "The key field '{0}' is not present on table!",
+    "FtsExceptionIncrementDataTableParentKeyFieldMissing": "The parent key field '{0}' is not present on table!",
+    "FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid": "The table parent key field 'IdDomain' is not valid!",
+    "FtsExceptionIncrementParentKeyValuesIdDomainInvalid": "The parent key value of 'IdDomain' is not valid!",
+    "FtsExceptionIncrementParentKeyValuesNullOrZeroLenght": "The parent key values cannot be null or zero lenght!",
     "FtsExceptionIncrementRangeLowerThanOne": "The increment range cannot be lower than one!",
     "FtsExceptionIncrementTableKeyFieldNullOrEmpty": "The table key field cannot be null or empty!",
-    "FtsExceptionIncrementTableNameNotFound": "The increment table informed '{0}' was not found on 'FtsIncrementTable'!",
-    "FtsExceptionIncrementTableNameNullOrEmpty": "The table name cannot be null or empty!"
+    "FtsExceptionIncrementTableNameNotFound": "The table name informed '{0}' was not found on 'FtsIncrementTable'!",
+    "FtsExceptionIncrementTableNameNullOrEmpty": "The table name cannot be null or empty!",
+    "FtsExceptionIncrementTableParentKeyFieldsIdDomainMissing": "The table key field 'IdDomain' was not informed!",
+    "FtsExceptionIncrementTableParentKeyFieldsIdDomainNotFirstItem": "The table key field 'IdDomain' must be the first item!",
+    "FtsExceptionIncrementTableParentKeyFieldsNullOrZeroLenght": "The table key fields cannot be null or zero lenght!"
   },
   "Messages": null
 }

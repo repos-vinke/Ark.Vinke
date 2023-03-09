@@ -1,22 +1,27 @@
 {
   "Captions": {
-    "FtsCaptionRequiredFieldInvalid": "Campo obrigatório inválido!",
-    "FtsCaptionRequiredFieldMissing": "Campo obrigatório ausente!",
-    "FtsCaptionTableNotFound": "Tabela não encontrada!"
+    "FtsCaptionRequiredFieldInvalid": "Campo requerido inválido",
+    "FtsCaptionRequiredFieldMissing": "Campo requerido ausente",
+    "FtsCaptionTableNotFound": "Tabela não encontrada"
   },
   "Exceptions": {
-    "FtsExceptionIncrementControllerTableIncrementFieldNullOrEmpty": "O campo de incremento da tabela controladora não pode ser nulo ou vazio!",
+    "FtsExceptionIncrementControllerTableKeyFieldNullOrEmpty": "O campo chave da tabela controladora não pode ser nulo ou vazio!",
     "FtsExceptionIncrementControllerTableNameNullOrEmpty": "O nome da tabela controladora não pode ser nulo ou vazio!",
-    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainInvalid": "O campo chave 'IdDomain' da tabela controladora é inválido!",
-    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing": "O campo chave 'IdDomain' da tabela controladora não foi informado!",
-    "FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght": "Os campos chaves da tabela controladora não pode ser nulo ou vazio!",
-    "FtsExceptionIncrementDataTableIncrementKeyMissing": "A chave de incremento requerida '{0}' não está presenta na tabela!",
-    "FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid": "O campo chave 'IdDomain' da tabela é inválido!",
-    "FtsExceptionIncrementDataTableParentKeyMissing": "A chave pai requerida '{0}' não está presenta na tabela!",
-    "FtsExceptionIncrementRangeLowerThanOne": "A quantidade de incrementos não pode ser menor do que um!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainMissing": "O campo chave pai 'IdDomain' da tabela controladora não foi informado!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsIdDomainNotFirstItem": "O campo chave pai 'IdDomain' da tabela controladora deve ser o primeiro item!",
+    "FtsExceptionIncrementControllerTableParentKeyFieldsNullOrZeroLenght": "Os campos chaves pais da tabela controladora não pode ser nulo ou vazio!",
+    "FtsExceptionIncrementDataTableKeyFieldMissing": "O campo chave '{0}' não está presente na tabela!",
+    "FtsExceptionIncrementDataTableParentKeyFieldMissing": "O campo chave pai '{0}' não está presente na tabela!",
+    "FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid": "O campo chave pai 'IdDomain' da tabela não é válido!",
+    "FtsExceptionIncrementParentKeyValuesIdDomainInvalid": "O valor do campo chave pai 'IdDomain' não é válido!",
+    "FtsExceptionIncrementParentKeyValuesNullOrZeroLenght": "Os valores dos campos pais não podem ser nulos ou vazios!",
+    "FtsExceptionIncrementRangeLowerThanOne": "A quantidade de incremento não pode ser menor do que um!",
     "FtsExceptionIncrementTableKeyFieldNullOrEmpty": "O campo chave da tabela não pode ser nulo ou vazio!",
-    "FtsExceptionIncrementTableNameNotFound": "A tabela de incremento informada '{0}' não foi encontrada na 'FtsIncrementTable'!",
-    "FtsExceptionIncrementTableNameNullOrEmpty": "O nome da tabela não pode ser nulo ou vazio!"
+    "FtsExceptionIncrementTableNameNotFound": "O nome da tabela '{0}' não foi encontrado na 'FtsIncrementTable'!",
+    "FtsExceptionIncrementTableNameNullOrEmpty": "O nome da tabela não pode ser nulo ou vazio!",
+    "FtsExceptionIncrementTableParentKeyFieldsIdDomainMissing": "O campo chave pai 'IdDomain' da tabela não foi informado!",
+    "FtsExceptionIncrementTableParentKeyFieldsIdDomainNotFirstItem": "O campo chave pai 'IdDomain' da tabela deve ser o primeiro item!",
+    "FtsExceptionIncrementTableParentKeyFieldsNullOrZeroLenght": "Os campos chaves pais da tabela não podem ser nulos ou vazios!"
   },
   "Messages": null
 }
