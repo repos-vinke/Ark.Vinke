@@ -626,16 +626,30 @@ namespace Ark.Vinke.Facilities.Core.Service
         /// <param name="incrementDataResponse">The response data</param>
         private void OnNextDataTable(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
-            String[] keyFields = null;
-            Object[] keyValues = null;
+            String[] parentKeyFieldArray = null;
+            Object[] parentKeyValueArray = null;
+            Object[] currentParentKeyValueArray = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
 
-            LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
-            internalDatabase.OpenConnection();
+            if (incrementDataRequest.Content.IdTable >= 0)
+            {
+                parentKeyFieldArray = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(parentKeyFieldArray, 1);
+                parentKeyFieldArray[0] = "IdTable";
+
+                parentKeyValueArray = new Object[currentParentKeyValueArray.Length + 1];
+                parentKeyValueArray[0] = incrementDataRequest.Content.IdTable;
+            }
+            else
+            {
+                parentKeyFieldArray = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
+            }
 
             incrementDataResponse.Content.DataTable = incrementDataRequest.Content.DataTable.Copy();
 
-            DataTable dataTableDistinct = incrementDataResponse.Content.DataTable.FilterDistinct(
-                incrementDataRequest.Content.TableParentKeyFields.ToArray<String>());
+            DataTable dataTableDistinct = incrementDataResponse.Content.DataTable.FilterDistinct(incrementDataRequest.Content.TableParentKeyFields.ToArray<String>());
+
+            LazyDatabase internalDatabase = this.Database.CreateNew();
+            internalDatabase.OpenConnection();
 
             foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
             {
@@ -647,34 +661,26 @@ namespace Ark.Vinke.Facilities.Core.Service
                 {
                     String parentKey = incrementDataRequest.Content.TableParentKeyFields[i];
                     filter += parentKey + " = " + LazyConvert.ToString(dataRowDistinct[parentKey]) + " and ";
-                    incrementDataRequest.Content.ParentKeyValues[i] = dataRowDistinct[parentKey];
+                    currentParentKeyValueArray[i] = dataRowDistinct[parentKey];
                 }
-                filter = filter.Remove(filter.LastIndexOf(" and "), 5);
+                filter = filter.Remove(filter.Length - 5, 5);
 
                 DataRow[] dataRowArray = incrementDataResponse.Content.DataTable.Select(filter);
-                incrementDataRequest.Content.Range = dataRowArray.Length;
 
                 if (incrementDataRequest.Content.IdTable >= 0)
                 {
-                    keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
-                    incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(keyFields, 1);
-                    keyFields[0] = "IdTable";
-
-                    keyValues = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
-                    incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(keyValues, 1);
-                    keyValues[0] = incrementDataRequest.Content.IdTable;
+                    currentParentKeyValueArray.CopyTo(parentKeyValueArray, 1);
                 }
                 else
                 {
-                    keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
-                    keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
+                    parentKeyValueArray = currentParentKeyValueArray;
                 }
 
                 /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
                 Int32[] ids = internalDatabase.IncrementRange(
-                    incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
-                    incrementDataRequest.Content.ControllerTableKeyField, incrementDataRequest.Content.Range);
-
+                    incrementDataRequest.Content.ControllerTableName, parentKeyFieldArray, parentKeyValueArray, 
+                    incrementDataRequest.Content.ControllerTableKeyField, dataRowArray.Length);
+                
                 for (int i = 0; i < dataRowArray.Length; i++)
                     dataRowArray[i][incrementDataRequest.Content.TableKeyField] = ids[i];
             }
