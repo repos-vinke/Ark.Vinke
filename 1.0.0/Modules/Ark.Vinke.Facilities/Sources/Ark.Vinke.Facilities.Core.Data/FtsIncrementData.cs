@@ -108,7 +108,7 @@ namespace Ark.Vinke.Facilities.Core.Data
 
         public String ControllerTableName { get; set; }
 
-        public String ControllerTableIncrementField { get; set; }
+        public String ControllerTableKeyField { get; set; }
 
         public List<String> TableParentKeyFields { get; set; }
 

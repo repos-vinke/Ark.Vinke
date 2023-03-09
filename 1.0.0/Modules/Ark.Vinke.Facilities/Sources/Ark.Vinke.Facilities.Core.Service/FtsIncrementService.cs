@@ -425,7 +425,7 @@ namespace Ark.Vinke.Facilities.Core.Service
             if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableName) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableNameNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
-            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableIncrementField) == true)
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableKeyField) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableKeyFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
             if (incrementDataRequest.Content.TableParentKeyFields == null || incrementDataRequest.Content.TableParentKeyFields.Count == 0)
@@ -497,7 +497,7 @@ namespace Ark.Vinke.Facilities.Core.Service
             if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableName) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableNameNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
-            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableIncrementField) == true)
+            if (String.IsNullOrWhiteSpace(incrementDataRequest.Content.ControllerTableKeyField) == true)
                 throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementControllerTableKeyFieldNullOrEmpty, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldMissing);
 
             if (incrementDataRequest.Content.TableParentKeyFields == null || incrementDataRequest.Content.TableParentKeyFields.Count == 0)
@@ -581,7 +581,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                 /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
                 incrementDataResponse.Content.Ids = internalDatabase.IncrementRange(
                     incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
-                    incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
+                    incrementDataRequest.Content.ControllerTableKeyField, incrementDataRequest.Content.Range);
             }
             else
             {
@@ -626,7 +626,7 @@ namespace Ark.Vinke.Facilities.Core.Service
                     /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
                     Int32[] ids = internalDatabase.IncrementRange(
                         incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
-                        incrementDataRequest.Content.ControllerTableIncrementField, incrementDataRequest.Content.Range);
+                        incrementDataRequest.Content.ControllerTableKeyField, incrementDataRequest.Content.Range);
 
                     for (int i = 0; i < dataRowArray.Length; i++)
                         dataRowArray[i][incrementDataRequest.Content.TableKeyField] = ids[i];
@@ -682,7 +682,7 @@ namespace Ark.Vinke.Facilities.Core.Service
 
                 String[] fields = new String[keyFields.Length + 1];
                 keyFields.CopyTo(fields, 0);
-                fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableIncrementField;
+                fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableKeyField;
 
                 Object[] values = new Object[keyValues.Length + 1];
                 keyValues.CopyTo(values, 0);
@@ -740,7 +740,7 @@ namespace Ark.Vinke.Facilities.Core.Service
 
                     String[] fields = new String[keyFields.Length + 1];
                     keyFields.CopyTo(fields, 0);
-                    fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableIncrementField;
+                    fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableKeyField;
 
                     Object[] values = new Object[keyValues.Length + 1];
                     keyValues.CopyTo(values, 0);
