@@ -554,14 +554,105 @@ namespace Ark.Vinke.Facilities.Core.Service
         /// <param name="incrementDataResponse">The response data</param>
         protected virtual void OnNext(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
+            if (incrementDataRequest.Content.DataTable == null)
+            {
+                OnNextSingle(incrementDataRequest, incrementDataResponse);
+            }
+            else
+            {
+                OnNextDataTable(incrementDataRequest, incrementDataResponse);
+            }
+        }
+
+        /// <summary>
+        /// On fix ids
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        protected virtual void OnFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            if (incrementDataRequest.Content.DataTable == null)
+            {
+                OnFixSingle(incrementDataRequest, incrementDataResponse);
+            }
+            else
+            {
+                OnFixDataTable(incrementDataRequest, incrementDataResponse);
+            }
+        }
+
+        /// <summary>
+        /// On next ids range
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        private void OnNextSingle(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            String[] keyFields = null;
+            Object[] keyValues = null;
+
+            if (incrementDataRequest.Content.IdTable >= 0)
+            {
+                keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(keyFields, 1);
+                keyFields[0] = "IdTable";
+
+                keyValues = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
+                incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(keyValues, 1);
+                keyValues[0] = incrementDataRequest.Content.IdTable;
+            }
+            else
+            {
+                keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
+                keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
+            }
+
+            LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
+            internalDatabase.OpenConnection();
+
+            /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
+            incrementDataResponse.Content.Ids = internalDatabase.IncrementRange(
+                incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
+                incrementDataRequest.Content.ControllerTableKeyField, incrementDataRequest.Content.Range);
+
+            internalDatabase.CloseConnection();
+        }
+
+        /// <summary>
+        /// On next ids DataTable
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        private void OnNextDataTable(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
             String[] keyFields = null;
             Object[] keyValues = null;
 
             LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
             internalDatabase.OpenConnection();
 
-            if (incrementDataRequest.Content.DataTable == null)
+            incrementDataResponse.Content.DataTable = incrementDataRequest.Content.DataTable.Copy();
+
+            DataTable dataTableDistinct = incrementDataResponse.Content.DataTable.FilterDistinct(
+                incrementDataRequest.Content.TableParentKeyFields.ToArray<String>());
+
+            foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
             {
+                if (LazyConvert.ToInt16(dataRowDistinct["IdDomain"], -1) != this.Environment.Domain.IdDomain)
+                    throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
+
+                String filter = String.Empty;
+                for (int i = 0; i < incrementDataRequest.Content.TableParentKeyFields.Count; i++)
+                {
+                    String parentKey = incrementDataRequest.Content.TableParentKeyFields[i];
+                    filter += parentKey + " = " + LazyConvert.ToString(dataRowDistinct[parentKey]) + " and ";
+                    incrementDataRequest.Content.ParentKeyValues[i] = dataRowDistinct[parentKey];
+                }
+                filter = filter.Remove(filter.LastIndexOf(" and "), 5);
+
+                DataRow[] dataRowArray = incrementDataResponse.Content.DataTable.Select(filter);
+                incrementDataRequest.Content.Range = dataRowArray.Length;
+
                 if (incrementDataRequest.Content.IdTable >= 0)
                 {
                     keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
@@ -579,69 +670,79 @@ namespace Ark.Vinke.Facilities.Core.Service
                 }
 
                 /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
-                incrementDataResponse.Content.Ids = internalDatabase.IncrementRange(
+                Int32[] ids = internalDatabase.IncrementRange(
                     incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
                     incrementDataRequest.Content.ControllerTableKeyField, incrementDataRequest.Content.Range);
-            }
-            else
-            {
-                incrementDataResponse.Content.DataTable = incrementDataRequest.Content.DataTable.Copy();
 
-                DataTable dataTableDistinct = incrementDataResponse.Content.DataTable.FilterDistinct(
-                    incrementDataRequest.Content.TableParentKeyFields.ToArray<String>());
-
-                foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
-                {
-                    if (LazyConvert.ToInt16(dataRowDistinct["IdDomain"], -1) != this.Environment.Domain.IdDomain)
-                        throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
-
-                    String filter = String.Empty;
-                    for (int i = 0; i < incrementDataRequest.Content.TableParentKeyFields.Count; i++)
-                    {
-                        String parentKey = incrementDataRequest.Content.TableParentKeyFields[i];
-                        filter += parentKey + " = " + LazyConvert.ToString(dataRowDistinct[parentKey]) + " and ";
-                        incrementDataRequest.Content.ParentKeyValues[i] = dataRowDistinct[parentKey];
-                    }
-                    filter = filter.Remove(filter.LastIndexOf(" and "), 5);
-
-                    DataRow[] dataRowArray = incrementDataResponse.Content.DataTable.Select(filter);
-                    incrementDataRequest.Content.Range = dataRowArray.Length;
-
-                    if (incrementDataRequest.Content.IdTable >= 0)
-                    {
-                        keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
-                        incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(keyFields, 1);
-                        keyFields[0] = "IdTable";
-
-                        keyValues = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
-                        incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(keyValues, 1);
-                        keyValues[0] = incrementDataRequest.Content.IdTable;
-                    }
-                    else
-                    {
-                        keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
-                        keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
-                    }
-
-                    /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
-                    Int32[] ids = internalDatabase.IncrementRange(
-                        incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
-                        incrementDataRequest.Content.ControllerTableKeyField, incrementDataRequest.Content.Range);
-
-                    for (int i = 0; i < dataRowArray.Length; i++)
-                        dataRowArray[i][incrementDataRequest.Content.TableKeyField] = ids[i];
-                }
+                for (int i = 0; i < dataRowArray.Length; i++)
+                    dataRowArray[i][incrementDataRequest.Content.TableKeyField] = ids[i];
             }
 
             internalDatabase.CloseConnection();
         }
 
         /// <summary>
-        /// On fix ids
+        /// On fix ids sigle
         /// </summary>
         /// <param name="incrementDataRequest">The request data</param>
         /// <param name="incrementDataResponse">The response data</param>
-        protected virtual void OnFix(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        private void OnFixSingle(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
+        {
+            String[] keyFields = null;
+            Object[] keyValues = null;
+
+            keyFields = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
+            keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
+
+            String keyFieldsString = String.Empty;
+            foreach (String keyField in keyFields)
+                keyFieldsString += keyField + " = :" + keyField + " and ";
+            keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
+
+            String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
+
+            /* Query must happend inside transaction to considered current added keys */
+            Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
+
+            if (incrementDataRequest.Content.IdTable >= 0)
+            {
+                keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(keyFields, 1);
+                keyFields[0] = "IdTable";
+
+                keyValues = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
+                incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(keyValues, 1);
+                keyValues[0] = incrementDataRequest.Content.IdTable;
+            }
+            else
+            {
+                keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
+                keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
+            }
+
+            String[] fields = new String[keyFields.Length + 1];
+            keyFields.CopyTo(fields, 0);
+            fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableKeyField;
+
+            Object[] values = new Object[keyValues.Length + 1];
+            keyValues.CopyTo(values, 0);
+            values[values.Length - 1] = maxId;
+
+            LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
+            internalDatabase.OpenConnection();
+
+            /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
+            internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName, fields, values, keyFields, keyValues);
+
+            internalDatabase.CloseConnection();
+        }
+
+        /// <summary>
+        /// On fix ids DataTable
+        /// </summary>
+        /// <param name="incrementDataRequest">The request data</param>
+        /// <param name="incrementDataResponse">The response data</param>
+        private void OnFixDataTable(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
             String[] keyFields = null;
             Object[] keyValues = null;
@@ -649,17 +750,31 @@ namespace Ark.Vinke.Facilities.Core.Service
             LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
             internalDatabase.OpenConnection();
 
-            if (incrementDataRequest.Content.DataTable == null)
+            keyFields = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
+
+            String keyFieldsString = String.Empty;
+            foreach (String keyField in keyFields)
+                keyFieldsString += keyField + " = :" + keyField + " and ";
+            keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
+
+            String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
+
+            DataTable dataTableDistinct = incrementDataRequest.Content.DataTable.FilterDistinct(
+                incrementDataRequest.Content.TableParentKeyFields.ToArray<String>());
+
+            foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
             {
+                if (LazyConvert.ToInt16(dataRowDistinct["IdDomain"], -1) != this.Environment.Domain.IdDomain)
+                    throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
+
+                for (int i = 0; i < incrementDataRequest.Content.TableParentKeyFields.Count; i++)
+                {
+                    String parentKey = incrementDataRequest.Content.TableParentKeyFields[i];
+                    incrementDataRequest.Content.ParentKeyValues[i] = dataRowDistinct[parentKey];
+                }
+
                 keyFields = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
                 keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
-
-                String keyFieldsString = String.Empty;
-                foreach (String keyField in keyFields)
-                    keyFieldsString += keyField + " = :" + keyField + " and ";
-                keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
-
-                String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
 
                 /* Query must happend inside transaction to considered current added keys */
                 Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
@@ -690,65 +805,6 @@ namespace Ark.Vinke.Facilities.Core.Service
 
                 /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
                 internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName, fields, values, keyFields, keyValues);
-            }
-            else
-            {
-                keyFields = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
-
-                String keyFieldsString = String.Empty;
-                foreach (String keyField in keyFields)
-                    keyFieldsString += keyField + " = :" + keyField + " and ";
-                keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
-
-                String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
-
-                DataTable dataTableDistinct = incrementDataRequest.Content.DataTable.FilterDistinct(
-                    incrementDataRequest.Content.TableParentKeyFields.ToArray<String>());
-
-                foreach (DataRow dataRowDistinct in dataTableDistinct.Rows)
-                {
-                    if (LazyConvert.ToInt16(dataRowDistinct["IdDomain"], -1) != this.Environment.Domain.IdDomain)
-                        throw new LibException(Properties.FtsResourcesCoreService.FtsExceptionIncrementDataTableParentKeyFieldsIdDomainInvalid, Properties.FtsResourcesCoreService.FtsCaptionRequiredFieldInvalid);
-
-                    for (int i = 0; i < incrementDataRequest.Content.TableParentKeyFields.Count; i++)
-                    {
-                        String parentKey = incrementDataRequest.Content.TableParentKeyFields[i];
-                        incrementDataRequest.Content.ParentKeyValues[i] = dataRowDistinct[parentKey];
-                    }
-
-                    keyFields = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
-                    keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
-
-                    /* Query must happend inside transaction to considered current added keys */
-                    Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
-
-                    if (incrementDataRequest.Content.IdTable >= 0)
-                    {
-                        keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
-                        incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(keyFields, 1);
-                        keyFields[0] = "IdTable";
-
-                        keyValues = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
-                        incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(keyValues, 1);
-                        keyValues[0] = incrementDataRequest.Content.IdTable;
-                    }
-                    else
-                    {
-                        keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
-                        keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
-                    }
-
-                    String[] fields = new String[keyFields.Length + 1];
-                    keyFields.CopyTo(fields, 0);
-                    fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableKeyField;
-
-                    Object[] values = new Object[keyValues.Length + 1];
-                    keyValues.CopyTo(values, 0);
-                    values[values.Length - 1] = maxId;
-
-                    /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
-                    internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName, fields, values, keyFields, keyValues);
-                }
             }
 
             internalDatabase.CloseConnection();
