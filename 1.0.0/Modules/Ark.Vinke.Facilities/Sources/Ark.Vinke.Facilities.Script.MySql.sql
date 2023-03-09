@@ -22,7 +22,7 @@ create table FtsIncrementByDomain
 (
 	IdTable smallint,
     IdDomain smallint,
-    IdLastIncrement integer,
+    IdLast integer,
     constraint Pk_FtsIncrementByDomain primary key (IdTable, IdDomain)
 );
 
@@ -31,7 +31,7 @@ create table FtsIncrementByDomainMaster
 	IdTable smallint,
     IdDomain smallint,
     IdMaster integer,
-    IdLastIncrement integer,
+    IdLast integer,
     constraint Pk_FtsIncrementByDomainMaster primary key (IdTable, IdDomain, IdMaster)
 );
 
@@ -40,7 +40,7 @@ create table FtsIncrementByBranch
 	IdTable smallint,
     IdDomain smallint,
     IdBranch smallint,
-    IdLastIncrement integer,
+    IdLast integer,
     constraint Pk_FtsIncrementByBranch primary key (IdTable, IdDomain, IdBranch)
 );
 
@@ -50,7 +50,7 @@ create table FtsIncrementByBranchMaster
     IdDomain smallint,
     IdBranch smallint,
     IdMaster integer,
-    IdLastIncrement integer,
+    IdLast integer,
     constraint Pk_FtsIncrementByBranchMaster primary key (IdTable, IdDomain, IdBranch, IdMaster)
 );
 
