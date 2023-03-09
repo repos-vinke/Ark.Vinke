@@ -31,6 +31,7 @@ using Ark.Vinke.Facilities.Core.Data;
 using Ark.Vinke.Facilities.Core.IPlugin;
 using Ark.Vinke.Facilities.Core.IService;
 using static System.Net.WebRequestMethods;
+using System.Security.Cryptography;
 
 namespace Ark.Vinke.Facilities.Core.Service
 {
@@ -588,31 +589,31 @@ namespace Ark.Vinke.Facilities.Core.Service
         /// <param name="incrementDataResponse">The response data</param>
         private void OnNextSingle(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
-            String[] keyFields = null;
-            Object[] keyValues = null;
+            String[] parentKeyFieldArray = null;
+            Object[] parentKeyValueArray = null;
 
             if (incrementDataRequest.Content.IdTable >= 0)
             {
-                keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
-                incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(keyFields, 1);
-                keyFields[0] = "IdTable";
+                parentKeyFieldArray = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(parentKeyFieldArray, 1);
+                parentKeyFieldArray[0] = "IdTable";
 
-                keyValues = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
-                incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(keyValues, 1);
-                keyValues[0] = incrementDataRequest.Content.IdTable;
+                parentKeyValueArray = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
+                incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(parentKeyValueArray, 1);
+                parentKeyValueArray[0] = incrementDataRequest.Content.IdTable;
             }
             else
             {
-                keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
-                keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
+                parentKeyFieldArray = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
+                parentKeyValueArray = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
             }
 
-            LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
+            LazyDatabase internalDatabase = this.Database.CreateNew();
             internalDatabase.OpenConnection();
 
             /* Increment must happend outside transaction to avoid data conflicts caused by rollbacks */
             incrementDataResponse.Content.Ids = internalDatabase.IncrementRange(
-                incrementDataRequest.Content.ControllerTableName, keyFields, keyValues,
+                incrementDataRequest.Content.ControllerTableName, parentKeyFieldArray, parentKeyValueArray,
                 incrementDataRequest.Content.ControllerTableKeyField, incrementDataRequest.Content.Range);
 
             internalDatabase.CloseConnection();
@@ -688,51 +689,48 @@ namespace Ark.Vinke.Facilities.Core.Service
         /// <param name="incrementDataResponse">The response data</param>
         private void OnFixSingle(FtsIncrementDataRequest incrementDataRequest, FtsIncrementDataResponse incrementDataResponse)
         {
-            String[] keyFields = null;
-            Object[] keyValues = null;
+            String[] parentKeyFieldArray = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
+            Object[] parentKeyValueArray = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
 
-            keyFields = incrementDataRequest.Content.TableParentKeyFields.ToArray<String>();
-            keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
+            String whereClausuleParentKeyString = String.Empty;
+            foreach (String parentKeyField in parentKeyFieldArray)
+                whereClausuleParentKeyString += parentKeyField + " = :" + parentKeyField + " and ";
+            whereClausuleParentKeyString = whereClausuleParentKeyString.Remove(whereClausuleParentKeyString.Length - 5, 5);
 
-            String keyFieldsString = String.Empty;
-            foreach (String keyField in keyFields)
-                keyFieldsString += keyField + " = :" + keyField + " and ";
-            keyFieldsString = keyFieldsString.Remove(keyFieldsString.Length - 5, 5);
-
-            String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + keyFieldsString;
+            String sql = "select max(" + incrementDataRequest.Content.TableKeyField + ") from " + incrementDataRequest.Content.TableName + " where " + whereClausuleParentKeyString;
 
             /* Query must happend inside transaction to considered current added keys */
-            Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, keyValues, keyFields), 0);
+            Int32 maxId = LazyConvert.ToInt32(this.Database.QueryValue(sql, parentKeyValueArray, parentKeyFieldArray), 0);
 
             if (incrementDataRequest.Content.IdTable >= 0)
             {
-                keyFields = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
-                incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(keyFields, 1);
-                keyFields[0] = "IdTable";
+                parentKeyFieldArray = new String[incrementDataRequest.Content.ControllerTableParentKeyFields.Count + 1];
+                incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>().CopyTo(parentKeyFieldArray, 1);
+                parentKeyFieldArray[0] = "IdTable";
 
-                keyValues = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
-                incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(keyValues, 1);
-                keyValues[0] = incrementDataRequest.Content.IdTable;
+                parentKeyValueArray = new Object[incrementDataRequest.Content.ParentKeyValues.Count + 1];
+                incrementDataRequest.Content.ParentKeyValues.ToArray<Object>().CopyTo(parentKeyValueArray, 1);
+                parentKeyValueArray[0] = incrementDataRequest.Content.IdTable;
             }
             else
             {
-                keyFields = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
-                keyValues = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
+                parentKeyFieldArray = incrementDataRequest.Content.ControllerTableParentKeyFields.ToArray<String>();
+                parentKeyValueArray = incrementDataRequest.Content.ParentKeyValues.ToArray<Object>();
             }
 
-            String[] fields = new String[keyFields.Length + 1];
-            keyFields.CopyTo(fields, 0);
-            fields[fields.Length - 1] = incrementDataRequest.Content.ControllerTableKeyField;
+            String[] fieldArray = new String[parentKeyFieldArray.Length + 1];
+            parentKeyFieldArray.CopyTo(fieldArray, 0);
+            fieldArray[fieldArray.Length - 1] = incrementDataRequest.Content.ControllerTableKeyField;
 
-            Object[] values = new Object[keyValues.Length + 1];
-            keyValues.CopyTo(values, 0);
-            values[values.Length - 1] = maxId;
+            Object[] valueArray = new Object[parentKeyValueArray.Length + 1];
+            parentKeyValueArray.CopyTo(valueArray, 0);
+            valueArray[valueArray.Length - 1] = maxId;
 
-            LazyDatabase internalDatabase = (LazyDatabase)LazyActivator.Local.CreateInstance(this.Database.GetType(), new Object[] { this.Database.ConnectionString });
+            LazyDatabase internalDatabase = this.Database.CreateNew();
             internalDatabase.OpenConnection();
 
             /* Fix must happend outside transaction to avoid data conflicts caused by rollbacks */
-            internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName, fields, values, keyFields, keyValues);
+            internalDatabase.Upsert(incrementDataRequest.Content.ControllerTableName, fieldArray, valueArray, parentKeyFieldArray, parentKeyValueArray);
 
             internalDatabase.CloseConnection();
         }
