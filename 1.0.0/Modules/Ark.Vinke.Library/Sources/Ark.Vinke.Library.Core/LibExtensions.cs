@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using Lazy.Vinke;
 
 using Ark.Vinke.Library;
+using System.Runtime.CompilerServices;
 
 namespace Ark.Vinke.Library.Core
 {
@@ -42,6 +43,22 @@ namespace Ark.Vinke.Library.Core
             }
 
             return dataTableFiltered;
+        }
+
+        public static DataRow[] FilterByDataRow(this DataTable dataTable, DataRow dataRow, String[] columnArray)
+        {
+            if (dataTable == null)
+                return null;
+            
+            if (dataRow == null || columnArray == null || columnArray.Length == 0)
+                return dataTable.Select();
+            
+            String filter = String.Empty;
+            foreach (String column in columnArray)
+                filter += column + " = '" + LazyConvert.ToString(dataRow[column]) + "' and ";
+            filter = filter.Remove(filter.Length - 5, 5);
+            
+            return dataTable.Select(filter);
         }
 
         #endregion System.Data.DataTable
