@@ -34,11 +34,14 @@
 		<PackageReference Include="Ark.Vinke.Facilities.Core" Version="1.0.0" />
 		<PackageReference Include="Ark.Vinke.Facilities.Core.Data" Version="1.0.0" />
 		<PackageReference Include="Ark.Vinke.Facilities.Core.IPlugin" Version="1.0.0" />
-		<PackageReference Include="Ark.Vinke.Facilities.Core.Plugin" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.IService" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Facilities.Core.Servant" Version="1.0.0" />
 		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}" Version="1.0.0" />
 		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}" Version="1.0.0" />
 		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data" Version="1.0.0" />
 		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IPlugin" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IService" Version="1.0.0" />
+		<PackageReference Include="Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Servant" Version="1.0.0" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0'">
