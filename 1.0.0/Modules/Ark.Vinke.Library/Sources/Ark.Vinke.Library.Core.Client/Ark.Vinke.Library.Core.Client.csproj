@@ -28,6 +28,7 @@
 		<PackageReference Include="Lazy.Vinke.Windows.Forms" Version="1.0.0" />
 		<PackageReference Include="Ark.Vinke.Library" Version="1.0.0" />
 		<PackageReference Include="Ark.Vinke.Library.Core" Version="1.0.0" />
+		<PackageReference Include="Ark.Vinke.Library.Core.Connector" Version="1.0.0" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net6.0-windows'">
