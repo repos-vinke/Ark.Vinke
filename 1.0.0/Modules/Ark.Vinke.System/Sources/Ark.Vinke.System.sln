@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Vinke.System.Core.Clien
 		{E7D25D25-56F7-4DD5-9E4B-D2E5CA685907} = {E7D25D25-56F7-4DD5-9E4B-D2E5CA685907}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.System.Core.Connector", "Ark.Vinke.System.Core.Connector\Ark.Vinke.System.Core.Connector.csproj", "{40175DAA-43CE-4165-9EA1-FCF2C23F9287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Vinke.System.Core.Connector", "Ark.Vinke.System.Core.Connector\Ark.Vinke.System.Core.Connector.csproj", "{40175DAA-43CE-4165-9EA1-FCF2C23F9287}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2CB8A950-2864-4555-B853-2AFA46A84667} = {2CB8A950-2864-4555-B853-2AFA46A84667}
 		{7DFA94AA-FECE-4A64-933B-A65089FABD29} = {7DFA94AA-FECE-4A64-933B-A65089FABD29}
