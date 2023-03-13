@@ -64,12 +64,14 @@ namespace Ark.Vinke.Framework.Core
         }
 
         public void SetFieldAttributes(Type type, String caption = null,
-            FwkBooleanEnum visible = FwkBooleanEnum.True, FwkConstraintEnum constraint = FwkConstraintEnum.None)
+            FwkBooleanEnum visible = FwkBooleanEnum.True, FwkConstraintEnum constraint = FwkConstraintEnum.None,
+            String displayFormat = null)
         {
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Type = type;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Caption = caption;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Visible = visible;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Constraint = constraint;
+            this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.DisplayFormat = displayFormat;
         }
 
         public void SetFieldValidation(FwkFormatViewFieldValidation recordFieldValidation)
@@ -225,6 +227,8 @@ namespace Ark.Vinke.Framework.Core
                 }
             }
         }
+
+        public String DisplayFormat { get; set; }
 
         #endregion Properties
     }
