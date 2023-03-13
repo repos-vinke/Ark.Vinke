@@ -33,7 +33,6 @@ using Ark.{DEVELOPER}.{MODULE};
 using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
 using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data;
 using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IServer;
-using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IService;
 
 namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Connector
 {
