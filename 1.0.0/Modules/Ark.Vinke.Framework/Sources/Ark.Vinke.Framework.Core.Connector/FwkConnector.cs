@@ -48,6 +48,11 @@ namespace Ark.Vinke.Framework.Core.Connector
         {
             this.Route = "Ark.Vinke.Framework/Core.Server/FwkServer";
 
+            this.DeserializerOptions.Item<LazyJsonDeserializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
+            this.SerializerOptions.Item<LazyJsonSerializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
+
+            this.JsonWriterOptions.Indent = false;
+
             #region Initialize data response type
 
             Type type = this.GetType();
