@@ -12,6 +12,7 @@ using System.Data;
 using System.Collections.Generic;
 
 using Lazy.Vinke;
+using Lazy.Vinke.Json;
 
 using Ark.Vinke.Library;
 
@@ -42,6 +43,13 @@ namespace Ark.Vinke.Framework
 
         #region Indexers
 
+        public Dictionary<String, FwkUserContextValue> Fields
+        {
+            get { return this.fieldDictionary; }
+            set { this.fieldDictionary = value; }
+        }
+
+        [LazyJsonAttributePropertyIgnore()]
         public FwkUserContextValue this[String field]
         {
             get
