@@ -25,7 +25,7 @@ using Ark.Vinke.Library;
 using Ark.Vinke.Library.Core;
 using Ark.Vinke.Library.Core.Connector;
 
-namespace Ark.Vinke.Library.Core.Connector
+namespace Ark.Vinke.Library.Core.Client
 {
     public static class LibSessionClient
     {

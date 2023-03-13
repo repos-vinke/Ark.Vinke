@@ -23,7 +23,7 @@ using Lazy.Vinke.Windows;
 using Lazy.Vinke.Windows.Forms;
 
 using Ark.Vinke.Library;
-//using Ark.Vinke.Library.Core.Client;
+using Ark.Vinke.Library.Core.Client;
 using Ark.Vinke.Framework;
 using Ark.Vinke.Framework.Core;
 using Ark.Vinke.Framework.Core.Data;
