@@ -40,8 +40,6 @@ namespace Ark.Vinke.Framework
 
         public String Username { get; set; }
 
-        public String Password { get; set; }
-
         public String DisplayName { get; set; }
 
         #endregion Properties
