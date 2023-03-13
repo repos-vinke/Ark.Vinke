@@ -39,6 +39,11 @@ namespace Ark.Vinke.Library.Core.Client
             return LibSessionConnector.Item<T>();
         }
 
+        public static void Item<T>(T item)
+        {
+            LibSessionConnector.Item<T>(item);
+        }
+
         #endregion Methods
 
         #region Properties

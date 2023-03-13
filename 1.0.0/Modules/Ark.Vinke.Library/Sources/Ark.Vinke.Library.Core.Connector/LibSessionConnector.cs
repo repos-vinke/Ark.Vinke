@@ -41,6 +41,17 @@ namespace Ark.Vinke.Library.Core.Connector
             return (T)itemDictionary[typeof(T)];
         }
 
+        public static void Item<T>(T item)
+        {
+            if (itemDictionary == null)
+                itemDictionary = new Dictionary<Type, Object>();
+            
+            if (itemDictionary.ContainsKey(typeof(T)) == false)
+                itemDictionary.Add(typeof(T), item);
+            else
+                itemDictionary[typeof(T)] = item;
+        }
+
         #endregion Methods
 
         #region Properties
@@ -81,6 +92,12 @@ namespace Ark.Vinke.Library.Core.Connector
         #endregion Constructor
 
         #region Methods
+
+        public void Clear()
+        {
+            this.parameterDictionary.Clear();
+        }
+
         #endregion Methods
 
         #region Properties
