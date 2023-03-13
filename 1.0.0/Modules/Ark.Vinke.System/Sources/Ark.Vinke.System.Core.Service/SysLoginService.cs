@@ -144,23 +144,30 @@ namespace Ark.Vinke.System.Core.Service
         /// <param name="loginDataResponse">The response data</param>
         protected virtual void OnAuthenticate(SysLoginDataRequest loginDataRequest, SysLoginDataResponse loginDataResponse)
         {
+            if (LibConfigurationService.DynamicXml["Ark.Vinke.Framework"]["Database"].Elements.ContainsKey(loginDataRequest.Content.DatabaseAlias) == false)
+                throw new LibException(Properties.SysResourcesCoreService.SysExceptionAuthenticationFailed, Properties.SysResourcesCoreService.SysCaptionDenied);
+            
             SysAuthenticationDataRequest authenticationDataRequest = new SysAuthenticationDataRequest();
             authenticationDataRequest.Content.DatabaseAlias = loginDataRequest.Content.DatabaseAlias;
             authenticationDataRequest.Content.DomainCode = loginDataRequest.Content.DomainCode;
             authenticationDataRequest.Content.Username = loginDataRequest.Content.Username;
             authenticationDataRequest.Content.Password = loginDataRequest.Content.Password;
-
-            if (LibConfigurationService.DynamicXml["Ark.Vinke.Framework"]["Database"].Elements.ContainsKey(loginDataRequest.Content.DatabaseAlias) == false)
-                throw new LibException(Properties.SysResourcesCoreService.SysExceptionAuthenticationFailed, Properties.SysResourcesCoreService.SysCaptionDenied);
-
+            
             this.Environment.DatabaseAlias = loginDataRequest.Content.DatabaseAlias;
+            
             SysAuthenticationService authenticationService = new SysAuthenticationService(this.Environment);
             SysAuthenticationDataResponse authenticationDataResponse = authenticationService.Authenticate(authenticationDataRequest);
+            
+            if (authenticationDataResponse.Content.Token == null)
+                throw new LibException(Properties.SysResourcesCoreService.SysExceptionAuthenticationFailed, Properties.SysResourcesCoreService.SysCaptionDenied);
+            
+            this.Environment.Domain = new FwkDomain() { IdDomain = authenticationDataResponse.Content.IdDomain };
+            this.Environment.User = new FwkUser() { IdDomain = authenticationDataResponse.Content.IdDomain, IdUser = authenticationDataResponse.Content.IdUser };
+            
+            new SysLoginService(this.Environment); // Get Environment data
 
             loginDataResponse.Content.Token = authenticationDataResponse.Content.Token;
-
-            if (loginDataResponse.Content.Token == null)
-                throw new LibException(Properties.SysResourcesCoreService.SysExceptionAuthenticationFailed, Properties.SysResourcesCoreService.SysCaptionDenied);
+            loginDataResponse.Content.Environment = this.Environment;
         }
 
         /// <summary>

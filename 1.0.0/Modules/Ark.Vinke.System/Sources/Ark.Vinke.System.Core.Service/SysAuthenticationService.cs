@@ -155,7 +155,7 @@ namespace Ark.Vinke.System.Core.Service
                 Dictionary<String, String> privatePayloadDictionary = tuplePayloadDictionary.Item2;
 
                 authenticationDataResponse.Content.DatabaseAlias = privatePayloadDictionary["DatabaseAlias"];
-                authenticationDataResponse.Content.IdDomain = LazyConvert.ToInt32(privatePayloadDictionary["IdDomain"]);
+                authenticationDataResponse.Content.IdDomain = LazyConvert.ToInt16(privatePayloadDictionary["IdDomain"]);
                 authenticationDataResponse.Content.IdUser = LazyConvert.ToInt32(privatePayloadDictionary["IdUser"]);
             }
             else if (String.IsNullOrEmpty(authenticationDataRequest.Content.DomainCode) == false && String.IsNullOrEmpty(authenticationDataRequest.Content.Username) == false && String.IsNullOrEmpty(authenticationDataRequest.Content.Password) == false)
@@ -196,7 +196,7 @@ namespace Ark.Vinke.System.Core.Service
                         privatePayloadDictionary.Add("IdDomain", LazyConvert.ToString(dataTableUser.Rows[0]["IdDomain"]));
                         privatePayloadDictionary.Add("IdUser", LazyConvert.ToString(dataTableUser.Rows[0]["IdUser"]));
 
-                        authenticationDataResponse.Content.IdDomain = LazyConvert.ToInt32(dataTableUser.Rows[0]["IdDomain"]);
+                        authenticationDataResponse.Content.IdDomain = LazyConvert.ToInt16(dataTableUser.Rows[0]["IdDomain"]);
                         authenticationDataResponse.Content.IdUser = LazyConvert.ToInt32(dataTableUser.Rows[0]["IdUser"]);
                         authenticationDataResponse.Content.Token = EncryptTokenJWT(tuplePayloadDictionary);
                     }

@@ -187,7 +187,7 @@ namespace Ark.Vinke.System.Core.Data
 
         public String DatabaseAlias { get; set; }
 
-        public Int32 IdDomain { get; set; }
+        public Int16 IdDomain { get; set; }
 
         public Int32 IdUser { get; set; }
 

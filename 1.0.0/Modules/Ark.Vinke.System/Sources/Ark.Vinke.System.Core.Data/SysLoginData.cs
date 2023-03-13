@@ -185,6 +185,8 @@ namespace Ark.Vinke.System.Core.Data
 
         public String Token { get; set; }
 
+        public FwkEnvironment Environment { get; set; }
+
         #endregion Properties
     }
 }
