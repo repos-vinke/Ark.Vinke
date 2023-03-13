@@ -49,18 +49,48 @@ namespace Ark.Vinke.Library.Core
         {
             if (dataTable == null)
                 return null;
-            
+
             if (dataRow == null || columnArray == null || columnArray.Length == 0)
                 return dataTable.Select();
-            
+
             String filter = String.Empty;
             foreach (String column in columnArray)
                 filter += column + " = '" + LazyConvert.ToString(dataRow[column]) + "' and ";
             filter = filter.Remove(filter.Length - 5, 5);
-            
+
             return dataTable.Select(filter);
         }
 
         #endregion System.Data.DataTable
+
+        #region System.Data.DataRow
+
+        public static DataRow Clone(this DataRow dataRow, String[] columns)
+        {
+            if (dataRow == null)
+                return null;
+            
+            if (columns == null || columns.Length == 0)
+                return null;
+            
+            DataTable dataTable = new DataTable(dataRow.Table.TableName);
+            DataRow dataRowCloned = dataTable.NewRow();
+            
+            foreach (String column in columns)
+            {
+                if (dataRow.Table.Columns.Contains(column) == true)
+                {
+                    dataTable.Columns.Add(column, dataRow[column].GetType());
+                    dataRowCloned[column] = dataRow[column];
+                }
+            }
+            
+            dataTable.Rows.Add(dataRowCloned);
+            dataTable.AcceptChanges();
+            
+            return dataRowCloned;
+        }
+
+        #endregion System.Data.DataRow
     }
 }
