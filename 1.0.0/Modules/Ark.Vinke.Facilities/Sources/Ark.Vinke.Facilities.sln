@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Vinke.Facilities.Core.C
 		{BC3CCFD1-BB87-45F3-8EF9-0E5A75F3E0FA} = {BC3CCFD1-BB87-45F3-8EF9-0E5A75F3E0FA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Vinke.Facilities.Core.Connector", "Ark.Vinke.Facilities.Core.Connector\Ark.Vinke.Facilities.Core.Connector.csproj", "{1CE70557-029E-48FA-B356-375C785379AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Vinke.Facilities.Core.Connector", "Ark.Vinke.Facilities.Core.Connector\Ark.Vinke.Facilities.Core.Connector.csproj", "{1CE70557-029E-48FA-B356-375C785379AB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1FD0F57E-1902-4B26-9A0E-5BFD57234E4E} = {1FD0F57E-1902-4B26-9A0E-5BFD57234E4E}
 		{72506536-AC29-4CEF-A9F2-403F96C5258A} = {72506536-AC29-4CEF-A9F2-403F96C5258A}
