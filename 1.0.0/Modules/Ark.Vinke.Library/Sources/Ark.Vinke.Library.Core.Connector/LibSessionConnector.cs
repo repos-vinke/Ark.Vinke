@@ -24,10 +24,23 @@ namespace Ark.Vinke.Library.Core.Connector
         #region Variables
 
         private static LibSessionConnectorParameter parameter;
+        private static Dictionary<Type, Object> itemDictionary;
 
         #endregion Variables
 
         #region Methods
+
+        public static T Item<T>()
+        {
+            if (itemDictionary == null)
+                itemDictionary = new Dictionary<Type, Object>();
+
+            if (itemDictionary.ContainsKey(typeof(T)) == false)
+                itemDictionary.Add(typeof(T), LazyActivator.Local.CreateInstance(typeof(T)));
+
+            return (T)itemDictionary[typeof(T)];
+        }
+
         #endregion Methods
 
         #region Properties

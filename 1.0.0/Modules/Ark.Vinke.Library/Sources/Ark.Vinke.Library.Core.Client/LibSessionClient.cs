@@ -33,6 +33,12 @@ namespace Ark.Vinke.Library.Core.Connector
         #endregion Variables
 
         #region Methods
+
+        public static T Item<T>()
+        {
+            return LibSessionConnector.Item<T>();
+        }
+
         #endregion Methods
 
         #region Properties
