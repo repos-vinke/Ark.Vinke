@@ -60,7 +60,7 @@ create table FwkUserContext
 	IdDomain smallint,
     IdUser integer,
     Field varchar(32),
-    ValueInt16 integer,
+    ValueInt16 smallint,
     ValueInt32 integer,
     ValueString varchar(64),
     constraint Pk_FwkUserContext primary key (IdDomain, IdUser, Field)
