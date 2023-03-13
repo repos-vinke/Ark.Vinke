@@ -71,7 +71,7 @@ namespace Ark.Vinke.Framework.Core
         [LazyAttributeGeneric("NN", "None")]
         None = 70
     }
-    
+
     public enum FwkDefaultValueEnum
     {
         [LazyAttributeGeneric("NV", "Never")]
@@ -85,5 +85,38 @@ namespace Ark.Vinke.Framework.Core
 
         [LazyAttributeGeneric("AL", "Always")]
         Always = 3
+    }
+
+    public enum FwkAlignmentEnum
+    {
+        [LazyAttributeGeneric("DF", "Default")]
+        Default = 0,
+
+        [LazyAttributeGeneric("TL", "TopLeft")]
+        TopLeft = 11,
+
+        [LazyAttributeGeneric("TC", "TopCenter")]
+        TopCenter = 12,
+
+        [LazyAttributeGeneric("TR", "TopRight")]
+        TopRight = 13,
+
+        [LazyAttributeGeneric("ML", "MiddleLeft")]
+        MiddleLeft = 21,
+
+        [LazyAttributeGeneric("MC", "MiddleCenter")]
+        MiddleCenter = 22,
+
+        [LazyAttributeGeneric("MR", "MiddleRight")]
+        MiddleRight = 23,
+
+        [LazyAttributeGeneric("BL", "BottomLeft")]
+        BottomLeft = 31,
+
+        [LazyAttributeGeneric("BC", "BottomCenter")]
+        BottomCenter = 32,
+
+        [LazyAttributeGeneric("BR", "BottomRight")]
+        BottomRight = 33
     }
 }

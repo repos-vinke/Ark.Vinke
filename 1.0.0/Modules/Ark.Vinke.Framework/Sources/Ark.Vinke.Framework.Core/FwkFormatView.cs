@@ -65,12 +65,13 @@ namespace Ark.Vinke.Framework.Core
 
         public void SetFieldAttributes(Type type, String caption = null,
             FwkBooleanEnum visible = FwkBooleanEnum.True, FwkConstraintEnum constraint = FwkConstraintEnum.None,
-            String displayFormat = null)
+            FwkAlignmentEnum displayAlignment = FwkAlignmentEnum.Default, String displayFormat = null)
         {
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Type = type;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Caption = caption;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Visible = visible;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Constraint = constraint;
+            this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.DisplayAlignment = displayAlignment;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.DisplayFormat = displayFormat;
         }
 
@@ -203,7 +204,7 @@ namespace Ark.Vinke.Framework.Core
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public Boolean VisibleValue
         {
-            get { return Visible == FwkBooleanEnum.True ? true : false; }
+            get { return Visible == FwkBooleanEnum.True; }
             set { Visible = value == true ? FwkBooleanEnum.True : FwkBooleanEnum.False; }
         }
 
@@ -214,7 +215,7 @@ namespace Ark.Vinke.Framework.Core
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public String ConstraintName
         {
-            get { return Enum.GetName(typeof(FwkConstraintEnum), Constraint); }
+            get { return LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(Constraint).Name; }
             set
             {
                 switch (value)
@@ -224,6 +225,32 @@ namespace Ark.Vinke.Framework.Core
                     case "IncrementKey": Constraint = FwkConstraintEnum.IncrementKey; break;
                     case "UniqueKey": Constraint = FwkConstraintEnum.UniqueKey; break;
                     case "None": Constraint = FwkConstraintEnum.None; break;
+                }
+            }
+        }
+
+        [LazyJsonAttributePropertyIgnore()]
+        public FwkAlignmentEnum DisplayAlignment { get; set; }
+
+        [LazyJsonAttributePropertyRename("DisplayAlignment")]
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public String DisplayAlignmentName
+        {
+            get { return LazyAttribute.GetCustomAttributeFromEnumValue<LazyAttributeGeneric>(DisplayAlignment).Name; }
+            set
+            {
+                switch (value)
+                {
+                    case "Default": DisplayAlignment = FwkAlignmentEnum.Default; break;
+                    case "TopLeft": DisplayAlignment = FwkAlignmentEnum.TopLeft; break;
+                    case "TopCenter": DisplayAlignment = FwkAlignmentEnum.TopCenter; break;
+                    case "TopRight": DisplayAlignment = FwkAlignmentEnum.TopRight; break;
+                    case "MiddleLeft": DisplayAlignment = FwkAlignmentEnum.MiddleLeft; break;
+                    case "MiddleCenter": DisplayAlignment = FwkAlignmentEnum.MiddleCenter; break;
+                    case "MiddleRight": DisplayAlignment = FwkAlignmentEnum.MiddleRight; break;
+                    case "BottomLeft": DisplayAlignment = FwkAlignmentEnum.BottomLeft; break;
+                    case "BottomCenter": DisplayAlignment = FwkAlignmentEnum.BottomCenter; break;
+                    case "BottomRight": DisplayAlignment = FwkAlignmentEnum.BottomRight; break;
                 }
             }
         }
