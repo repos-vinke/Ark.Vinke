@@ -132,6 +132,27 @@ namespace Ark.Vinke.Studio.Properties {
         ///	&lt;PropertyGroup&gt;
         ///		&lt;TargetFramework&gt;net6.0&lt;/TargetFramework&gt;
         ///		&lt;Product&gt;Ark&lt;/Product&gt;
+        ///		&lt;Description&gt;Ark {DEVELOPER} {MODULE} {PROJECT} Connector&lt;/Description&gt;
+        ///		&lt;Authors&gt;{DEVELOPER}&lt;/Authors&gt;
+        ///		&lt;Version&gt;1.0.0&lt;/Version&gt;
+        ///		&lt;RepositoryUrl&gt;{REPOSITORY}&lt;/RepositoryUrl&gt;
+        ///		&lt;GeneratePackageOnBuild&gt;true&lt;/GeneratePackageOnBuild&gt;
+        ///		&lt;PackageRequireLicenseAcceptance&gt;true&lt;/PackageRequireLicenseAcceptance&gt;
+        ///		&lt;PackageLicenseFile&gt;LICENSE&lt;/PackageLicenseFile&gt;
+        ///		&lt;PackageOutputPa [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string Ark_Developer_Module_Project_Connector_csproj {
+            get {
+                return ResourceManager.GetString("Ark_Developer_Module_Project_Connector_csproj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a &lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+        ///
+        ///	&lt;PropertyGroup&gt;
+        ///		&lt;TargetFramework&gt;net6.0&lt;/TargetFramework&gt;
+        ///		&lt;Product&gt;Ark&lt;/Product&gt;
         ///		&lt;Description&gt;Ark {DEVELOPER} {MODULE} {PROJECT}&lt;/Description&gt;
         ///		&lt;Authors&gt;{DEVELOPER}&lt;/Authors&gt;
         ///		&lt;Version&gt;1.0.0&lt;/Version&gt;
@@ -419,6 +440,36 @@ namespace Ark.Vinke.Studio.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a // {PREFIX}{FEATURE}Connector{TYPE}.cs
+        /////
+        ///// This file is integrated part of Ark project
+        ///// Licensed under &quot;Gnu General Public License Version 3&quot;
+        /////
+        ///// Created by {FULLNAME}
+        ///// Created on {YEAR}, {MONTH} {DAY}
+        ///
+        ///using System;
+        ///using System.IO;
+        ///using System.Xml;
+        ///using System.Data;
+        ///using System.Net.Http;
+        ///using System.Collections.Generic;
+        ///
+        ///using Lazy.Vinke;
+        ///using Lazy.Vinke.Json;
+        ///
+        ///using Ark.Vinke.Library;
+        ///using Ark.Vinke.Library.Core;
+        ///using Ark.Vinke.Library.Core.Connector;
+        ///using Ark.Vinke.F [o restante da cadeia de caracteres foi truncado]&quot;;.
+        /// </summary>
+        public static string ModFeatureConnector {
+            get {
+                return ResourceManager.GetString("ModFeatureConnector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a // {PREFIX}{FEATURE}Data{TYPE}.cs
         /////
         ///// This file is integrated part of Ark project
@@ -499,8 +550,7 @@ namespace Ark.Vinke.Studio.Properties {
         ///using Microsoft.AspNetCore.Authorization;
         ///
         ///using Lazy.Vinke;
-        ///
-        ///using Ark.V [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///using Lazy.Vi [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         public static string ModFeatureServer {
             get {

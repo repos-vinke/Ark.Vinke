@@ -1,0 +1,60 @@
+﻿// {PREFIX}{FEATURE}Connector{TYPE}.cs
+//
+// This file is integrated part of Ark project
+// Licensed under "Gnu General Public License Version 3"
+//
+// Created by {FULLNAME}
+// Created on {YEAR}, {MONTH} {DAY}
+
+using System;
+using System.IO;
+using System.Xml;
+using System.Data;
+using System.Net.Http;
+using System.Collections.Generic;
+
+using Lazy.Vinke;
+using Lazy.Vinke.Json;
+
+using Ark.Vinke.Library;
+using Ark.Vinke.Library.Core;
+using Ark.Vinke.Library.Core.Connector;
+using Ark.Vinke.Framework;
+using Ark.Vinke.Framework.Core;
+using Ark.Vinke.Framework.Core.Data;
+using Ark.Vinke.Framework.Core.IServer;
+using Ark.Vinke.Framework.Core.Connector;
+using Ark.Vinke.Facilities;
+using Ark.Vinke.Facilities.Core;
+using Ark.Vinke.Facilities.Core.Data;
+using Ark.Vinke.Facilities.Core.IServer;
+using Ark.Vinke.Facilities.Core.Connector;
+using Ark.{DEVELOPER}.{MODULE};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT};
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Data;
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IServer;
+using Ark.{DEVELOPER}.{MODULE}.{PROJECT}.IService;
+
+namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Connector
+{
+    public class {PREFIX}{FEATURE}Connector{TYPE} : FwkConnector{TYPE}
+    {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+
+        public {PREFIX}{FEATURE}Connector{TYPE}()
+        {
+            this.Route = "Ark.{DEVELOPER}.{MODULE}/{PROJECT}.Server/{PREFIX}{FEATURE}Server{TYPE}";
+        }
+
+        #endregion Constructors
+
+        #region Methods
+        #endregion Methods
+
+        #region Properties
+        #endregion Properties
+    }
+}

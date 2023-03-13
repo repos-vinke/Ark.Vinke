@@ -184,6 +184,8 @@ namespace Ark.Vinke.Studio
 
             GenerateSolutionModuleProjectClient();
 
+            GenerateSolutionModuleProjectConnector();
+
             GenerateSolutionModuleProjectIServer();
 
             GenerateSolutionModuleProjectServer();
@@ -277,6 +279,18 @@ namespace Ark.Vinke.Studio
             File.WriteAllText(moduleFileFullPath, ReplaceSolutionModuleProject(Properties.ResourcesStudio.Ark_Developer_Module_Project_Client_csproj), Encoding.UTF8);
         }
 
+        private void GenerateSolutionModuleProjectConnector()
+        {
+            String moduleFolderName = String.Join('.', "Ark", this.textBoxProjectDeveloper.Text, this.textBoxProjectModule.Text, this.textBoxProjectName.Text, "Connector");
+            String moduleFolderFullPath = Path.Combine(this.textBoxProjectDestinationPath.Text, moduleFolderName);
+            String moduleFileFullPath = Path.Combine(moduleFolderFullPath, String.Join('.', moduleFolderName, "csproj"));
+
+            if (Directory.Exists(moduleFolderFullPath) == false)
+                Directory.CreateDirectory(moduleFolderFullPath);
+
+            File.WriteAllText(moduleFileFullPath, ReplaceSolutionModuleProject(Properties.ResourcesStudio.Ark_Developer_Module_Project_Connector_csproj), Encoding.UTF8);
+        }
+
         private void GenerateSolutionModuleProjectIServer()
         {
             String moduleFolderName = String.Join('.', "Ark", this.textBoxProjectDeveloper.Text, this.textBoxProjectModule.Text, this.textBoxProjectName.Text, "IServer");
@@ -368,6 +382,7 @@ namespace Ark.Vinke.Studio
             content = content.Replace("{GUID-ARK-DEVELOPER-MODULE-PROJECT}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
             content = content.Replace("{GUID-ARK-DEVELOPER-MODULE-PROJECT-DATA}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
             content = content.Replace("{GUID-ARK-DEVELOPER-MODULE-PROJECT-CLIENT}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
+            content = content.Replace("{GUID-ARK-DEVELOPER-MODULE-PROJECT-CONNECTOR}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
             content = content.Replace("{GUID-ARK-DEVELOPER-MODULE-PROJECT-ISERVER}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
             content = content.Replace("{GUID-ARK-DEVELOPER-MODULE-PROJECT-SERVER}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
             content = content.Replace("{GUID-ARK-DEVELOPER-MODULE-PROJECT-IPLUGIN}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
@@ -494,6 +509,8 @@ namespace Ark.Vinke.Studio
         {
             GenerateFeatureData();
 
+            GenerateFeatureConnector();
+
             GenerateFeatureIServer();
 
             GenerateFeatureServer();
@@ -518,6 +535,19 @@ namespace Ark.Vinke.Studio
                 Directory.CreateDirectory(featureFolderFullPath);
 
             File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.ModFeatureData), Encoding.UTF8);
+        }
+
+        private void GenerateFeatureConnector()
+        {
+            String featureFolderName = String.Join('.', "Ark", this.textBoxFeatureDeveloper.Text, this.textBoxFeatureModule.Text, this.textBoxFeatureProject.Text, "Connector");
+            String featureFolderFullPath = Path.Combine(this.textBoxFeatureDestinationPath.Text, featureFolderName);
+            String featureFileName = String.Join(null, this.textBoxFeaturePrefix.Text, this.textBoxFeatureName.Text, "Connector", this.comboBoxFeatureType.SelectedIndex == 0 ? String.Empty : this.comboBoxFeatureType.SelectedItem.ToString());
+            String featureFileFullPath = Path.Combine(featureFolderFullPath, String.Join('.', featureFileName, "cs"));
+
+            if (Directory.Exists(featureFolderFullPath) == false)
+                Directory.CreateDirectory(featureFolderFullPath);
+
+            File.WriteAllText(featureFileFullPath, ReplaceFeatureContent(Properties.ResourcesStudio.ModFeatureConnector), Encoding.UTF8);
         }
 
         private void GenerateFeatureIServer()

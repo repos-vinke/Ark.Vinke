@@ -130,6 +130,9 @@
   <data name="Ark_Developer_Module_Project_Client_csproj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\models\ark.developer.module.project.client\ark.developer.module.project.client.csproj.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="Ark_Developer_Module_Project_Connector_csproj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.connector\ark.developer.module.project.connector.csproj.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="Ark_Developer_Module_Project_csproj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\models\ark.developer.module.project\ark.developer.module.project.csproj.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -168,6 +171,9 @@
   </data>
   <data name="IModFeatureService" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\models\ark.developer.module.project.iservice\imodfeatureservice.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ModFeatureConnector" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\ark.developer.module.project.connector\modfeatureconnector.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="ModFeatureData" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\models\ark.developer.module.project.data\modfeaturedata.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
