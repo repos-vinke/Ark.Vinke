@@ -46,14 +46,7 @@ namespace Ark.Vinke.Framework.Core.Connector
 
         public FwkConnector()
         {
-            this.Route = "Ark.Vinke.Framework/Core.Server/FwkServer";
-
-            this.DeserializerOptions.Item<LazyJsonDeserializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
-            this.SerializerOptions.Item<LazyJsonSerializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
-
-            this.JsonWriterOptions.Indent = false;
-
-            #region Initialize data response type
+            #region Initialize data type
 
             Type type = this.GetType();
 
@@ -65,7 +58,14 @@ namespace Ark.Vinke.Framework.Core.Connector
                 LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].CurrentVersion.Lib.Net60.Path, assemblyFileName + ".dll"),
                 classFullName);
 
-            #endregion Initialize data response type
+            #endregion Initialize data type
+            
+            this.Route = "Ark.Vinke.Framework/Core.Server/FwkServer";
+            
+            this.DeserializerOptions.Item<LazyJsonDeserializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
+            this.SerializerOptions.Item<LazyJsonSerializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
+            
+            this.JsonWriterOptions.Indent = false;
         }
 
         #endregion Constructors

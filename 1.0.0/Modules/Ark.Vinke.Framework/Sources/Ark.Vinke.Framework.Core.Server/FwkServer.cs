@@ -46,15 +46,28 @@ namespace Ark.Vinke.Framework.Core.Server
 
         public FwkServer()
         {
-            if (this.GetType() == typeof(FwkServer))
-            {
-                this.DataRequestType = typeof(FwkDataRequest);
-                this.DataResponseType = typeof(FwkDataResponse);
-            }
-            
+            #region Initialize data type
+
+            Type type = this.GetType();
+
+            String assemblyFileName = type.Namespace.Replace("Server", "Data");
+            String assemblyFolderName = assemblyFileName.ToLower();
+            String requestClassFullName = type.FullName.Replace("Server", "Data") + "Request";
+            String responseClassFullName = type.FullName.Replace("Server", "Data") + "Response";
+
+            this.DataRequestType = LazyActivator.Local.GetType(Path.Combine(
+                LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].CurrentVersion.Lib.Net60.Path, assemblyFileName + ".dll"),
+                requestClassFullName);
+
+            this.DataResponseType = LazyActivator.Local.GetType(Path.Combine(
+                LibDirectory.Root.Bin.AssemblyFolder[assemblyFolderName].CurrentVersion.Lib.Net60.Path, assemblyFileName + ".dll"),
+                responseClassFullName);
+
+            #endregion Initialize data type
+
             this.DeserializerOptions.Item<LazyJsonDeserializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
             this.SerializerOptions.Item<LazyJsonSerializerOptionsDateTime>().Format = LibStringFormat.DateTime.ISO8601Z;
-            
+
             this.JsonWriterOptions.Indent = false;
         }
 

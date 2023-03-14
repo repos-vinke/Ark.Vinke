@@ -38,11 +38,6 @@ namespace Ark.Vinke.Framework.Core.Server
 
         public FwkServerProcess()
         {
-            if (this.GetType() == typeof(FwkServerProcess))
-            {
-                this.DataRequestType = typeof(FwkDataProcessRequest);
-                this.DataResponseType = typeof(FwkDataProcessResponse);
-            }
         }
 
         #endregion Constructors

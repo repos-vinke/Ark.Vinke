@@ -39,11 +39,6 @@ namespace Ark.Vinke.Framework.Core.Server
 
         public FwkServerRecord()
         {
-            if (this.GetType() == typeof(FwkServerRecord))
-            {
-                this.DataRequestType = typeof(FwkDataRecordRequest);
-                this.DataResponseType = typeof(FwkDataRecordResponse);
-            }
         }
 
         #endregion Constructors
