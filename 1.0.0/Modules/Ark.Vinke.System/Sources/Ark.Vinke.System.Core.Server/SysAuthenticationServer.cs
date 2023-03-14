@@ -51,8 +51,6 @@ namespace Ark.Vinke.System.Core.Server
 
         public SysAuthenticationServer()
         {
-            this.DataRequestType = typeof(SysAuthenticationDataRequest);
-            this.DataResponseType = typeof(SysAuthenticationDataResponse);
         }
 
         #endregion Constructors

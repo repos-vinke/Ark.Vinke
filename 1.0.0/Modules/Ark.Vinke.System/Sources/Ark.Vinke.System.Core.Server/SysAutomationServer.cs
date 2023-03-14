@@ -49,8 +49,6 @@ namespace Ark.Vinke.System.Core.Server
 
         public SysAutomationServer()
         {
-            this.DataRequestType = typeof(SysAutomationDataRequest);
-            this.DataResponseType = typeof(SysAutomationDataResponse);
         }
 
         #endregion Constructors

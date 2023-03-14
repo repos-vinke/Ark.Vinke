@@ -49,8 +49,6 @@ namespace Ark.Vinke.System.Core.Server
 
         public SysPreflightServer()
         {
-            this.DataRequestType = typeof(SysPreflightDataRequest);
-            this.DataResponseType = typeof(SysPreflightDataResponse);
         }
 
         #endregion Constructors
