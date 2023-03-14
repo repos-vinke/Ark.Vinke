@@ -43,8 +43,6 @@ namespace Ark.Vinke.Facilities.Core.Server
 
         public FtsIncrementServer()
         {
-            this.DataRequestType = typeof(FtsIncrementDataRequest);
-            this.DataResponseType = typeof(FtsIncrementDataResponse);
         }
 
         #endregion Constructors
