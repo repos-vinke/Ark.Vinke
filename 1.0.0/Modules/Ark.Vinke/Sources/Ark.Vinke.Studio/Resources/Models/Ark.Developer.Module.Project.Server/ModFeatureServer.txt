@@ -55,8 +55,6 @@ namespace Ark.{DEVELOPER}.{MODULE}.{PROJECT}.Server
 
         public {PREFIX}{FEATURE}Server{TYPE}()
         {
-            this.DataRequestType = typeof({PREFIX}{FEATURE}Data{TYPE}Request);
-            this.DataResponseType = typeof({PREFIX}{FEATURE}Data{TYPE}Response);
         }
 
         #endregion Constructors
