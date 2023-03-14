@@ -65,13 +65,14 @@ namespace Ark.Vinke.Framework.Core
 
         public void SetFieldAttributes(Type type, String caption = null,
             FwkBooleanEnum visible = FwkBooleanEnum.True, FwkConstraintEnum constraint = FwkConstraintEnum.None,
-            FwkAlignmentEnum displayAlignment = FwkAlignmentEnum.Default, String displayFormat = null)
+            FwkAlignmentEnum displayAlignment = FwkAlignmentEnum.Default, Int32 displayWidth = 100, String displayFormat = null)
         {
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Type = type;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Caption = caption;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Visible = visible;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.Constraint = constraint;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.DisplayAlignment = displayAlignment;
+            this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.DisplayWidth = displayWidth;
             this.viewTableList[this.currentTable].ViewFields[this.currentField].Attributes.DisplayFormat = displayFormat;
         }
 
@@ -256,6 +257,8 @@ namespace Ark.Vinke.Framework.Core
         }
 
         public String DisplayFormat { get; set; }
+
+        public Int32 DisplayWidth { get; set; }
 
         #endregion Properties
     }
